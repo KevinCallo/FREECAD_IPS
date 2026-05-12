@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeCAD - Proyecto IPS 2026-A</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm 12mm;
+            background-color: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding-bottom: 50px;
+        }
+        header {
+            background-color: #004a99;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 { margin: 0; font-size: 24pt; }
+        h2 { color: #004a99; border-left: 5px solid #004a99; padding-left: 10px; margin-top: 30px; font-size: 16pt; }
+        h3 { color: #2c3e50; margin-top: 20px; font-size: 13pt; }
+        p, li { font-size: 11pt; text-align: justify; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+            font-weight: bold;
+            text-align: left;
+            padding: 12px;
+            border-bottom: 2px solid #ddd;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        .highlight-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        /* Estilo del Botón de Proyectos */
+        .btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .btn-projects {
+            display: inline-block;
+            background-color: #004a99;
+            color: white !important;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .btn-projects:hover {
+            background-color: #003366;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Proyecto: Scrum y DevOps - FreeCAD</h1>
+        <p>Curso: Ingeniería y Procesos de Software (2026-A)</p>
+    </header>
+
+    <div class="container">
+        <h2>1. Introducción al Proyecto</h2>
+        <p>Este proyecto implementa un proceso de desarrollo de software que integra el marco de trabajo <strong>Scrum</strong> con prácticas <strong>DevOps</strong>. El producto seleccionado es <strong>FreeCAD</strong>, un modelador 3D paramétrico de código abierto bajo licencia LGPL-2.1.</p>
+
+        <h2>2. Plan del Proyecto (Scrum + DevOps)</h2>
+        <p>El desarrollo se basa en ciclos iterativos de 15 días. El equipo está compuesto por 5 integrantes con roles rotativos.</p>
+        
+        <h3>Estructura de Sprints</h3>
+        <ul>
+            <li><strong>Sprint 0:</strong> Planificación, análisis del sistema y configuración del entorno.</li>
+            <li><strong>Sprint 1-2:</strong> Desarrollo inicial e integración CI/CD.</li>
+            <li><strong>Sprint 3-4:</strong> Mejoras, optimización y documentación final.</li>
+        </ul>
+
+        <h2>3. Cronograma de Trabajo</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sprint</th>
+                    <th>Actividades Principales</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sprint 0</td>
+                    <td>Planificación, backlog inicial y configuración GitHub.</td>
+                    <td>01/05</td>
+                    <td>13/05</td>
+                </tr>
+                <tr>
+                    <td>Sprint 1</td>
+                    <td>Desarrollo inicial + configuración CI/CD.</td>
+                    <td>14/05</td>
+                    <td>28/05</td>
+                </tr>
+                <tr>
+                    <td>Sprint 2</td>
+                    <td>Implementación de funcionalidades (BIM Focus).</td>
+                    <td>29/05</td>
+                    <td>10/06</td>
+                </tr>
+                <tr>
+                    <td>Sprint 3</td>
+                    <td>Mejoras y optimización del código.</td>
+                    <td>11/06</td>
+                    <td>25/06</td>
+                </tr>
+                <tr>
+                    <td>Sprint 4</td>
+                    <td>Documentación técnica y entrega final.</td>
+                    <td>26/06</td>
+                    <td>13/07</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Infraestructura de Staging y DevOps</h2>
+        <div class="highlight-box">
+            <h3>Entorno de Staging (Demo Pública)</h3>
+            <p>Este sitio sirve como nuestro entorno de Staging. Aquí se publicarán los avances funcionales de cada Sprint para revisión del docente. La actualización es automática mediante GitHub Actions cada vez que se realiza un merge a la rama principal.</p>
+        </div>
+
+        <h3>Métricas DevOps (Burndown Chart)</h3>
+        <p>A continuación se presenta la métrica de avance del Sprint actual. Esta gráfica es generada automáticamente por <strong>GitHub Actions</strong> analizando los Issues de GitHub Projects.</p>
+        <div style="text-align:center; padding: 40px; border: 2px dashed #ccc; color: #777;">
+            [El Burndown Chart se activará automáticamente al inicio del Sprint 1]
+        </div>
+
+        <h2>5. Gestión del Trabajo</h2>
+        <p>Utilizamos <strong>GitHub Projects</strong> con un tablero Kanban estructurado para organizar el backlog y el flujo de tareas del equipo.</p>
+        
+        <div style="display: table; width: 100%; border: 1px solid #eee; margin-bottom: 20px;">
+            <div style="display: table-cell; padding: 10px; border-right: 1px solid #eee; background: #fcfcfc;"><strong>Backlog</strong></div>
+            <div style="display: table-cell; padding: 10px; border-right: 1px solid #eee; background: #fcfcfc;"><strong>To Do</strong></div>
+            <div style="display: table-cell; padding: 10px; border-right: 1px solid #eee; background: #fcfcfc;"><strong>In Progress</strong></div>
+            <div style="display: table-cell; padding: 10px; background: #fcfcfc;"><strong>Done</strong></div>
+        </div>
+
+        <div class="btn-container">
+            <a href="TU_URL_AQUI" class="btn-projects" target="_blank">
+                Acceder a GitHub Projects
+            </a>
+        </div>
+
+        <h2>6. Documentación Técnica</h2>
+        <p>La documentación técnica completa, incluyendo el análisis de arquitectura de FreeCAD (OpenCASCADE, Coin3D, Qt) y los diagramas de clases de los módulos BIM modificados, se encuentra en proceso de elaboración y se publicará en esta misma sección al finalizar el Hito 2.</p>
+    </div>
+</body>
+</html>
