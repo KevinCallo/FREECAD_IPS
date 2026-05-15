@@ -3,179 +3,1613 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreeCAD - Proyecto IPS 2026-A</title>
+    <title>FreeCAD · Proyecto IPS 2026-A | Scrum + DevOps</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
-        @page {
-            size: A4;
-            margin: 15mm 12mm;
-            background-color: #ffffff;
+        /* ============================================
+                   ROOT VARIABLES - FreeCAD Theme
+                ============================================ */
+        :root {
+            --fc-blue-900: #00264d;
+            --fc-blue-800: #003366;
+            --fc-blue-700: #004a99;
+            --fc-blue-600: #1a6db5;
+            --fc-blue-500: #3a8fd4;
+            --fc-blue-400: #6ab0e8;
+            --fc-blue-100: #e8f4fd;
+
+            --fc-orange: #f39c12;
+            --fc-orange-dark: #e67e22;
+            --fc-orange-light: #fdebd0;
+
+            --fc-green: #27ae60;
+            --fc-green-light: #d4efdf;
+            --fc-red: #e74c3c;
+            --fc-red-light: #fadbd8;
+            --fc-purple: #8e44ad;
+            --fc-purple-light: #e8daef;
+            --fc-gray: #95a5a6;
+            --fc-gray-light: #ecf0f1;
+
+            --bg-body: #f0f2f5;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a6a;
+            --text-muted: #8888a0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.5;
-            color: #333;
+
+        /* ============================================
+                   RESET & BASE
+                ============================================ */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding-bottom: 50px;
+
+        html {
+            scroll-behavior: smooth;
         }
-        header {
-            background-color: #004a99;
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ============================================
+                   SCROLLBAR
+                ============================================ */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: var(--fc-blue-400); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--fc-blue-500); }
+
+        /* ============================================
+                   TYPOGRAPHY
+                ============================================ */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ============================================
+                   HEADER / HERO
+                ============================================ */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--fc-blue-900) 0%, var(--fc-blue-700) 50%, var(--fc-blue-600) 100%);
             color: white;
-            padding: 30px;
+            padding: 60px 24px 50px;
             text-align: center;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 600px 400px at 10% 20%, rgba(243,156,18,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 500px at 90% 80%, rgba(106,176,232,0.10) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        /* FreeCAD gear icon decoration */
+        .hero-gear {
+            position: absolute;
+            font-size: 300px;
+            color: rgba(255,255,255,0.03);
+            z-index: 0;
+            user-select: none;
+            pointer-events: none;
+        }
+        .hero-gear--1 {
+            top: -80px;
+            right: -60px;
+            transform: rotate(15deg);
+        }
+        .hero-gear--2 {
+            bottom: -100px;
+            left: -80px;
+            transform: rotate(-25deg);
+            font-size: 250px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.18);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .hero-badge i {
+            color: var(--fc-orange);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+        .hero h1 span {
+            color: var(--fc-orange);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            color: rgba(255,255,255,0.8);
+            font-weight: 400;
+            margin-bottom: 30px;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+        .hero-meta i {
+            color: var(--fc-orange);
+            margin-right: 6px;
+        }
+
+        /* ============================================
+                   NAV (sticky sprint selector)
+                ============================================ */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+
+        .top-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--fc-blue-700);
+        }
+        .top-nav-brand i {
+            font-size: 1.3rem;
+            color: var(--fc-orange-dark);
+        }
+
+        .top-nav-links {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .top-nav-links a {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+        }
+        .top-nav-links a:hover {
+            color: var(--fc-blue-700);
+            border-bottom-color: var(--fc-orange);
+        }
+
+        .top-nav-sprint {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--fc-green-light);
+            color: #1a7a44;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .top-nav-sprint .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--fc-green);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.4); }
+        }
+
+        /* ============================================
+                   LAYOUT
+                ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 50px 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+        .section-header i {
+            font-size: 1.6rem;
+            color: var(--fc-blue-700);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--fc-blue-100);
+            border-radius: var(--radius-sm);
+        }
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: var(--fc-blue-800);
+        }
+        .section-header .section-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: auto;
+        }
+
+        /* ============================================
+                   CARDS
+                ============================================ */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            padding: 24px;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+                   SPRINT DASHBOARD
+                ============================================ */
+        .sprint-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
             margin-bottom: 30px;
         }
-        h1 { margin: 0; font-size: 24pt; }
-        h2 { color: #004a99; border-left: 5px solid #004a99; padding-left: 10px; margin-top: 30px; font-size: 16pt; }
-        h3 { color: #2c3e50; margin-top: 20px; font-size: 13pt; }
-        p, li { font-size: 11pt; text-align: justify; }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+
+        .sprint-card {
+            position: relative;
+            overflow: hidden;
         }
-        th {
-            background-color: #f2f2f2;
-            color: #333;
-            font-weight: bold;
-            text-align: left;
-            padding: 12px;
-            border-bottom: 2px solid #ddd;
+        .sprint-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
         }
-        td {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-            vertical-align: top;
+
+        .sprint-card--active::before  { background: linear-gradient(90deg, var(--fc-green), #2ecc71); }
+        .sprint-card--pending::before { background: linear-gradient(90deg, var(--fc-gray), #bdc3c7); }
+        .sprint-card--done::before    { background: linear-gradient(90deg, var(--fc-blue-500), var(--fc-blue-400)); }
+
+        .sprint-card--active {
+            border-color: #d5f5e3;
+            box-shadow: 0 4px 20px rgba(39,174,96,0.12);
         }
-        .highlight-box {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
+
+        .sprint-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
         }
-        /* Estilo del Botón de Proyectos */
-        .btn-container {
+        .sprint-card-header h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .sprint-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 10px;
+            border-radius: 50px;
+        }
+        .sprint-badge--active  { background: var(--fc-green-light); color: #1a7a44; }
+        .sprint-badge--pending { background: var(--fc-gray-light);  color: #5d6d7e; }
+        .sprint-badge--done    { background: var(--fc-blue-100);    color: var(--fc-blue-700); }
+
+        .sprint-dates {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .sprint-dates i {
+            margin-right: 4px;
+        }
+
+        .sprint-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+
+        .progress-wrapper {
+            margin-top: auto;
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .progress-bar {
+            height: 6px;
+            background: var(--fc-gray-light);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 50px;
+            transition: width 1s ease;
+        }
+        .progress-bar-fill--active { background: linear-gradient(90deg, var(--fc-green), #2ecc71); }
+        .progress-bar-fill--done   { background: linear-gradient(90deg, var(--fc-blue-500), var(--fc-blue-400)); }
+
+        /* Sprint timeline */
+        .sprint-timeline {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid var(--fc-gray-light);
+        }
+        .sprint-timeline-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .sprint-timeline-dot--active { background: var(--fc-green); }
+        .sprint-timeline-dot--done   { background: var(--fc-blue-500); }
+        .sprint-timeline-dot--pending { background: var(--fc-gray); }
+
+        .sprint-timeline-line {
+            flex: 1;
+            height: 2px;
+            background: var(--fc-gray-light);
+        }
+        .sprint-timeline-line--fill {
+            background: linear-gradient(90deg, var(--fc-blue-500), var(--fc-green));
+        }
+
+        /* ============================================
+                   KANBAN BOARD (GitHub Projects Preview)
+                ============================================ */
+        .kanban {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kanban-column {
+            background: var(--fc-gray-light);
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            min-height: 200px;
+        }
+        .kanban-column-header {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .kanban-column-header .count {
+            background: rgba(0,0,0,0.08);
+            padding: 1px 8px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+        }
+
+        .kanban-item {
+            background: var(--bg-card);
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border-left: 3px solid transparent;
+            font-size: 0.8rem;
+            cursor: default;
+            transition: var(--transition);
+        }
+        .kanban-item:hover {
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transform: translateX(2px);
+        }
+
+        .kanban-item .item-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .kanban-item .item-meta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .kanban-item .item-meta .assignee {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .kanban-item .item-tag {
+            font-size: 0.6rem;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .kanban-item--backlog   { border-left-color: var(--fc-gray); }
+        .kanban-item--todo      { border-left-color: var(--fc-blue-500); }
+        .kanban-item--progress  { border-left-color: var(--fc-orange); }
+        .kanban-item--done      { border-left-color: var(--fc-green); }
+
+        /* ============================================
+                   TEAM SECTION
+                ============================================ */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .team-card {
             text-align: center;
-            margin: 30px 0;
+            padding: 24px 16px;
         }
-        .btn-projects {
+        .team-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: white;
+        }
+        .team-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .team-card .team-user {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .team-card .team-role {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--fc-blue-600);
+            background: var(--fc-blue-100);
             display: inline-block;
-            background-color: #004a99;
-            color: white !important;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            padding: 2px 12px;
+            border-radius: 50px;
         }
-        .btn-projects:hover {
-            background-color: #003366;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+
+        /* ============================================
+                   METRICS / STATS
+                ============================================ */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 20px 16px;
+        }
+        .metric-card .metric-icon {
+            font-size: 1.6rem;
+            color: var(--fc-blue-600);
+            margin-bottom: 8px;
+        }
+        .metric-card .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+        .metric-card .metric-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .metric-card--green  .metric-icon { color: var(--fc-green); }
+        .metric-card--orange .metric-icon { color: var(--fc-orange); }
+        .metric-card--purple .metric-icon { color: var(--fc-purple); }
+        .metric-card--red    .metric-icon { color: var(--fc-red); }
+
+        /* ============================================
+                   BURNDOWN CHART PLACEHOLDER
+                ============================================ */
+        .burndown-container {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.04);
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .burndown-container .burndown-bg {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.04;
+            font-size: 8rem;
+            color: var(--fc-blue-700);
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .burndown-content {
+            position: relative;
+            text-align: center;
+            z-index: 1;
+        }
+        .burndown-content i {
+            font-size: 2.4rem;
+            color: var(--fc-orange);
+            margin-bottom: 12px;
+        }
+        .burndown-content h3 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+        .burndown-content p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            max-width: 400px;
+        }
+        .burndown-content .auto-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            background: var(--fc-blue-100);
+            color: var(--fc-blue-700);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* SVG chart preview */
+        .chart-preview {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+                   CI/CD PIPELINE
+                ============================================ */
+        .pipeline {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 20px 0;
+        }
+        .pipeline-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--fc-gray-light);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .pipeline-step i {
+            font-size: 0.9rem;
+        }
+        .pipeline-step--success {
+            border-color: #d5f5e3;
+            background: #eafaf1;
+            color: #1a7a44;
+        }
+        .pipeline-step--success i { color: var(--fc-green); }
+
+        .pipeline-step--running {
+            border-color: #fdebd0;
+            background: #fef5e7;
+            color: #a04000;
+        }
+        .pipeline-step--running i {
+            color: var(--fc-orange);
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .pipeline-arrow {
+            color: var(--fc-gray);
+            font-size: 0.8rem;
+        }
+
+        .pipeline-status {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.82rem;
+        }
+        .pipeline-status .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--fc-green);
+        }
+
+        /* ============================================
+                   GITHUB PROJECTS CTA
+                ============================================ */
+        .github-projects-cta {
+            background: linear-gradient(135deg, var(--fc-blue-800), var(--fc-blue-700));
+            border-radius: var(--radius-md);
+            padding: 40px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 20px;
+        }
+        .github-projects-cta h3 {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+        .github-projects-cta p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+        .btn--primary {
+            background: var(--fc-orange);
+            color: white;
+            box-shadow: 0 4px 14px rgba(243,156,18,0.35);
+        }
+        .btn--primary:hover {
+            background: var(--fc-orange-dark);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(243,156,18,0.4);
+        }
+
+        .btn--outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn--outline:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* ============================================
+                   FOOTER
+                ============================================ */
+        footer {
+            background: var(--fc-blue-900);
+            color: rgba(255,255,255,0.6);
+            padding: 32px 24px;
+            text-align: center;
+            font-size: 0.82rem;
+        }
+        footer .footer-brand {
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        footer .footer-brand span {
+            color: var(--fc-orange);
+        }
+        footer a {
+            color: var(--fc-orange);
+            font-weight: 500;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+                   RESPONSIVE
+                ============================================ */
+        @media (max-width: 768px) {
+            .hero { padding: 40px 16px 36px; }
+            .hero-gear { display: none; }
+
+            .top-nav {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 10px 16px;
+                gap: 8px;
+            }
+            .top-nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                font-size: 0.75rem;
+                gap: 12px;
+            }
+            .top-nav-sprint {
+                font-size: 0.7rem;
+                padding: 4px 12px;
+            }
+
+            .kanban {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sprint-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .github-projects-cta {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px 20px;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-header {
+                flex-wrap: wrap;
+            }
+            .section-header .section-sub {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .kanban { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; }
+
+            .pipeline { flex-direction: column; align-items: flex-start; }
+            .pipeline-arrow { transform: rotate(90deg); }
+            .pipeline-status { margin-left: 0; }
+        }
+
+        /* ============================================
+                   ANIMATIONS - Fade In on Scroll
+                ============================================ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .fade-in:nth-child(2) { animation-delay: 0.1s; }
+        .fade-in:nth-child(3) { animation-delay: 0.2s; }
+        .fade-in:nth-child(4) { animation-delay: 0.3s; }
+        .fade-in:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Shimmer effect for the chart placeholder */
+        .shimmer {
+            background: linear-gradient(
+                90deg,
+                var(--fc-gray-light) 25%,
+                #f8f9fa 50%,
+                var(--fc-gray-light) 75%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Print styles */
+        @media print {
+            .top-nav { display: none; }
+            .hero { padding: 30px 20px; }
+            .card { box-shadow: none; border: 1px solid #ddd; }
+            .card:hover { transform: none; }
+            .btn { display: none; }
+            .github-projects-cta { break-inside: avoid; }
+        }
+
+        /* Gear icon inline SVG helper */
+        .fc-icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            background: currentColor;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: contain;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z'/%3E%3C/svg%3E") no-repeat center;
+            -webkit-mask-size: contain;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Proyecto: Scrum y DevOps - FreeCAD</h1>
-        <p>Curso: Ingeniería y Procesos de Software (2026-A)</p>
+
+    <!-- ==========================================
+    HERO
+    ========================================== -->
+    <header class="hero">
+        <div class="hero-gear hero-gear--1">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+        <div class="hero-gear hero-gear--2">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-cube"></i>
+                <span>Ingeniería y Procesos de Software · 2026-A</span>
+            </div>
+
+            <h1>
+                <i class="fa-solid fa-cubes" style="font-size:0.8em; color:var(--fc-orange);"></i>
+                FreeCAD <span>·</span> IPS
+            </h1>
+            <p class="hero-subtitle">
+                Implementación de un proceso de desarrollo ágil integrando
+                <strong>Scrum</strong> con prácticas <strong>DevOps</strong>
+                sobre el modelador 3D paramétrico de código abierto.
+            </p>
+
+            <div class="hero-meta">
+                <span><i class="fa-solid fa-people-group"></i> 5 integrantes</span>
+                <span><i class="fa-solid fa-rotate"></i> Sprints 15 días</span>
+                <span><i class="fa-solid fa-code-branch"></i> Producto: FreeCAD</span>
+                <span><i class="fa-regular fa-calendar"></i> Sprint 1 Activo</span>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <h2>1. Introducción al Proyecto</h2>
-        <p>Este proyecto implementa un proceso de desarrollo de software que integra el marco de trabajo <strong>Scrum</strong> con prácticas <strong>DevOps</strong>. El producto seleccionado es <strong>FreeCAD</strong>, un modelador 3D paramétrico de código abierto bajo licencia LGPL-2.1.</p>
-
-        <h2>2. Plan del Proyecto (Scrum + DevOps)</h2>
-        <p>El desarrollo se basa en ciclos iterativos de 15 días. El equipo está compuesto por 5 integrantes con roles rotativos.</p>
-        
-        <h3>Estructura de Sprints</h3>
-        <ul>
-            <li><strong>Sprint 0:</strong> Planificación, análisis del sistema y configuración del entorno.</li>
-            <li><strong>Sprint 1-2:</strong> Desarrollo inicial e integración CI/CD.</li>
-            <li><strong>Sprint 3-4:</strong> Mejoras, optimización y documentación final.</li>
-        </ul>
-
-        <h2>3. Cronograma de Trabajo</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Sprint</th>
-                    <th>Actividades Principales</th>
-                    <th>Inicio</th>
-                    <th>Fin</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sprint 0</td>
-                    <td>Planificación, backlog inicial y configuración GitHub.</td>
-                    <td>01/05</td>
-                    <td>13/05</td>
-                </tr>
-                <tr>
-                    <td>Sprint 1</td>
-                    <td>Desarrollo inicial + configuración CI/CD.</td>
-                    <td>14/05</td>
-                    <td>28/05</td>
-                </tr>
-                <tr>
-                    <td>Sprint 2</td>
-                    <td>Implementación de funcionalidades (BIM Focus).</td>
-                    <td>29/05</td>
-                    <td>10/06</td>
-                </tr>
-                <tr>
-                    <td>Sprint 3</td>
-                    <td>Mejoras y optimización del código.</td>
-                    <td>11/06</td>
-                    <td>25/06</td>
-                </tr>
-                <tr>
-                    <td>Sprint 4</td>
-                    <td>Documentación técnica y entrega final.</td>
-                    <td>26/06</td>
-                    <td>13/07</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h2>4. Infraestructura de Staging y DevOps</h2>
-        <div class="highlight-box">
-            <h3>Entorno de Staging (Demo Pública)</h3>
-            <p>Este sitio sirve como nuestro entorno de Staging. Aquí se publicarán los avances funcionales de cada Sprint para revisión del docente. La actualización es automática mediante GitHub Actions cada vez que se realiza un merge a la rama principal.</p>
+    <!-- ==========================================
+    STICKY NAV
+    ========================================== -->
+    <nav class="top-nav">
+        <div class="top-nav-brand">
+            <i class="fa-solid fa-cube"></i>
+            <span>FreeCAD IPS</span>
         </div>
 
-        <h3>Métricas DevOps (Burndown Chart)</h3>
-        <p>A continuación se presenta la métrica de avance del Sprint actual. Esta gráfica es generada automáticamente por <strong>GitHub Actions</strong> analizando los Issues de GitHub Projects.</p>
-        <div style="text-align:center; padding: 40px; border: 2px dashed #ccc; color: #777;">
-            [El Burndown Chart se activará automáticamente al inicio del Sprint 1]
+        <div class="top-nav-links">
+            <a href="#sprints"><i class="fa-regular fa-calendar-check"></i> Sprints</a>
+            <a href="#board"><i class="fa-solid fa-columns"></i> Board</a>
+            <a href="#metrics"><i class="fa-solid fa-chart-line"></i> Métricas</a>
+            <a href="#team"><i class="fa-solid fa-users"></i> Equipo</a>
+            <a href="#docs"><i class="fa-regular fa-file-lines"></i> Docs</a>
         </div>
 
-        <h2>5. Gestión del Trabajo</h2>
-        <p>Utilizamos <strong>GitHub Projects</strong> con un tablero Kanban estructurado para organizar el backlog y el flujo de tareas del equipo.</p>
-        
-        <div style="display: table; width: 100%; border: 1px solid #eee; margin-bottom: 20px;">
-            <div style="display: table-cell; padding: 10px; border-right: 1px solid #eee; background: #fcfcfc;"><strong>Backlog</strong></div>
-            <div style="display: table-cell; padding: 10px; border-right: 1px solid #eee; background: #fcfcfc;"><strong>To Do</strong></div>
-            <div style="display: table-cell; padding: 10px; border-right: 1px solid #eee; background: #fcfcfc;"><strong>In Progress</strong></div>
-            <div style="display: table-cell; padding: 10px; background: #fcfcfc;"><strong>Done</strong></div>
+        <div class="top-nav-sprint">
+            <span class="pulse-dot"></span>
+            <span>Sprint 1 · En curso</span>
         </div>
+    </nav>
 
-        <div class="btn-container">
-            <a href="https://github.com/users/KevinCallo/projects/4/" class="btn-projects" target="_blank">
-                Acceder a GitHub Projects
+    <!-- ==========================================
+    SPRINT DASHBOARD
+    ========================================== -->
+    <section class="section" id="sprints">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-regular fa-calendar-check"></i>
+                <h2>Dashboard de Sprints</h2>
+                <span class="section-sub">Ciclos iterativos · 15 días</span>
+            </div>
+
+            <!-- Sprint Summary Metrics -->
+            <div class="metrics-grid">
+                <div class="card metric-card metric-card--green fade-in">
+                    <div class="metric-icon"><i class="fa-solid fa-check-circle"></i></div>
+                    <div class="metric-value">1</div>
+                    <div class="metric-label">Sprint Completado</div>
+                </div>
+                <div class="card metric-card metric-card--orange fade-in">
+                    <div class="metric-icon"><i class="fa-solid fa-spinner"></i></div>
+                    <div class="metric-value">1</div>
+                    <div class="metric-label">Sprint Activo</div>
+                </div>
+                <div class="card metric-card metric-card--purple fade-in">
+                    <div class="metric-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="metric-value">3</div>
+                    <div class="metric-label">Sprints Planeados</div>
+                </div>
+                <div class="card metric-card metric-card--red fade-in">
+                    <div class="metric-icon"><i class="fa-regular fa-clock"></i></div>
+                    <div class="metric-value">15</div>
+                    <div class="metric-label">Días por Sprint</div>
+                </div>
+            </div>
+
+            <!-- Sprint Cards -->
+            <div class="sprint-grid">
+
+                <!-- Sprint 0 - Done -->
+                <div class="card sprint-card sprint-card--done fade-in">
+                    <div class="sprint-card-header">
+                        <h3><i class="fa-solid fa-check-circle" style="color:var(--fc-blue-500);"></i> Sprint 0</h3>
+                        <span class="sprint-badge sprint-badge--done">Completado</span>
+                    </div>
+                    <div class="sprint-dates">
+                        <i class="fa-regular fa-calendar"></i> 01/05/2026 → 13/05/2026
+                    </div>
+                    <p class="sprint-desc">
+                        Planificación, análisis del sistema FreeCAD (OpenCASCADE, Coin3D, Qt),
+                        configuración del repositorio y GitHub Projects.
+                    </p>
+                    <div class="progress-wrapper">
+                        <div class="progress-label">
+                            <span>Progreso</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill progress-bar-fill--done" style="width:100%"></div>
+                        </div>
+                    </div>
+                    <div class="sprint-timeline">
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                    </div>
+                </div>
+
+                <!-- Sprint 1 - Active -->
+                <div class="card sprint-card sprint-card--active fade-in">
+                    <div class="sprint-card-header">
+                        <h3><i class="fa-solid fa-bolt" style="color:var(--fc-green);"></i> Sprint 1</h3>
+                        <span class="sprint-badge sprint-badge--active">En Curso</span>
+                    </div>
+                    <div class="sprint-dates">
+                        <i class="fa-regular fa-calendar"></i> 14/05/2026 → 28/05/2026
+                    </div>
+                    <p class="sprint-desc">
+                        Desarrollo inicial del pipeline CI/CD con GitHub Actions,
+                        primeros prototipos funcionales e integración continua.
+                    </p>
+                    <div class="progress-wrapper">
+                        <div class="progress-label">
+                            <span>Progreso</span>
+                            <span id="sprint1-progress">—</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill progress-bar-fill--active" id="sprint1-bar" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div class="sprint-timeline">
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--active"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                    </div>
+                </div>
+
+                <!-- Sprint 2 - Pending -->
+                <div class="card sprint-card sprint-card--pending fade-in">
+                    <div class="sprint-card-header">
+                        <h3><i class="fa-regular fa-clock"></i> Sprint 2</h3>
+                        <span class="sprint-badge sprint-badge--pending">Planeado</span>
+                    </div>
+                    <div class="sprint-dates">
+                        <i class="fa-regular fa-calendar"></i> 29/05/2026 → 10/06/2026
+                    </div>
+                    <p class="sprint-desc">
+                        Implementación de funcionalidades del módulo BIM de FreeCAD,
+                        desarrollo de herramientas paramétricas.
+                    </p>
+                    <div class="progress-wrapper">
+                        <div class="progress-label">
+                            <span>Progreso</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div class="sprint-timeline">
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                    </div>
+                </div>
+
+                <!-- Sprint 3 - Pending -->
+                <div class="card sprint-card sprint-card--pending fade-in">
+                    <div class="sprint-card-header">
+                        <h3><i class="fa-regular fa-clock"></i> Sprint 3</h3>
+                        <span class="sprint-badge sprint-badge--pending">Planeado</span>
+                    </div>
+                    <div class="sprint-dates">
+                        <i class="fa-regular fa-calendar"></i> 11/06/2026 → 25/06/2026
+                    </div>
+                    <p class="sprint-desc">
+                        Mejoras y optimización del código, refactorización,
+                        pruebas de integración y rendimiento.
+                    </p>
+                    <div class="progress-wrapper">
+                        <div class="progress-label">
+                            <span>Progreso</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div class="sprint-timeline">
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                    </div>
+                </div>
+
+                <!-- Sprint 4 - Pending -->
+                <div class="card sprint-card sprint-card--pending fade-in">
+                    <div class="sprint-card-header">
+                        <h3><i class="fa-regular fa-clock"></i> Sprint 4</h3>
+                        <span class="sprint-badge sprint-badge--pending">Planeado</span>
+                    </div>
+                    <div class="sprint-dates">
+                        <i class="fa-regular fa-calendar"></i> 26/06/2026 → 13/07/2026
+                    </div>
+                    <p class="sprint-desc">
+                        Documentación técnica y entrega final. Diagramas de clases
+                        de módulos BIM, manual de arquitectura.
+                    </p>
+                    <div class="progress-wrapper">
+                        <div class="progress-label">
+                            <span>Progreso</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div class="sprint-timeline">
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                    </div>
+                </div>
+
+            </div><!-- /sprint-grid -->
+
+            <!-- Sprint Timeline Legend -->
+            <div style="display:flex; gap:20px; flex-wrap:wrap; font-size:0.78rem; color:var(--text-muted); margin-top:8px;">
+                <span><span class="sprint-timeline-dot sprint-timeline-dot--done" style="display:inline-block; vertical-align:middle; margin-right:4px;"></span> Completado</span>
+                <span><span class="sprint-timeline-dot sprint-timeline-dot--active" style="display:inline-block; vertical-align:middle; margin-right:4px;"></span> En curso</span>
+                <span><span class="sprint-timeline-dot sprint-timeline-dot--pending" style="display:inline-block; vertical-align:middle; margin-right:4px;"></span> Planeado</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    BOARD - KANBAN PREVIEW (GitHub Projects)
+    ========================================== -->
+    <section class="section" id="board" style="background: var(--bg-body);">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-solid fa-columns"></i>
+                <h2>Tablero Kanban · Sprint 1</h2>
+                <span class="section-sub">Sincronizado con GitHub Projects</span>
+            </div>
+
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:20px; max-width:700px;">
+                Las tareas del equipo se gestionan a través de
+                <strong>GitHub Projects</strong> con un flujo Kanban.
+                Este tablero refleja el estado actual del <strong>Sprint 1</strong>.
+            </p>
+
+            <div class="kanban">
+                <!-- Backlog -->
+                <div class="kanban-column">
+                    <div class="kanban-column-header">
+                        <i class="fa-solid fa-inbox"></i> Backlog
+                        <span class="count">2</span>
+                    </div>
+                    <div class="kanban-item kanban-item--backlog">
+                        <div class="item-title">Schedule planning</div>
+                        <div class="item-meta">
+                            <span class="assignee"><i class="fa-regular fa-user"></i> Andhyb</span>
+                        </div>
+                    </div>
+                    <div class="kanban-item kanban-item--backlog">
+                        <div class="item-title">Documentación técnica</div>
+                        <div class="item-meta">
+                            <span class="assignee"><i class="fa-regular fa-user"></i> Equipo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- To Do -->
+                <div class="kanban-column">
+                    <div class="kanban-column-header">
+                        <i class="fa-regular fa-rectangle-list"></i> To Do
+                        <span class="count">1</span>
+                    </div>
+                    <div class="kanban-item kanban-item--todo">
+                        <div class="item-title">Assignment of activities</div>
+                        <div class="item-meta">
+                            <span class="assignee"><i class="fa-regular fa-user"></i> KevinCallo, darich1010</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- In Progress -->
+                <div class="kanban-column">
+                    <div class="kanban-column-header">
+                        <i class="fa-solid fa-spinner"></i> In Progress
+                        <span class="count">1</span>
+                    </div>
+                    <div class="kanban-item kanban-item--progress">
+                        <div class="item-title">Testing for GitHub Issues & Actions</div>
+                        <div class="item-meta">
+                            <span class="assignee"><i class="fa-regular fa-user"></i> mathiasddf, PauloQuen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Done -->
+                <div class="kanban-column">
+                    <div class="kanban-column-header">
+                        <i class="fa-solid fa-check-circle"></i> Done
+                        <span class="count">1</span>
+                    </div>
+                    <div class="kanban-item kanban-item--done">
+                        <div class="item-title">Creation of GitHub Projects & Pages</div>
+                        <div class="item-meta">
+                            <span class="assignee"><i class="fa-regular fa-user"></i> KevinCallo, darich1010</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA to GitHub Projects -->
+            <div class="github-projects-cta">
+                <div>
+                    <h3><i class="fa-brands fa-github"></i> Ver en GitHub Projects</h3>
+                    <p>Accedé al tablero completo con drag & drop, milestones y seguimiento en tiempo real.</p>
+                </div>
+                <a href="https://github.com/users/KevinCallo/projects/2/" target="_blank" class="btn btn--primary">
+                    <i class="fa-brands fa-github"></i> Ir al Projects Board
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    METRICS & DEVOPS
+    ========================================== -->
+    <section class="section" id="metrics">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-solid fa-chart-line"></i>
+                <h2>Métricas DevOps</h2>
+                <span class="section-sub">CI/CD · Burndown · Automatización</span>
+            </div>
+
+            <!-- Pipeline -->
+            <div class="card" style="padding:20px 24px; margin-bottom:24px;">
+                <h3 style="font-size:0.95rem; margin-bottom:14px; color:var(--text-primary);">
+                    <i class="fa-solid fa-gears" style="color:var(--fc-blue-600);"></i>
+                    Pipeline de Integración Continua
+                </h3>
+                <div class="pipeline">
+                    <span class="pipeline-step pipeline-step--success">
+                        <i class="fa-solid fa-check-circle"></i> Commit
+                    </span>
+                    <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span class="pipeline-step pipeline-step--success">
+                        <i class="fa-solid fa-check-circle"></i> Push
+                    </span>
+                    <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span class="pipeline-step pipeline-step--running">
+                        <i class="fa-solid fa-spinner"></i> GitHub Actions
+                    </span>
+                    <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span class="pipeline-step pipeline-step--success">
+                        <i class="fa-solid fa-check-circle"></i> Pages Deploy
+                    </span>
+
+                    <div class="pipeline-status">
+                        <span class="status-dot"></span>
+                        <span style="font-weight:600; color:#1a7a44;">3/3 runs · Passing</span>
+                    </div>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:8px;">
+                    <i class="fa-regular fa-circle-check" style="color:var(--fc-green);"></i>
+                    Último deploy exitoso · Pages actualizado automáticamente en cada push a <code>main</code>
+                </p>
+            </div>
+
+            <!-- Burndown Chart -->
+            <div class="section-header" style="margin-bottom:16px;">
+                <i class="fa-regular fa-chart-bar"></i>
+                <h3 style="font-size:1.1rem; color:var(--fc-blue-800);">Burndown Chart · Sprint 1</h3>
+                <span class="section-sub">Generado por GitHub Actions</span>
+            </div>
+
+            <div class="burndown-container">
+                <div class="burndown-bg">
+                    <i class="fa-solid fa-chart-simple"></i>
+                </div>
+                <div class="burndown-content">
+                    <!-- SVG Mini Chart Preview -->
+                    <svg class="chart-preview" viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Grid lines -->
+                        <line x1="40" y1="20" x2="40" y2="150" stroke="#ecf0f1" stroke-width="1"/>
+                        <line x1="40" y1="150" x2="380" y2="150" stroke="#ecf0f1" stroke-width="1"/>
+                        <line x1="40" y1="85" x2="380" y2="85" stroke="#ecf0f1" stroke-width="1" stroke-dasharray="4"/>
+
+                        <!-- Ideal burndown line -->
+                        <line x1="40" y1="30" x2="380" y2="150" stroke="#95a5a6" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+
+                        <!-- Actual progress -->
+                        <polyline points="40,30 100,45 170,55 230,65" stroke="#27ae60" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+                        <!-- Area under curve -->
+                        <path d="M40,150 L40,30 Q70,38 100,45 T170,55 T230,65 L230,150 Z" fill="url(#greenGrad)" opacity="0.12"/>
+
+                        <!-- Dots -->
+                        <circle cx="40" cy="30" r="4" fill="#27ae60" stroke="white" stroke-width="2"/>
+                        <circle cx="100" cy="45" r="4" fill="#27ae60" stroke="white" stroke-width="2"/>
+                        <circle cx="170" cy="55" r="4" fill="#27ae60" stroke="white" stroke-width="2"/>
+                        <circle cx="230" cy="65" r="4" fill="#f39c12" stroke="white" stroke-width="2"/>
+
+                        <!-- Labels -->
+                        <text x="40" y="168" fill="#95a5a6" font-size="10" font-family="Inter,sans-serif">Día 1</text>
+                        <text x="180" y="168" fill="#95a5a6" font-size="10" font-family="Inter,sans-serif">Día 8</text>
+                        <text x="365" y="168" fill="#95a5a6" font-size="10" font-family="Inter,sans-serif">Día 15</text>
+                        <text x="10" y="34" fill="#95a5a6" font-size="10" font-family="Inter,sans-serif">20</text>
+                        <text x="10" y="154" fill="#95a5a6" font-size="10" font-family="Inter,sans-serif">0</text>
+
+                        <!-- Legend -->
+                        <line x1="310" y1="30" x2="330" y2="30" stroke="#95a5a6" stroke-width="2" stroke-dasharray="4 2"/>
+                        <text x="335" y="34" fill="#95a5a6" font-size="9" font-family="Inter,sans-serif">Ideal</text>
+                        <line x1="310" y1="46" x2="330" y2="46" stroke="#27ae60" stroke-width="2"/>
+                        <text x="335" y="50" fill="#27ae60" font-size="9" font-family="Inter,sans-serif">Real</text>
+
+                        <defs>
+                            <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#27ae60" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#27ae60" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+
+                    <div class="auto-badge">
+                        <i class="fa-solid fa-robot"></i>
+                        Actualización automática al finalizar Sprint 1
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    TEAM
+    ========================================== -->
+    <section class="section" id="team" style="background: var(--bg-body);">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-solid fa-users"></i>
+                <h2>Equipo de Desarrollo</h2>
+                <span class="section-sub">Roles rotativos · 5 integrantes</span>
+            </div>
+
+            <div class="team-grid">
+                <div class="card team-card fade-in">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #004a99, #1a6db5);">
+                        <span>KC</span>
+                    </div>
+                    <h4>Kevin Callo</h4>
+                    <p class="team-user">@KevinCallo</p>
+                    <span class="team-role">Scrum Master</span>
+                </div>
+
+                <div class="card team-card fade-in">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">
+                        <span>MD</span>
+                    </div>
+                    <h4>Mathias DDF</h4>
+                    <p class="team-user">@mathiasddf</p>
+                    <span class="team-role">Developer</span>
+                </div>
+
+                <div class="card team-card fade-in">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #e67e22, #f39c12);">
+                        <span>PQ</span>
+                    </div>
+                    <h4>Paulo Quen</h4>
+                    <p class="team-user">@PauloQuen</p>
+                    <span class="team-role">DevOps</span>
+                </div>
+
+                <div class="card team-card fade-in">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #8e44ad, #9b59b6);">
+                        <span>DA</span>
+                    </div>
+                    <h4>Darich 1010</h4>
+                    <p class="team-user">@darich1010</p>
+                    <span class="team-role">Developer</span>
+                </div>
+
+                <div class="card team-card fade-in">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #e74c3c, #ec7063);">
+                        <span>AN</span>
+                    </div>
+                    <h4>Andhy B.</h4>
+                    <p class="team-user">@Andhyb</p>
+                    <span class="team-role">Product Owner</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    TECHNICAL DOCS
+    ========================================== -->
+    <section class="section" id="docs">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-regular fa-file-lines"></i>
+                <h2>Documentación Técnica</h2>
+                <span class="section-sub">Arquitectura FreeCAD</span>
+            </div>
+
+            <div class="card" style="padding:28px;">
+                <div style="display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start;">
+                    <div style="flex:1; min-width:240px;">
+                        <h3 style="font-size:1rem; margin-bottom:12px;">
+                            <i class="fa-solid fa-sitemap" style="color:var(--fc-blue-600);"></i>
+                            Arquitectura de FreeCAD
+                        </h3>
+                        <ul style="list-style:none; font-size:0.85rem; color:var(--text-secondary); line-height:2;">
+                            <li>
+                                <i class="fa-solid fa-cube" style="color:var(--fc-orange); width:20px;"></i>
+                                <strong>OpenCASCADE</strong> — Núcleo de modelado geométrico
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-cube" style="color:var(--fc-orange); width:20px;"></i>
+                                <strong>Coin3D</strong> — Visualización 3D (Open Inventor)
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-cube" style="color:var(--fc-orange); width:20px;"></i>
+                                <strong>Qt</strong> — Framework de interfaz de usuario
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-cube" style="color:var(--fc-orange); width:20px;"></i>
+                                <strong>Python</strong> — Lenguaje de scripting y módulos
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="flex:1; min-width:240px;">
+                        <h3 style="font-size:1rem; margin-bottom:12px;">
+                            <i class="fa-regular fa-folder-open" style="color:var(--fc-blue-600);"></i>
+                            Módulos a Documentar
+                        </h3>
+                        <ul style="list-style:none; font-size:0.85rem; color:var(--text-secondary); line-height:2;">
+                            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400); width:20px;"></i> BIM · Building Information Modeling</li>
+                            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400); width:20px;"></i> Part · Modelado paramétrico</li>
+                            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400); width:20px;"></i> Draft · Dibujo 2D/3D</li>
+                            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400); width:20px;"></i> Arch · Arquitectura</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--fc-gray-light); text-align:center;">
+                    <p style="font-size:0.85rem; color:var(--text-muted);">
+                        <i class="fa-regular fa-clock"></i>
+                        La documentación completa con diagramas de clases estará disponible al finalizar el Hito 2.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    FOOTER
+    ========================================== -->
+    <footer>
+        <div class="footer-brand">
+            FreeCAD <span>·</span> IPS
+        </div>
+        <p style="margin-bottom:6px;">
+            Proyecto académico · Ingeniería y Procesos de Software 2026-A
+        </p>
+        <p>
+            <a href="https://github.com/KevinCallo/FREECAD_IPS" target="_blank">
+                <i class="fa-brands fa-github"></i> KevinCallo/FREECAD_IPS
             </a>
-        </div>
+            &nbsp;·&nbsp;
+            <a href="https://KevinCallo.github.io/FREECAD_IPS/" target="_blank">
+                <i class="fa-solid fa-globe"></i> GitHub Pages
+            </a>
+            &nbsp;·&nbsp;
+            <a href="https://github.com/users/KevinCallo/projects/2/" target="_blank">
+                <i class="fa-solid fa-columns"></i> Projects Board
+            </a>
+        </p>
+    </footer>
 
-        <h2>6. Documentación Técnica</h2>
-        <p>La documentación técnica completa, incluyendo el análisis de arquitectura de FreeCAD (OpenCASCADE, Coin3D, Qt) y los diagramas de clases de los módulos BIM modificados, se encuentra en proceso de elaboración y se publicará en esta misma sección al finalizar el Hito 2.</p>
-    </div>
+    <!-- ==========================================
+    JAVASCRIPT - Sprint 1 Dynamic Progress
+    ========================================== -->
+    <script>
+        (function() {
+            // Sprint 1: 14/05/2026 → 28/05/2026
+            const sprintStart = new Date(2026, 4, 14); // May 14
+            const sprintEnd   = new Date(2026, 4, 28); // May 28
+            const today       = new Date();
+
+            const totalDays   = Math.round((sprintEnd - sprintStart) / (1000 * 60 * 60 * 24));
+            const elapsedDays = Math.round((today - sprintStart) / (1000 * 60 * 60 * 24));
+
+            let progress = Math.min(100, Math.max(0, Math.round((elapsedDays / totalDays) * 100)));
+
+            // If before sprint starts, show 0. If after, cap at 100.
+            if (today < sprintStart) progress = 0;
+            if (today > sprintEnd)   progress = 100;
+
+            const bar = document.getElementById('sprint1-bar');
+            const label = document.getElementById('sprint1-progress');
+
+            if (bar) bar.style.width = progress + '%';
+            if (label) label.textContent = progress + '%';
+        })();
+    </script>
+
 </body>
 </html>
