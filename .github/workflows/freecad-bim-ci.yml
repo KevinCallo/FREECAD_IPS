@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ "main" ]
 
+# SOLUCIÓN AL ERROR 403: Otorgar permisos explícitos al token de GitHub Actions
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   integration-and-deployment:
     runs-on: ubuntu-latest
