@@ -214,6 +214,29 @@ const FreeCAD_IPS = (() => {
     }
 
     // ============================================
+    // PIPELINE DEVOPS CONSOLA INTERACTIVA
+    // ============================================
+    function initDevOpsConsole() {
+        const toggleConsoleBtn = document.getElementById('toggle-console-btn');
+        const consoleSection = document.getElementById('dynamic-console-section');
+
+        if (toggleConsoleBtn && consoleSection) {
+            toggleConsoleBtn.addEventListener('click', () => {
+                if (consoleSection.style.display === 'none') {
+                    consoleSection.style.display = 'block';
+                    toggleConsoleBtn.innerHTML = '<i class="fa-solid fa-eye-slash"></i> Ocultar Log del Servidor';
+                    toggleConsoleBtn.style.background = '#475569'; // Color neutro abierto
+                    showToast('Desplegando logs en tiempo real del pipeline DevOps.', 'info');
+                } else {
+                    consoleSection.style.display = 'none';
+                    toggleConsoleBtn.innerHTML = '<i class="fa-solid fa-terminal"></i> Inspeccionar Log del Servidor (CI/CD)';
+                    toggleConsoleBtn.style.background = 'var(--fc-blue-600)'; // Color primario cerrado
+                }
+            });
+        }
+    }
+
+    // ============================================
     // INIT
     // ============================================
     function init() {
@@ -221,6 +244,7 @@ const FreeCAD_IPS = (() => {
         initNavSprintDropdown();
         initNavScrollSpy();
         initBackToTop();
+        initDevOpsConsole(); // <- Acoplado al flujo nativo de inicialización
 
         // fire custom event so modules know DOM is ready
         document.dispatchEvent(new Event('fc:init'));
