@@ -1,4 +1,10 @@
 # tests/test_bim_core.py
+import sys
+import os
+
+# Parche de enrutamiento dinámico para que GitHub Actions reconozca la carpeta 'src'
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import pytest
 from src.BimCoreModules import BIM_Help_Core, BIM_Welcome_Core, BIM_WPCommands_Core
 
