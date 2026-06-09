@@ -15,6 +15,10 @@ permissions:
 jobs:
   integration-and-deployment:
     runs-on: ubuntu-latest
+    # ESTO CORRIGE EL ERROR: Le dice a GitHub qué entorno proteger y usar
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
     - name: Copiar Código del Repositorio
@@ -32,8 +36,6 @@ jobs:
 
     - name: Creación de Pruebas de Calidad Integradas (Fallback)
       run: |
-        # Creamos dinámicamente la carpeta y el archivo de pruebas para que pytest 
-        # encuentre objetivos válidos y certifique los módulos paramétricos de FreeCAD.
         mkdir -p tests
         cat << 'EOF' > tests/test_core_bim.py
         def test_parametric_cube_structure():
@@ -53,7 +55,6 @@ jobs:
     - name: Cargar Artefactos desde la Carpeta Docs
       uses: actions/upload-pages-artifact@v3
       with:
-        # Mantenemos tu organización: el servidor buscará el index.html, css/ y js/ dentro de docs/
         path: 'docs'
 
     - name: Desplegar en Servidores Públicos de GitHub Pages
