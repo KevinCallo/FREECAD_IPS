@@ -1109,8 +1109,7 @@
                     Último deploy exitoso · Pages actualizado automáticamente en cada push a <code>main</code>
                 </p>
 
-                <div
-                    style="border-top: 1px solid var(--border-color); padding-top: 16px; display: flex; justify-content: flex-start;">
+                <div style="border-top: 1px solid var(--border-color); padding-top: 16px; display: flex; justify-content: flex-start;">
                     <button id="toggle-console-btn"
                         style="background: var(--fc-blue-600); color: white; border: none; padding: 10px 16px; font-size: 0.8rem; font-weight: 600; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s ease;">
                         <i class="fa-solid fa-terminal"></i> Inspeccionar Log del Servidor (CI/CD)
@@ -1121,32 +1120,15 @@
             <div id="dynamic-console-section" style="display: none; margin-bottom: 24px; animation: fadeIn 0.3s ease;">
                 <div class="card"
                     style="background: #0f172a; color: #94a3b8; font-family: 'Fira Code', Consolas, Monaco, monospace; font-size: 0.82rem; padding: 20px; border-radius: 8px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.5); border: 1px solid #1e293b; line-height: 1.6;">
-                    <div
-                        style="border-bottom: 1px solid #334155; padding-bottom: 10px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; color: #cbd5e1;">
-                        <span style="font-size: 0.75rem; font-weight: 600;"><i class="fa-solid fa-circle-nodes"
-                                style="color: #38bdf8;"></i> runner-ubuntu-latest // build-output</span>
-                        <span
-                            style="font-size: 0.75rem; background: #15803d; color: #bbf7d0; padding: 2px 8px; border-radius: 4px; font-weight: 700;"><i
-                                class="fa-solid fa-check"></i> PIPELINE SUCCESS</span>
+                    <div style="border-bottom: 1px solid #334155; padding-bottom: 10px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; color: #cbd5e1;">
+                        <span style="font-size: 0.75rem; font-weight: 600;">
+                            <i class="fa-solid fa-circle-nodes" style="color: #38bdf8;"></i> github-actions-api // real-time-fetch
+                        </span>
+                        <span id="pipeline-badge" style="font-size: 0.75rem; background: #334155; color: #94a3b8; padding: 2px 8px; border-radius: 4px; font-weight: 700;">
+                            <i class="fa-solid fa-spinner fa-spin"></i> CONECTANDO...
+                        </span>
                     </div>
-                    <span style="color: #38bdf8;">[INFO] Solicitando clonación de la rama activa 'main'...</span><br>
-                    <span style="color: #64748b;">$ git clone https://github.com/KevinCallo/FREECAD_IPS.git .</span><br>
-                    <span>Cloning into '.'... Done. Ref: refs/heads/main (commit d9a4b1c)</span><br>
-                    <span style="color: #38bdf8;">[INFO] Levantando compilador e instalando entornos
-                        virtuales...</span><br>
-                    <span style="color: #f43f5e; font-weight:600;">$ pytest tests/ -v</span><br>
-                    <span style="color: #cbd5e1;">============================= test session starts
-                        =============================</span><br>
-                    <span>collected 2 items</span><br>
-                    <span style="color: #34d399;">tests/test_core_bim.py::test_parametric_cube_structure PASSED [
-                        50%]</span><br>
-                    <span style="color: #34d399;">tests/test_core_bim.py::test_scrum_dashboard_integrity PASSED
-                        [100%]</span><br>
-                    <span style="color: #34d399; font-weight: 600;">========================== 2 passed in 1.45 seconds
-                        ===========================</span><br>
-                    <span style="color: #38bdf8;">[CD] Procesando empaquetado estático para producción...</span><br>
-                    <span style="color: #34d399;">✔ Sincronización con GitHub Pages completada. URL de despliegue
-                        activa.</span>
+                    <div id="console-live-log"></div>
                 </div>
             </div>
 
