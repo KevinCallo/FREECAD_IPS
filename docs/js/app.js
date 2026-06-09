@@ -42,11 +42,11 @@ const FreeCAD_IPS = (() => {
     // TEAM MEMBERS
     // ============================================
     const TEAM_MEMBERS = [
-        { id: 'kevin', name: 'Kevin Callo', initials: 'KC', color: '#004a99' },
-        { id: 'mathias', name: 'Mathias DDF', initials: 'MD', color: '#27ae60' },
-        { id: 'paulo', name: 'Paulo Quen', initials: 'PQ', color: '#e67e22' },
-        { id: 'darich', name: 'Darich 1010', initials: 'DA', color: '#8e44ad' },
-        { id: 'andhy', name: 'Andhy B.', initials: 'AN', color: '#e74c3c' }
+        { id: 'kevin',   name: 'Kevin Callo',    initials: 'KC', color: '#004a99' },
+        { id: 'mathias', name: 'Mathias Davila', initials: 'MD', color: '#27ae60' },
+        { id: 'paulo',   name: 'Paulo Quenta',   initials: 'PQ', color: '#e67e22' },
+        { id: 'darich',  name: 'Dario Cornejo',  initials: 'DC', color: '#8e44ad' },
+        { id: 'andhy',   name: 'Andhy Chipana',  initials: 'AC', color: '#e74c3c' }
     ];
 
     // ============================================
