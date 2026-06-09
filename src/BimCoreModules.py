@@ -84,7 +84,7 @@ class BIM_WPCommands_Core:
         self.ultimo_plano_establecido = vista_solicitada
         return f"OK_PLANO: Plano de trabajo configurado con éxito en orientación '{vista_solicitada}'."
 
-    def validar_atajo_(self, comando_clase, atajo_esperado):
+    def validar_atajo_teclado(self, comando_clase, atajo_esperado):
         """
         Audita de forma estática si los atajos de teclado (Accel) declarados
         en el árbol original de FreeCAD coinciden con los requerimientos técnicos.
