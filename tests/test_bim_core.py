@@ -29,7 +29,7 @@ def test_help_recursos_metadata():
 # ===========================================================================
 def test_welcome_flujo_primera_vez():
     """Prueba que el sistema reconozca y configure el setup inicial del Workbench."""
-    welcome_sys = BIM_Welcome_Core()
+    #welcome_sys = BIM_Welcome_Core()
     assert welcome_sys.evaluar_estado_inicio(es_primera_vez=True) == "DISPARAR_SETUP"
     assert welcome_sys.primera_ejecucion is False
 
