@@ -1,0 +1,121 @@
+<section class="section" id="diagrams">
+  <div class="container">
+    <div class="section-header">
+      <i class="fa-solid fa-diagram-project"></i>
+      <h2>Diagramas del Proyecto</h2>
+      <span class="section-sub">CI/CD · Gantt histórico FreeCAD</span>
+    </div>
+
+    <div class="diagram-section">
+
+      <!-- CI/CD Pipeline -->
+      <div class="card diagram-card">
+        <h3><i class="fa-solid fa-gears" style="color:var(--fc-blue-600);"></i> Pipeline CI/CD DevOps</h3>
+        <div class="pipeline">
+          <span class="pipeline-step pipeline-step--success">
+            <i class="fa-solid fa-check-circle"></i> Commit
+          </span>
+          <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="pipeline-step pipeline-step--success">
+            <i class="fa-solid fa-check-circle"></i> Push
+          </span>
+          <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="pipeline-step pipeline-step--running">
+            <i class="fa-solid fa-spinner"></i> GitHub Actions
+          </span>
+          <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="pipeline-step pipeline-step--success">
+            <i class="fa-solid fa-check-circle"></i> Tests
+          </span>
+          <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="pipeline-step pipeline-step--success">
+            <i class="fa-solid fa-check-circle"></i> Build
+          </span>
+          <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="pipeline-step pipeline-step--success">
+            <i class="fa-solid fa-check-circle"></i> Pages Deploy
+          </span>
+        </div>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:8px;">
+          <i class="fa-regular fa-circle-check" style="color:var(--fc-green);"></i>
+          Último deploy exitoso · Pages actualizado automáticamente en cada push a <code>main</code>
+        </p>
+        <div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">
+          <span class="badge badge--success"><i class="fa-solid fa-check-circle"></i> CodeQL Analysis</span>
+          <span class="badge badge--success"><i class="fa-solid fa-check-circle"></i> Lint & Format</span>
+          <span class="badge badge--warning"><i class="fa-solid fa-spinner"></i> Deploy Preview</span>
+        </div>
+      </div>
+
+      <!-- Gantt Chart -->
+      <div class="card diagram-card">
+        <h3><i class="fa-solid fa-chart-bar" style="color:var(--fc-blue-600);"></i> Gantt · Desarrollo Tradicional FreeCAD</h3>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">
+          Línea de tiempo del desarrollo en cascada (<strong>waterfall</strong>)
+          que FreeCAD utilizó históricamente, contrastando con el enfoque ágil Scrum.
+        </p>
+        <div class="gantt-container">
+          <div class="gantt-chart">
+            <div class="gantt-header">
+              <div class="gantt-header-cell">Fase</div>
+              <div class="gantt-header-cell">2002</div>
+              <div class="gantt-header-cell">2005</div>
+              <div class="gantt-header-cell">2008</div>
+              <div class="gantt-header-cell">2011</div>
+              <div class="gantt-header-cell">2014</div>
+              <div class="gantt-header-cell">2017</div>
+              <div class="gantt-header-cell">2020</div>
+              <div class="gantt-header-cell">2023+</div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-row-label">Planificación</div>
+              <div class="gantt-bar-wrapper">
+                <div class="gantt-bar gantt-bar--plan" style="left:0%; width:20%;" title="Planificación inicial del proyecto FreeCAD">2002–2005</div>
+              </div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-row-label">Análisis</div>
+              <div class="gantt-bar-wrapper">
+                <div class="gantt-bar gantt-bar--analysis" style="left:12%; width:25%;" title="Análisis de requisitos y diseño arquitectónico">2004–2007</div>
+              </div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-row-label">Diseño</div>
+              <div class="gantt-bar-wrapper">
+                <div class="gantt-bar gantt-bar--design" style="left:25%; width:30%;" title="Diseño del núcleo OpenCASCADE y módulos iniciales">2006–2010</div>
+              </div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-row-label">Implementación</div>
+              <div class="gantt-bar-wrapper">
+                <div class="gantt-bar gantt-bar--impl" style="left:35%; width:45%;" title="Implementación continua de módulos (Part, Draft, Arch, BIM)">2008–2018</div>
+              </div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-row-label">Pruebas</div>
+              <div class="gantt-bar-wrapper">
+                <div class="gantt-bar gantt-bar--testing" style="left:55%; width:30%;" title="Pruebas de integración y estabilización">2014–2020</div>
+              </div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-row-label">Mantenimiento</div>
+              <div class="gantt-bar-wrapper">
+                <div class="gantt-bar gantt-bar--deploy" style="left:75%; width:25%;" title="Mantenimiento continuo y releases">2018–Presente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Ver más -->
+    <div class="ver-mas-wrapper">
+      <button class="ver-mas-btn" (click)="goToDiagramsPage()">
+        Ver más diagramas
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+
+  </div>
+</section>

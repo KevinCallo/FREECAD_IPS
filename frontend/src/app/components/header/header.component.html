@@ -1,0 +1,189 @@
+<!-- ==========================================
+HERO
+========================================= -->
+<header class="hero">
+  <div class="hero-gear hero-gear--1">
+    <i class="fa-solid fa-gear"></i>
+  </div>
+  <div class="hero-gear hero-gear--2">
+    <i class="fa-solid fa-gear"></i>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fa-solid fa-cube"></i>
+      <span>Ingeniería y Procesos de Software · 2026-A</span>
+    </div>
+
+    <h1>
+      <i class="fa-solid fa-cubes" style="font-size:0.8em; color:var(--fc-orange);"></i>
+      FreeCAD <span>·</span> IPS
+    </h1>
+
+    @if (page === 'diagrams') {
+      <p class="hero-subtitle">
+        Visualización detallada de todos los <strong>diagramas del proyecto</strong>:
+        pipeline CI/CD, línea de tiempo Gantt y más.
+      </p>
+    } @else if (page === 'docs') {
+      <p class="hero-subtitle">
+        Documentación técnica completa de la <strong>arquitectura de FreeCAD</strong>,
+        sus módulos y la comparativa metodológica del proyecto.
+      </p>
+    } @else {
+      <p class="hero-subtitle">
+        Implementación de un proceso de desarrollo ágil integrando
+        <strong>Scrum</strong> con prácticas <strong>DevOps</strong>
+        sobre el modelador 3D paramétrico de código abierto.
+      </p>
+    }
+
+    <div class="hero-meta">
+      <span><i class="fa-solid fa-people-group"></i> 5 integrantes</span>
+      <span><i class="fa-solid fa-rotate"></i> Sprints 15 días</span>
+      <span><i class="fa-solid fa-code-branch"></i> Producto: FreeCAD</span>
+      <span>
+        <i class="fa-regular fa-calendar"></i>
+        <span>{{ selectedSprint()?.label ?? '—' }} {{ selectedSprint()?.status === 'active' ? 'Activo' : '' }}</span>
+      </span>
+    </div>
+  </div>
+</header>
+
+<!-- ==========================================
+STICKY NAV
+========================================= -->
+<nav class="top-nav" aria-label="Navegación principal">
+  <div class="top-nav-left">
+    <div class="top-nav-brand" (click)="goHome()" style="cursor:pointer;">
+      <i class="fa-solid fa-cube"></i>
+      <span>FreeCAD IPS</span>
+    </div>
+    @if (page === 'diagrams' || page === 'docs') {
+      <a class="top-nav-inicio-btn" (click)="goHome()" title="Volver al inicio">
+        <i class="fa-solid fa-house"></i>
+        <span>Inicio</span>
+      </a>
+    }
+  </div>
+
+  @if (page === 'diagrams') {
+    <!-- Nav para página de diagramas -->
+    <div class="top-nav-links">
+      <a (click)="scrollTo('diagrams-pipeline')"><i class="fa-solid fa-gears"></i> Pipeline</a>
+      <a (click)="scrollTo('diagrams-burndown')"><i class="fa-solid fa-chart-line"></i> Burndown</a>
+      <a (click)="scrollTo('diagrams-gantt')"><i class="fa-solid fa-chart-bar"></i> Gantt</a>
+    </div>
+  } @else if (page === 'docs') {
+    <!-- Nav para página de documentación -->
+    <div class="top-nav-links">
+      <a (click)="scrollTo('docs-arquitectura')"><i class="fa-solid fa-sitemap"></i> Arquitectura</a>
+      <a (click)="scrollTo('docs-modulos')"><i class="fa-regular fa-folder-open"></i> Módulos</a>
+      <a (click)="scrollTo('docs-comparacion')"><i class="fa-solid fa-code-compare"></i> Comparación</a>
+    </div>
+  } @else {
+    <!-- Nav para home -->
+    <div class="top-nav-links">
+      <a (click)="scrollTo('sprints')"><i class="fa-regular fa-calendar-check"></i> Sprints</a>
+      <a (click)="scrollTo('board')"><i class="fa-solid fa-columns"></i> Board</a>
+      <a (click)="scrollTo('sprint-detail')"><i class="fa-solid fa-list"></i> Detalle</a>
+      <a (click)="scrollTo('metrics')"><i class="fa-solid fa-chart-line"></i> Métricas</a>
+      <a (click)="scrollTo('team')"><i class="fa-solid fa-users"></i> Equipo</a>
+      <a (click)="scrollTo('diagrams')"><i class="fa-solid fa-diagram-project"></i> Diagramas</a>
+      <a (click)="scrollTo('docs')"><i class="fa-regular fa-file-lines"></i> Docs</a>
+      <a href="https://github.com/users/KevinCallo/projects/4/" target="_blank" title="Abrir GitHub Projects"
+        style="color:var(--fc-orange-dark);">
+        <i class="fa-brands fa-github"></i> Projects
+      </a>
+    </div>
+  }
+
+  @if (page === 'diagrams') {
+    <!-- Filtro desplegable de diagramas -->
+    <div class="top-nav-diagram-filter">
+      <button
+        class="nav-diagram-filter-btn"
+        aria-haspopup="true"
+        [attr.aria-expanded]="diagramFilterOpen"
+        (click)="toggleDiagramFilter()"
+        title="Filtrar diagramas"
+      >
+        <span class="nav-filter-label-inner">
+          @if (diagramFilter === 'all') {
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Todos los gráficos</span>
+          } @else {
+            @if (getFilterSprint(); as sprint) {
+              @if (sprint.status === 'active') {
+                <i class="fa-solid fa-bolt" style="color:#f59e0b;"></i>
+              } @else if (sprint.status === 'done') {
+                <i class="fa-solid fa-check" style="color:#16a34a;"></i>
+              } @else {
+                <i class="fa-regular fa-clock" style="color:#94a3b8;"></i>
+              }
+              <span>{{ sprint.label }}</span>
+            }
+          }
+        </span>
+        <i class="fa-solid fa-chevron-down nav-filter-chevron"></i>
+      </button>
+      <ul class="nav-diagram-filter-dropdown" role="menu" [class.open]="diagramFilterOpen">
+        <li>
+          <button
+            class="nav-diagram-filter-option"
+            [class.active]="diagramFilter === 'all'"
+            (click)="setDiagramFilter('all'); closeDiagramFilter()"
+            role="menuitem"
+          >
+            <i class="fa-solid fa-chart-pie"></i> Todos los gráficos
+          </button>
+        </li>
+        @for (s of sprints(); track s.key) {
+          <li>
+            <button
+              class="nav-diagram-filter-option"
+              [class.active]="diagramFilter === s.key"
+              (click)="setDiagramFilter(s.key); closeDiagramFilter()"
+              role="menuitem"
+            >
+              @if (s.status === 'active') {
+                <i class="fa-solid fa-bolt" style="color:#f59e0b;"></i>
+              } @else if (s.status === 'done') {
+                <i class="fa-solid fa-check" style="color:#16a34a;"></i>
+              } @else {
+                <i class="fa-regular fa-clock" style="color:#94a3b8;"></i>
+              }
+              {{ s.label }}
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  } @else if (page === 'docs') {
+    <!-- Sin filtros en docs — div vacío para mantener el grid balanceado -->
+    <div></div>
+  } @else {
+    <!-- Selector de sprint (solo en home) -->
+    <div class="top-nav-sprint">
+      <span class="pulse-dot"></span>
+      <button class="nav-sprint-btn" aria-haspopup="true" [attr.aria-expanded]="sprintMenuOpen" (click)="toggleSprintMenu()" title="Cambiar de sprint">
+        <span class="nav-sprint-text">{{ selectedSprint()?.label ?? 'Sprint' }} · {{ selectedSprint()?.status === 'active' ? 'En curso' : 'Historial' }}</span>
+        <i class="fa-solid fa-chevron-down nav-sprint-chevron"></i>
+      </button>
+      <ul class="nav-sprint-dropdown" role="menu" [class.nav-sprint-dropdown--open]="sprintMenuOpen">
+        @for (s of sprints(); track s.key) {
+          <li>
+            <button
+              class="nav-sprint-option"
+              [class.nav-sprint-option--active]="s.key === selectedSprintKey()"
+              (click)="selectSprint(s.key); closeSprintMenu()"
+              role="menuitem"
+            >
+              {{ s.label }} · {{ s.status === 'active' ? 'En curso' : 'Historial' }}
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</nav>

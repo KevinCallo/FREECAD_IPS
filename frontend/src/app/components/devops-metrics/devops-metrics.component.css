@@ -1,0 +1,101 @@
+/* ============================================
+   PIPELINE STATUS
+   ============================================ */
+.pipeline {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0 8px;
+}
+.pipeline-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--fc-gray-light);
+    color: var(--text-secondary);
+}
+.pipeline-step--success { background: var(--fc-green-light); color: #1a7a44; }
+.pipeline-step--running { background: #fef5e7; color: #a04000; }
+.pipeline-arrow { color: var(--text-muted); font-size: 0.8rem; }
+
+.pipeline-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    padding: 4px 12px;
+    background: var(--fc-green-light);
+    border-radius: 50px;
+    font-size: 0.75rem;
+}
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--fc-green);
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+/* Console button */
+.console-btn {
+    background: var(--fc-blue-600);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease;
+    font-family: 'Inter', sans-serif;
+}
+.console-btn:hover { background: var(--fc-blue-700); }
+
+/* Console terminal */
+.console-section {
+    margin-bottom: 24px;
+    animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.console-card {
+    background: #0f172a;
+    color: #94a3b8;
+    font-family: 'Fira Code', Consolas, Monaco, monospace;
+    font-size: 0.82rem;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+    border: 1px solid #1e293b;
+    line-height: 1.6;
+}
+.console-header {
+    border-bottom: 1px solid #334155;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #cbd5e1;
+}
+.console-badge {
+    font-size: 0.75rem;
+    background: #334155;
+    color: #94a3b8;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+.console-log div { margin-bottom: 2px; }

@@ -1,0 +1,239 @@
+/* ============================================
+   DIAGRAMAS (Gantt, CI/CD)
+   ============================================ */
+.diagram-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.diagram-card {
+    padding: 24px;
+}
+.diagram-card h3 {
+    font-size: 1rem;
+    margin-bottom: 16px;
+    color: var(--fc-blue-800);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Pipeline */
+.pipeline {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 20px 0;
+}
+.pipeline-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--fc-gray-light);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+.pipeline-step i {
+    font-size: 0.9rem;
+}
+.pipeline-step--success {
+    border-color: #d5f5e3;
+    background: #eafaf1;
+    color: #1a7a44;
+}
+.pipeline-step--success i { color: var(--fc-green); }
+
+.pipeline-step--running {
+    border-color: #fdebd0;
+    background: #fef5e7;
+    color: #a04000;
+}
+.pipeline-step--running i {
+    color: var(--fc-orange);
+    animation: spin 2s linear infinite;
+}
+
+.pipeline-step--pending {
+    border-color: var(--fc-gray-light);
+    background: var(--fc-gray-light);
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.pipeline-arrow {
+    color: var(--fc-gray);
+    font-size: 0.8rem;
+}
+
+.pipeline-status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+}
+.pipeline-status .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--fc-green);
+}
+
+/* Gantt chart */
+.gantt-container {
+    overflow-x: auto;
+    padding: 8px 0;
+}
+
+.gantt-chart {
+    min-width: 500px;
+}
+
+.gantt-header {
+    display: grid;
+    grid-template-columns: 140px repeat(8, 1fr);
+    gap: 0;
+    margin-bottom: 8px;
+}
+.gantt-header-cell {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--fc-gray-light);
+}
+.gantt-header-cell:first-child {
+    text-align: left;
+}
+
+.gantt-row {
+    display: grid;
+    grid-template-columns: 140px repeat(8, 1fr);
+    gap: 0;
+    align-items: center;
+    margin-bottom: 4px;
+    height: 36px;
+}
+.gantt-row-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding-right: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.gantt-row:nth-child(even) .gantt-row-label {
+    color: var(--text-secondary);
+}
+
+.gantt-bar-wrapper {
+    grid-column: 2 / -1;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.gantt-bar {
+    position: absolute;
+    height: 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 6px;
+    cursor: default;
+    transition: var(--transition);
+}
+.gantt-bar:hover {
+    transform: scaleY(1.2);
+    box-shadow: var(--shadow-md);
+    z-index: 2;
+}
+
+.gantt-bar--plan      { background: linear-gradient(90deg, var(--fc-blue-500), var(--fc-blue-400)); }
+.gantt-bar--analysis  { background: linear-gradient(90deg, var(--fc-purple), #9b59b6); }
+.gantt-bar--design    { background: linear-gradient(90deg, var(--fc-orange), #f1c40f); }
+.gantt-bar--impl      { background: linear-gradient(90deg, var(--fc-green), #2ecc71); }
+.gantt-bar--testing   { background: linear-gradient(90deg, var(--fc-red), #e74c3c); }
+.gantt-bar--deploy    { background: linear-gradient(90deg, var(--fc-gray), #bdc3c7); }
+
+/* Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-weight: 600;
+}
+.badge--success { background: #eafaf1; color: #1a7a44; }
+.badge--warning { background: #fef5e7; color: #a04000; }
+
+/* Ver más button */
+.ver-mas-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+.ver-mas-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 32px;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    background: linear-gradient(135deg, var(--fc-blue-600), var(--fc-blue-700));
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(16, 97, 179, 0.3);
+}
+
+.ver-mas-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 97, 179, 0.4);
+    background: linear-gradient(135deg, var(--fc-blue-700), var(--fc-blue-800));
+}
+
+.ver-mas-btn i {
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+.ver-mas-btn:hover i {
+    transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+    .diagram-section { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .pipeline { flex-direction: column; align-items: flex-start; }
+    .pipeline-arrow { transform: rotate(90deg); }
+    .pipeline-status { margin-left: 0; }
+}

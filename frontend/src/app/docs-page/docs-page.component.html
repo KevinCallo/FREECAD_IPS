@@ -1,0 +1,186 @@
+<!-- Header con hero + nav contextual de documentación -->
+<app-header page="docs" />
+
+<main class="docs-main">
+
+  <div class="container">
+
+    <div class="docs-grid">
+
+      <!-- ── Arquitectura de FreeCAD ── -->
+      <div class="card docs-card" id="docs-arquitectura">
+        <div class="card-header-row">
+          <h3><i class="fa-solid fa-sitemap" style="color:var(--fc-blue-600);"></i> Arquitectura de FreeCAD</h3>
+        </div>
+        <p class="docs-intro">
+          FreeCAD es una aplicación de modelado 3D paramétrico construida sobre una
+          arquitectura modular que integra múltiples bibliotecas de código abierto.
+        </p>
+        <div class="arch-cards">
+          <div class="arch-item">
+            <div class="arch-icon"><i class="fa-solid fa-cube"></i></div>
+            <div class="arch-body">
+              <h4>OpenCASCADE</h4>
+              <p>Núcleo de modelado geométrico. Proporciona las operaciones booleanas, superficies NURBS, y el kernel CAD subyacente.</p>
+            </div>
+          </div>
+          <div class="arch-item">
+            <div class="arch-icon"><i class="fa-solid fa-cube"></i></div>
+            <div class="arch-body">
+              <h4>Coin3D</h4>
+              <p>Biblioteca de visualización 3D basada en Open Inventor. Renderiza la escena y maneja la interacción con el usuario en el viewport.</p>
+            </div>
+          </div>
+          <div class="arch-item">
+            <div class="arch-icon"><i class="fa-solid fa-cube"></i></div>
+            <div class="arch-body">
+              <h4>Qt Framework</h4>
+              <p>Framework de interfaz de usuario. Proporciona ventanas, paneles, menús, y toda la interacción gráfica del entorno de trabajo.</p>
+            </div>
+          </div>
+          <div class="arch-item">
+            <div class="arch-icon"><i class="fa-solid fa-cube"></i></div>
+            <div class="arch-body">
+              <h4>Python</h4>
+              <p>Lenguaje de scripting y extensión. Todos los módulos y workbenches de FreeCAD se escriben en Python sobre la API C++ subyacente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Módulos a Documentar ── -->
+      <div class="card docs-card" id="docs-modulos">
+        <div class="card-header-row">
+          <h3><i class="fa-regular fa-folder-open" style="color:var(--fc-blue-600);"></i> Módulos del Sistema</h3>
+        </div>
+        <p class="docs-intro">
+          FreeCAD organiza su funcionalidad en <strong>workbenches</strong> (entornos de trabajo).
+          Cada uno agrupa herramientas para una tarea específica de diseño.
+        </p>
+        <div class="modulos-grid">
+          <div class="modulo-card">
+            <div class="modulo-icon"><i class="fa-regular fa-building"></i></div>
+            <h4>BIM</h4>
+            <p>Building Information Modeling. Modelado arquitectónico con elementos como muros, losas, ventanas y estructuras.</p>
+          </div>
+          <div class="modulo-card">
+            <div class="modulo-icon"><i class="fa-solid fa-shapes"></i></div>
+            <h4>Part</h4>
+            <p>Modelado paramétrico de sólidos. Operaciones booleanas, extrusiones, revoluciones y operaciones CSG.</p>
+          </div>
+          <div class="modulo-card">
+            <div class="modulo-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+            <h4>Draft</h4>
+            <p>Dibujo 2D y 3D. Herramientas de croquizado, cotas, capas y anotaciones técnicas.</p>
+          </div>
+          <div class="modulo-card">
+            <div class="modulo-icon"><i class="fa-regular fa-compass"></i></div>
+            <h4>Arch</h4>
+            <p>Arquitectura. Elementos constructivos, espacios, terrenos, y documentación arquitectónica.</p>
+          </div>
+          <div class="modulo-card">
+            <div class="modulo-icon"><i class="fa-solid fa-chart-simple"></i></div>
+            <h4>Sketcher</h4>
+            <p>Croquizador 2D. Restricciones geométricas, cotas inteligentes y perfiles para operaciones 3D.</p>
+          </div>
+          <div class="modulo-card">
+            <div class="modulo-icon"><i class="fa-solid fa-gears"></i></div>
+            <h4>FEM</h4>
+            <p>Análisis de elementos finitos. Mallado, condiciones de borde y simulaciones mecánicas.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Waterfall vs Scrum + DevOps ── -->
+      <div class="card docs-card" id="docs-comparacion">
+        <div class="card-header-row">
+          <h3><i class="fa-solid fa-code-compare" style="color:var(--fc-blue-600);"></i> Waterfall vs Scrum + DevOps</h3>
+        </div>
+        <p class="docs-intro">
+          Comparación entre el enfoque tradicional en cascada que FreeCAD utilizó históricamente
+          y la metodología ágil que aplicamos en este proyecto.
+        </p>
+        <div class="comparison-grid">
+          <div class="comparison-card comparison-card--waterfall">
+            <h4><i class="fa-solid fa-arrow-down"></i> Waterfall (Tradicional)</h4>
+            <ul>
+              <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Fases secuenciales sin retorno</li>
+              <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Entrega única al final del proyecto</li>
+              <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Cambios tardíos son costosos</li>
+              <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> El cliente ve el producto al final</li>
+              <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Sin automatización de procesos</li>
+            </ul>
+            <p class="comparison-note"><i class="fa-regular fa-clock"></i> Así desarrolló FreeCAD históricamente (2002–2018)</p>
+          </div>
+          <div class="comparison-card comparison-card--agile">
+            <h4><i class="fa-solid fa-rotate"></i> Scrum + DevOps (Nuestro enfoque)</h4>
+            <ul>
+              <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Sprints iterativos de 15 días</li>
+              <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Entregas continuas por sprint</li>
+              <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Adaptación rápida a cambios del cliente</li>
+              <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Feedback constante del equipo y stakeholders</li>
+              <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> CI/CD automatizado con GitHub Actions</li>
+            </ul>
+            <p class="comparison-note"><i class="fa-solid fa-bolt" style="color:var(--fc-green);"></i> Aplicado por el equipo en Sprint 0, 1 y 2</p>
+          </div>
+        </div>
+
+        <div class="comparison-table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Aspecto</th>
+                <th>Waterfall</th>
+                <th>Scrum + DevOps</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Planificación</td>
+                <td>Todo al inicio</td>
+                <td>Por sprint (adaptativa)</td>
+              </tr>
+              <tr>
+                <td>Entregas</td>
+                <td>Única al final</td>
+                <td>Cada 15 días</td>
+              </tr>
+              <tr>
+                <td>Cambios</td>
+                <td>Costosos</td>
+                <td>Bienvenidos y rápidos</td>
+              </tr>
+              <tr>
+                <td>Calidad</td>
+                <td>Pruebas al final</td>
+                <td>Pruebas continuas (CI)</td>
+              </tr>
+              <tr>
+                <td>Equipo</td>
+                <td>Roles fijos</td>
+                <td>Autoorganizado</td>
+              </tr>
+              <tr>
+                <td>Cliente</td>
+                <td>Ve al final</td>
+                <td>Feedback continuo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         BACK TO HOME
+         ══════════════════════════════════════════ -->
+    <div class="back-home-bar">
+      <a routerLink="/home" class="back-home-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        Volver al inicio
+      </a>
+    </div>
+
+  </div>
+</main>

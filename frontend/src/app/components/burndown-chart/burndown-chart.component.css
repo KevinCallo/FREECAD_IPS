@@ -1,0 +1,392 @@
+/* ============================================
+   BURNDOWN CHARTS — PIXEL‑PERFECT
+   Basado en especificación técnica avanzada
+   ============================================ */
+
+/* ============================================
+   TOP BAR (mismo estilo que sprint‑detail)
+   ============================================ */
+.detail-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.detail-top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.detail-top-bar-left i {
+    font-size: 1.3rem;
+    color: var(--fc-blue-700);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--fc-blue-100);
+    border-radius: 10px;
+}
+
+.detail-top-bar-left h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--fc-blue-800);
+    margin: 0;
+}
+
+.detail-breadcrumb {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 360px;
+}
+
+/* ============================================
+   MAIN CARD
+   ============================================ */
+.burndown-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    padding: 22px 28px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: var(--transition);
+}
+
+/* ============================================
+   SPRINT TABS (pill buttons)
+   ============================================ */
+.burndown-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.burndown-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 20px;
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-family: 'Inter', sans-serif;
+    background: #e2e8f0;
+    color: #64748b;
+}
+
+.burndown-tab i {
+    font-size: 0.7rem;
+}
+
+.burndown-tab:hover {
+    background: var(--fc-blue-100);
+    color: var(--fc-blue-700);
+}
+
+/* Active sprint */
+.burndown-tab--active {
+    background: #1061b3;
+    color: white;
+    font-weight: 600;
+}
+
+.burndown-tab--active:hover {
+    background: #0d4f94;
+    color: white;
+}
+
+/* Completed sprint */
+.burndown-tab--done {
+    background: #e2e8f0;
+    color: #64748b;
+}
+
+/* Pending sprint */
+.burndown-tab--pending {
+    background: #f1f5f9;
+    color: #94a3b8;
+}
+
+/* ============================================
+   CHART AREA
+   ============================================ */
+.burndown-chart-area {
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.burndown-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* ── Grid horizontales (continuas, sutiles) ── */
+.grid-line {
+    stroke: #e2e8f0;
+    stroke-width: 1;
+}
+
+/* ── Etiquetas de ejes ── */
+.axis-label {
+    font-size: 11px;
+    fill: #94a3b8;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Label central "Días del Sprint" */
+.axis-label--center {
+    font-size: 11px;
+    fill: #94a3b8;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+/* Label rotado "Story Points" (eje Y) */
+.axis-label--rotated {
+    font-size: 11px;
+    fill: #94a3b8;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* ── Leyenda ── */
+.legend-label {
+    font-size: 10px;
+    fill: #94a3b8;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ── Línea Ideal: discontinua gris ── */
+.line-ideal {
+    fill: none;
+    stroke: #94a3b8;
+    stroke-width: 1.5;
+    stroke-dasharray: 4 4;
+}
+
+/* ── Línea Real: naranja sólida 3px ── */
+.line-actual {
+    fill: none;
+    stroke: #f59e0b;
+    stroke-width: 3;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+/* ── Nodos: círculos blancos con borde naranja ── */
+.dot-actual {
+    fill: #ffffff;
+    stroke: #f59e0b;
+    stroke-width: 2;
+    transition: r 0.2s ease;
+}
+
+.dot-actual:hover {
+    r: 6;
+    stroke-width: 2.5;
+}
+
+/* ── Etiqueta de cierre "10 pt" ── */
+.last-dot-label {
+    font-size: 12px;
+    font-weight: 700;
+    fill: #f59e0b;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ============================================
+   STATS GRID — 4 indicadores
+   ============================================ */
+.burndown-stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 16px 0 20px;
+    border-top: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+}
+
+.stat-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 100px;
+}
+
+.stat-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.stat-label {
+    font-size: 0.78rem;
+    color: #64748b;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* ============================================
+   INSIGHT BOX
+   ============================================ */
+.burndown-insight {
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Bloque 1: Descripción General */
+.insight-context {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.insight-icon-wrap {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #dbeafe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.insight-icon {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1e40af;
+    line-height: 1;
+}
+
+.insight-text {
+    font-size: 0.85rem;
+    color: #334155;
+    line-height: 1.65;
+}
+
+.insight-text strong {
+    display: block;
+    margin-bottom: 3px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* Bloque 2: Tarjeta de Logros */
+.insight-achievement {
+    display: flex;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.achievement-accent {
+    width: 4px;
+    flex-shrink: 0;
+    transition: background 0.3s ease;
+}
+
+.achievement-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.achievement-emoji {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.achievement-content strong {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: #94a3b8;
+}
+
+.empty-state i {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    opacity: 0.4;
+}
+
+.empty-state p {
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .burndown-card {
+        padding: 20px 16px;
+    }
+
+    .burndown-stats-grid {
+        gap: 24px;
+    }
+
+    .stat-value {
+        font-size: 1.4rem;
+    }
+
+    .insight-context {
+        flex-direction: column;
+    }
+
+    .burndown-insight {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .burndown-stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .burndown-tabs {
+        gap: 6px;
+    }
+
+    .burndown-tab {
+        padding: 6px 14px;
+        font-size: 0.75rem;
+    }
+}

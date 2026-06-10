@@ -1,0 +1,293 @@
+/* ============================================
+   DOCS PAGE — Vista dedicada
+   ============================================ */
+
+.docs-main {
+    background: #f0f2f5;
+    min-height: calc(100vh - 56px);
+    padding-bottom: 48px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 24px;
+}
+
+.docs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+.docs-card {
+    padding: 28px;
+}
+
+.card-header-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.card-header-row h3 {
+    font-size: 1rem;
+    color: var(--fc-blue-800);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.docs-intro {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* ── Arquitectura ── */
+.arch-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.arch-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--fc-gray-light);
+    transition: var(--transition);
+}
+
+.arch-item:hover {
+    border-color: var(--fc-blue-300);
+    box-shadow: 0 2px 8px rgba(16, 97, 179, 0.08);
+}
+
+.arch-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--fc-blue-50);
+    color: var(--fc-blue-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.arch-body h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 4px;
+}
+
+.arch-body p {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Módulos ── */
+.modulos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.modulo-card {
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid var(--fc-gray-light);
+    background: var(--bg-card);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.modulo-card:hover {
+    border-color: var(--fc-blue-300);
+    box-shadow: 0 2px 8px rgba(16, 97, 179, 0.08);
+    transform: translateY(-2px);
+}
+
+.modulo-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 10px;
+    border-radius: 12px;
+    background: var(--fc-blue-50);
+    color: var(--fc-blue-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.modulo-card h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 6px;
+}
+
+.modulo-card p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Comparison ── */
+.comparison-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.comparison-card {
+    flex: 1;
+    min-width: 220px;
+    border-radius: 10px;
+    padding: 16px;
+    background: var(--bg-card);
+}
+
+.comparison-card--waterfall { border: 1px solid var(--fc-gray-light); }
+.comparison-card--agile { border: 1px solid var(--fc-green); }
+
+.comparison-card h4 {
+    font-size: 0.88rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.comparison-card--waterfall h4 { color: #e74c3c; }
+.comparison-card--agile h4 { color: var(--fc-green); }
+
+.comparison-card ul {
+    list-style: none;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 2;
+    padding: 0;
+    margin: 0;
+}
+.comparison-card ul li { display: flex; align-items: center; gap: 6px; }
+.comparison-card ul li i { width: 18px; text-align: center; }
+
+.comparison-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+/* ── Comparison table ── */
+.comparison-table-wrap {
+    overflow-x: auto;
+    margin-top: 16px;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--fc-gray-light);
+}
+
+.comparison-table th {
+    font-weight: 700;
+    color: var(--fc-blue-800);
+    background: var(--fc-blue-50);
+    font-size: 0.8rem;
+}
+
+.comparison-table td:first-child {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table tr:hover td {
+    background: #f8fafc;
+}
+
+/* ============================================
+   BACK TO HOME
+   ============================================ */
+.back-home-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.back-home-btn:hover {
+    background: #f1f5f9;
+    color: #1e293b;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 16px;
+    }
+
+    .docs-card {
+        padding: 16px;
+    }
+
+    .arch-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .modulos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .modulos-grid {
+        grid-template-columns: 1fr;
+    }
+}

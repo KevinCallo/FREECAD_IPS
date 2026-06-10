@@ -1,0 +1,72 @@
+<section class="section" id="docs">
+  <div class="container">
+    <div class="section-header">
+      <i class="fa-regular fa-file-lines"></i>
+      <h2>Documentación Técnica</h2>
+      <span class="section-sub">Arquitectura FreeCAD</span>
+    </div>
+
+    <div class="card" style="padding:28px;">
+      <div class="docs-grid">
+        <div class="docs-col">
+          <h3><i class="fa-solid fa-sitemap" style="color:var(--fc-blue-600);"></i> Arquitectura de FreeCAD</h3>
+          <ul class="docs-list">
+            <li><i class="fa-solid fa-cube" style="color:var(--fc-orange);"></i> <strong>OpenCASCADE</strong> — Núcleo de modelado geométrico</li>
+            <li><i class="fa-solid fa-cube" style="color:var(--fc-orange);"></i> <strong>Coin3D</strong> — Visualización 3D (Open Inventor)</li>
+            <li><i class="fa-solid fa-cube" style="color:var(--fc-orange);"></i> <strong>Qt</strong> — Framework de interfaz de usuario</li>
+            <li><i class="fa-solid fa-cube" style="color:var(--fc-orange);"></i> <strong>Python</strong> — Lenguaje de scripting y módulos</li>
+          </ul>
+        </div>
+        <div class="docs-col">
+          <h3><i class="fa-regular fa-folder-open" style="color:var(--fc-blue-600);"></i> Módulos a Documentar</h3>
+          <ul class="docs-list">
+            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400);"></i> BIM · Building Information Modeling</li>
+            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400);"></i> Part · Modelado paramétrico</li>
+            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400);"></i> Draft · Dibujo 2D/3D</li>
+            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400);"></i> Arch · Arquitectura</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="docs-comparison">
+        <h3><i class="fa-solid fa-code-compare" style="color:var(--fc-blue-600);"></i> Waterfall vs Scrum + DevOps</h3>
+        <div class="comparison-grid">
+          <div class="comparison-card comparison-card--waterfall">
+            <h4><i class="fa-solid fa-arrow-down"></i> Waterfall (Tradicional)</h4>
+            <ul>
+              <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Fases secuenciales sin retorno</li>
+              <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Entrega única al final</li>
+              <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Cambios costosos</li>
+              <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Cliente ve al final</li>
+              <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Sin automatización</li>
+            </ul>
+            <p class="comparison-note"><i class="fa-regular fa-clock"></i> Así desarrolló FreeCAD históricamente (2002–2018)</p>
+          </div>
+          <div class="comparison-card comparison-card--agile">
+            <h4><i class="fa-solid fa-rotate"></i> Scrum + DevOps (Nuestro enfoque)</h4>
+            <ul>
+              <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Sprints iterativos de 15 días</li>
+              <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Entregas continuas por sprint</li>
+              <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Adaptación rápida a cambios</li>
+              <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Feedback constante del equipo</li>
+              <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> CI/CD automatizado con GitHub Actions</li>
+            </ul>
+            <p class="comparison-note"><i class="fa-solid fa-bolt" style="color:var(--fc-green);"></i> Aplicado por el equipo en Sprint 0, 1 y 2</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-footer">
+        <p><i class="fa-regular fa-clock"></i> La documentación completa con diagramas de clases estará disponible al finalizar el Hito 2.</p>
+      </div>
+
+      <!-- Ver más -->
+      <div class="ver-mas-wrapper">
+        <button class="ver-mas-btn" (click)="goToDocsPage()">
+          Ver más documentación
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

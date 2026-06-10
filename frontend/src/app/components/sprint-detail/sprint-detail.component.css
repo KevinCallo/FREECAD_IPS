@@ -1,0 +1,359 @@
+/* ============================================
+   SPRINT DETAIL — REDISEÑO COMPLETO
+   Basado en especificación técnica "Smooth UI"
+   ============================================ */
+
+/* ============================================
+   TOP BAR: "Detalle del Sprint" + breadcrumb
+   ============================================ */
+.detail-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.detail-top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.detail-top-bar-left i {
+    font-size: 1.3rem;
+    color: var(--fc-blue-700);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--fc-blue-100);
+    border-radius: 10px;
+}
+
+.detail-top-bar-left h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--fc-blue-800);
+    margin: 0;
+}
+
+.detail-breadcrumb {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 360px;
+}
+
+/* ============================================
+   MAIN CARD (white container)
+   ============================================ */
+.sprint-detail-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    padding: 28px 32px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: var(--transition);
+}
+
+/* ============================================
+   SPRINT HEADER: icon + badge + metadata
+   ============================================ */
+.sprint-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--fc-gray-light);
+}
+
+.sprint-detail-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.sprint-detail-title-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sprint-title-icon {
+    font-size: 1.3rem;
+}
+
+.sprint-title-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--fc-blue-800);
+}
+
+/* Status badge — pill */
+.sprint-status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+.badge--active {
+    background: #d4efdf;
+    color: #1a7a44;
+}
+
+.badge--done {
+    background: var(--fc-blue-100);
+    color: var(--fc-blue-700);
+}
+
+.badge--pending {
+    background: var(--fc-gray-light);
+    color: var(--text-muted);
+}
+
+/* Metadata row — right side */
+.sprint-detail-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.82rem;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+.meta-icon {
+    color: var(--fc-orange);
+    font-size: 0.9rem;
+    width: 16px;
+    text-align: center;
+}
+
+/* ============================================
+   GOALS / MODULE CARDS (3-column grid)
+   ============================================ */
+.goals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.goal-card {
+    background: var(--bg-card);
+    border-radius: 10px;
+    border: 1px solid var(--fc-gray-light);
+    padding: 24px 20px 18px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.goal-card--active {
+    border-color: rgba(243, 156, 18, 0.35);
+}
+
+.goal-card--done {
+    border-color: rgba(39, 174, 96, 0.30);
+}
+
+.goal-card--pending {
+    border-color: var(--fc-gray-light);
+}
+
+.goal-card-body {
+    flex: 1;
+}
+
+.goal-card-icon {
+    font-size: 1.4rem;
+    color: var(--fc-blue-700);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.goal-card--active .goal-card-icon {
+    color: var(--fc-orange);
+}
+
+.goal-card--done .goal-card-icon {
+    color: var(--fc-green);
+}
+
+.goal-card--pending .goal-card-icon {
+    color: var(--fc-gray);
+}
+
+.goal-card-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--fc-blue-800);
+    margin-bottom: 6px;
+}
+
+.goal-card-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding: 0 4px;
+}
+
+.goal-card-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 3px 12px;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 600;
+}
+
+.goal-badge--active {
+    background: #fef9e7;
+    color: #b7950b;
+}
+
+.goal-badge--done {
+    background: var(--fc-green-light);
+    color: var(--fc-green);
+}
+
+.goal-badge--pending {
+    background: var(--fc-gray-light);
+    color: var(--text-muted);
+}
+
+/* ============================================
+   SPRINT BACKLOG
+   ============================================ */
+.backlog-section {
+    padding-top: 4px;
+}
+
+.backlog-section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.backlog-section-title h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fc-blue-800);
+    margin: 0;
+}
+
+.backlog-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.backlog-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--fc-gray-light);
+}
+
+.backlog-item:last-child {
+    border-bottom: none;
+}
+
+.backlog-status-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.backlog-icon--done {
+    color: var(--fc-green);
+    font-size: 1.15rem;
+}
+
+.backlog-icon--pending {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+}
+
+.backlog-item--done .backlog-icon--done {
+    color: var(--fc-green);
+}
+
+.backlog-title {
+    font-size: 0.88rem;
+    color: #334155;
+    font-weight: 450;
+    line-height: 1.4;
+}
+
+.backlog-title--done {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .detail-top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .detail-breadcrumb {
+        max-width: 100%;
+    }
+
+    .sprint-detail-card {
+        padding: 20px 16px;
+    }
+
+    .sprint-detail-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .sprint-detail-meta {
+        gap: 12px;
+    }
+
+    .goals-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .sprint-detail-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}

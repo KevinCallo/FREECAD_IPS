@@ -1,0 +1,274 @@
+/* ============================================
+   METRICS GRID — tarjetitas de dashboard
+   ============================================ */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.metric-card {
+    text-align: center;
+    padding: 22px 16px 18px;
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+    border-top: 3px solid var(--fc-gray-light);
+    cursor: default;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+.metric-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+.metric-card .metric-icon {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+    opacity: 0.7;
+}
+.metric-card .metric-value {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-primary);
+    letter-spacing: -1px;
+}
+.metric-card .metric-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.metric-card--green  { border-top-color: var(--fc-green); }
+.metric-card--green  .metric-icon { color: var(--fc-green); }
+.metric-card--orange { border-top-color: var(--fc-orange); }
+.metric-card--orange .metric-icon { color: var(--fc-orange); }
+.metric-card--purple { border-top-color: var(--fc-purple); }
+.metric-card--purple .metric-icon { color: var(--fc-purple); }
+.metric-card--red    { border-top-color: var(--fc-red); }
+.metric-card--red    .metric-icon { color: var(--fc-red); }
+
+/* ============================================
+   SPRINT DASHBOARD
+   ============================================ */
+.sprint-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.sprint-card {
+    position: relative;
+    overflow: hidden;
+}
+.sprint-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.sprint-card--active::before  { background: linear-gradient(90deg, var(--fc-green), #2ecc71); }
+.sprint-card--pending::before { background: linear-gradient(90deg, var(--fc-gray), #bdc3c7); }
+.sprint-card--done::before    { background: linear-gradient(90deg, var(--fc-blue-500), var(--fc-blue-400)); }
+
+.sprint-card--active {
+    border-color: #d5f5e3;
+    box-shadow: 0 4px 20px rgba(39,174,96,0.12);
+}
+
+.sprint-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+.sprint-card-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.sprint-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 50px;
+}
+.sprint-badge--active  { background: var(--fc-green-light); color: #1a7a44; }
+.sprint-badge--pending { background: var(--fc-gray-light);  color: #5d6d7e; }
+.sprint-badge--done    { background: var(--fc-blue-100);    color: var(--fc-blue-700); }
+
+.sprint-dates {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+.sprint-dates i {
+    margin-right: 4px;
+}
+
+.sprint-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+
+.progress-wrapper {
+    margin-top: auto;
+}
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+.progress-bar {
+    height: 6px;
+    background: var(--fc-gray-light);
+    border-radius: 50px;
+    overflow: hidden;
+}
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 50px;
+    transition: width 1s ease;
+}
+.progress-bar-fill--active { background: linear-gradient(90deg, var(--fc-green), #2ecc71); }
+.progress-bar-fill--done   { background: linear-gradient(90deg, var(--fc-blue-500), var(--fc-blue-400)); }
+
+/* Sprint timeline */
+.sprint-timeline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--fc-gray-light);
+}
+.sprint-timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.sprint-timeline-dot--active { background: var(--fc-green); }
+.sprint-timeline-dot--done   { background: var(--fc-blue-500); }
+.sprint-timeline-dot--pending { background: var(--fc-gray); }
+
+.sprint-timeline-line {
+    flex: 1;
+    height: 2px;
+    background: var(--fc-gray-light);
+}
+.sprint-timeline-line--fill {
+    background: linear-gradient(90deg, var(--fc-blue-500), var(--fc-green));
+}
+
+/* Sprint selector */
+.sprint-selector .sprint-selectable {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    user-select: none;
+}
+.sprint-selector .sprint-selectable:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+.sprint-selector .sprint-selectable:focus-visible {
+    outline: 2px solid var(--fc-orange);
+    outline-offset: 2px;
+}
+
+/* Selected state */
+.sprint-selector .sprint-selected {
+    outline: 2px solid var(--fc-blue-400);
+    outline-offset: -2px;
+    transform: translateY(-3px);
+}
+.sprint-selector .sprint-selected.sprint-card--active {
+    outline-color: var(--fc-green);
+}
+.sprint-selector .sprint-selected.sprint-card--done {
+    outline-color: var(--fc-blue-500);
+}
+.sprint-selector .sprint-selected.sprint-card--pending {
+    outline-color: var(--fc-gray);
+}
+
+/* Small selection dot */
+.sprint-selector .sprint-selected::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--fc-blue-500);
+    opacity: 0.5;
+}
+.sprint-selector .sprint-selected.sprint-card--active::after {
+    background: var(--fc-green);
+}
+.sprint-selector .sprint-selected.sprint-card--done::after {
+    background: var(--fc-blue-500);
+}
+
+.sprint-click-hint {
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: var(--transition);
+}
+.sprint-selectable:hover .sprint-click-hint {
+    opacity: 1;
+}
+.sprint-selected .sprint-click-hint {
+    opacity: 1;
+    color: var(--fc-blue-600);
+    font-weight: 600;
+}
+
+.sprint-legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .sprint-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+    .metrics-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .metric-card { padding: 16px 12px 14px; }
+    .metric-card .metric-value { font-size: 1.5rem; }
+    .metric-card .metric-label { font-size: 0.6rem; }
+}

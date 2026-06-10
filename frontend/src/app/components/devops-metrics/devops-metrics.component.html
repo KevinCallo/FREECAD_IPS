@@ -1,0 +1,72 @@
+<section class="section" id="devops-metrics">
+  <div class="container">
+    <div class="section-header">
+      <i class="fa-solid fa-chart-line"></i>
+      <h2>Métricas DevOps</h2>
+      <span class="section-sub">Pipeline Status · Automatización</span>
+    </div>
+
+    <div class="card" style="padding:20px 24px; margin-bottom:24px;">
+      <h3 style="font-size:0.95rem; margin-bottom:14px; color:var(--text-primary);">
+        <i class="fa-solid fa-gears" style="color:var(--fc-blue-600);"></i>
+        Estado del Pipeline
+      </h3>
+      <div class="pipeline">
+        <span class="pipeline-step pipeline-step--success">
+          <i class="fa-solid fa-check-circle"></i> Commit
+        </span>
+        <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+        <span class="pipeline-step pipeline-step--success">
+          <i class="fa-solid fa-check-circle"></i> Push
+        </span>
+        <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+        <span class="pipeline-step pipeline-step--running">
+          <i class="fa-solid fa-spinner"></i> GitHub Actions
+        </span>
+        <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+        <span class="pipeline-step pipeline-step--success">
+          <i class="fa-solid fa-check-circle"></i> Pages Deploy
+        </span>
+
+        <div class="pipeline-status">
+          <span class="status-dot"></span>
+          <span style="font-weight:600; color:#1a7a44;">3/3 runs · Passing</span>
+        </div>
+      </div>
+      <p style="font-size:0.8rem; color:var(--text-muted); margin-top:8px; margin-bottom: 20px;">
+        <i class="fa-regular fa-circle-check" style="color:var(--fc-green);"></i>
+        Último deploy exitoso · Pages actualizado automáticamente en cada push a <code>main</code>
+      </p>
+
+      <div style="border-top: 1px solid var(--fc-gray-light); padding-top: 16px;">
+        <button id="toggle-console-btn" class="console-btn"
+          (click)="toggleConsole()">
+          <i class="fa-solid fa-terminal"></i> Inspeccionar Log del Servidor (CI/CD)
+        </button>
+      </div>
+    </div>
+
+    @if (consoleOpen) {
+      <div class="console-section">
+        <div class="console-card">
+          <div class="console-header">
+            <span style="font-size: 0.75rem; font-weight: 600;">
+              <i class="fa-solid fa-circle-nodes" style="color: #38bdf8;"></i> github-actions-api // real-time-fetch
+            </span>
+            <span class="console-badge">
+              <i class="fa-solid fa-spinner fa-spin"></i> CONECTANDO...
+            </span>
+          </div>
+          <div class="console-log">
+            <div>> github-actions-api: initializing...</div>
+            <div>> fetching latest workflow runs...</div>
+            <div>> pipeline: integration-and-deployment #42</div>
+            <div>> status: ✅ success (22s)</div>
+            <div>> deploy: https://kevincallo.github.io/FREECAD_IPS/</div>
+            <div style="color:#38bdf8;">> connected · watching for changes...</div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

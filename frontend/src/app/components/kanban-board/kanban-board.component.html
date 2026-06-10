@@ -1,0 +1,157 @@
+<section class="section" id="board">
+  <div class="container">
+    <div class="section-header">
+      <i class="fa-solid fa-columns"></i>
+      <h2>Tablero Kanban</h2>
+      <span class="section-sub">
+        @if (isEditable()) {
+          Arrastrá las tarjetas ·
+        }
+        <a href="https://github.com/users/KevinCallo/projects/4/" target="_blank" style="color:var(--fc-blue-600);text-decoration:underline;">
+          Sincronizado con GitHub Projects
+        </a>
+      </span>
+    </div>
+
+    <!-- Sprint tabs: dinámicos desde SprintService -->
+    <div class="kanban-sprint-tabs">
+      @for (s of sprints(); track s.key) {
+        @let statusIcon = s.key === 'sprint2' ? 'fa-bolt' : (s.status === 'done' ? 'fa-check-circle' : 'fa-hourglass-half');
+        <button
+          class="kanban-sprint-tab"
+          [class.kanban-sprint-tab--active]="s.key === selectedSprintKey()"
+          [class.kanban-sprint-tab--readonly]="s.key !== 'sprint2'"
+          (click)="setActiveSprint(s.key)"
+        >
+          <i class="fa-solid" [class]="statusIcon" style="font-size:0.7rem;"></i>
+          {{ s.label }}
+        </button>
+      }
+    </div>
+
+    <!-- Description -->
+    <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:20px; max-width:700px;">
+      Las tareas del equipo se gestionan a través de
+      <strong>GitHub Projects</strong> con un flujo Kanban.
+      @if (isEditable()) {
+        <strong>Arrastrá las tarjetas</strong> entre columnas para actualizar el estado.
+      }
+      También podés hacer <strong>clic en las cards del dashboard</strong> para cambiar de sprint histórico.
+    </p>
+
+    <!-- Kanban board -->
+    <div class="kanban">
+      @for (colId of columns; track colId) {
+        @let tasks = getColumn(colId);
+        <div
+          class="kanban-column"
+          [class.kanban-column--drag-over]="dragOverCol === colId"
+          (dragover)="onDragOver($event, colId)"
+          (dragleave)="onDragLeave(colId)"
+          (drop)="onDrop(colId)"
+        >
+          <div class="kanban-column-header">
+            <span class="kanban-column-title">{{ columnLabels[colId] }}</span>
+            <span class="kanban-column-count">({{ tasks.length }})</span>
+          </div>
+
+          @for (task of tasks; track task.id) {
+            <div
+              class="kanban-item"
+              [draggable]="isEditable()"
+              (dragstart)="onDragStart(task, colId)"
+              (dragend)="onDragEnd()"
+              (dblclick)="openEdit(task, colId)"
+              tabindex="0"
+              role="button"
+              [attr.aria-label]="'Editar ' + task.title"
+            >
+              <div class="kanban-item-header">
+                <span class="kanban-tag" [style.background]="task.tagColor" [style.color]="'white'">
+                  {{ task.tag }}
+                </span>
+              </div>
+              <p class="kanban-item-title">{{ task.title }}</p>
+              <div class="kanban-item-footer">
+                <span class="kanban-item-assignee">
+                  <i class="fa-regular fa-user"></i> {{ task.assignee || '—' }}
+                </span>
+              </div>
+            </div>
+          }
+
+          @if (isEditable()) {
+            <button class="kanban-add-btn" (click)="openAdd(colId)">
+              <i class="fa-solid fa-plus"></i> Agregar tarjeta
+            </button>
+          }
+        </div>
+      }
+    </div>
+
+    @if (isEditable()) {
+      <div class="kanban-actions">
+        <button class="btn btn--outline btn--sm" (click)="resetBoard()">
+          <i class="fa-solid fa-rotate-left"></i> Resetear a datos por defecto
+        </button>
+      </div>
+    }
+
+    <!-- CTA to GitHub Projects -->
+    <div class="github-projects-cta">
+      <div>
+        <h3><i class="fa-brands fa-github"></i> Ver en GitHub Projects</h3>
+        <p>Accedé al tablero completo con milestones y seguimiento en tiempo real.</p>
+      </div>
+      <a href="https://github.com/users/KevinCallo/projects/4/" target="_blank" class="btn btn--primary">
+        <i class="fa-brands fa-github"></i> Ir al Projects Board
+        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem;"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+@if (showAddModal) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()" role="dialog" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h3 id="modal-title">{{ editTask ? 'Editar tarea' : 'Nueva tarea' }}</h3>
+        <button class="modal-close" (click)="closeModal()" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label class="modal-label">
+          Título
+          <input class="modal-input" [(ngModel)]="newTitle" placeholder="Descripción de la tarea" />
+        </label>
+        <label class="modal-label">
+          Asignado a
+          <select class="modal-input" [(ngModel)]="newAssignee">
+            @for (a of getAssignees(); track a.value) {
+              <option [value]="a.value">{{ a.label }}</option>
+            }
+          </select>
+        </label>
+        <label class="modal-label">
+          Tipo
+          <select class="modal-input" [(ngModel)]="newTag">
+            @for (t of getTaskTypes(); track t.id) {
+              <option [value]="t.id">{{ t.label }}</option>
+            }
+          </select>
+        </label>
+      </div>
+      <div class="modal-footer">
+        @if (editTask) {
+          <button class="btn btn--danger btn--sm" (click)="deleteTask(editTask.id)">
+            <i class="fa-solid fa-trash"></i> Eliminar
+          </button>
+        }
+        <button class="btn btn--ghost btn--sm" (click)="closeModal()">Cancelar</button>
+        <button class="btn btn--primary btn--sm" (click)="saveTask()">
+          {{ editTask ? 'Guardar' : 'Crear' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

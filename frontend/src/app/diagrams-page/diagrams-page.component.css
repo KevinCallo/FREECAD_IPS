@@ -1,0 +1,273 @@
+/* ============================================
+   DIAGRAMS PAGE — Vista dedicada
+   ============================================ */
+
+.diagrams-main {
+    background: #f0f2f5;
+    min-height: calc(100vh - 56px); /* resto del nav */
+    padding-bottom: 48px;
+}
+
+/* ============================================
+   CONTENIDO
+   ============================================ */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 24px;
+}
+
+.diagrams-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+.diagram-card {
+    padding: 24px;
+}
+
+.card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.card-header-row h3 {
+    font-size: 1rem;
+    color: var(--fc-blue-800);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.card-sprint-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.card-footnote {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0 0 0 0;
+}
+
+.card-badges {
+    margin-top: 12px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+/* ── Burndown ── */
+.diagram-burndown-section {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    overflow: hidden;
+}
+
+/* ── Pipeline ── */
+.pipeline {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 20px 0;
+}
+
+.pipeline-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--fc-gray-light);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.pipeline-step i { font-size: 0.9rem; }
+
+.pipeline-step--success {
+    border-color: #d5f5e3;
+    background: #eafaf1;
+    color: #1a7a44;
+}
+
+.pipeline-step--success i { color: var(--fc-green); }
+
+.pipeline-step--running {
+    border-color: #fdebd0;
+    background: #fef5e7;
+    color: #a04000;
+}
+
+.pipeline-step--running i {
+    color: var(--fc-orange);
+    animation: spin 2s linear infinite;
+}
+
+.pipeline-arrow {
+    color: var(--fc-gray);
+    font-size: 0.8rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ── Badges ── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+.badge--success { background: #eafaf1; color: #1a7a44; }
+.badge--warning { background: #fef5e7; color: #a04000; }
+
+/* ── Gantt ── */
+.gantt-container {
+    overflow-x: auto;
+    padding: 8px 0;
+}
+
+.gantt-chart { min-width: 500px; }
+
+.gantt-header {
+    display: grid;
+    grid-template-columns: 140px repeat(8, 1fr);
+    gap: 0;
+    margin-bottom: 8px;
+}
+
+.gantt-header-cell {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--fc-gray-light);
+}
+
+.gantt-header-cell:first-child { text-align: left; }
+
+.gantt-row {
+    display: grid;
+    grid-template-columns: 140px repeat(8, 1fr);
+    gap: 0;
+    align-items: center;
+    margin-bottom: 4px;
+    height: 36px;
+}
+
+.gantt-row-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding-right: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gantt-bar-wrapper {
+    grid-column: 2 / -1;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.gantt-bar {
+    position: absolute;
+    height: 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 6px;
+    cursor: default;
+    transition: var(--transition);
+}
+
+.gantt-bar:hover {
+    transform: scaleY(1.2);
+    box-shadow: var(--shadow-md);
+    z-index: 2;
+}
+
+.gantt-bar--plan      { background: linear-gradient(90deg, var(--fc-blue-500), var(--fc-blue-400)); }
+.gantt-bar--analysis  { background: linear-gradient(90deg, var(--fc-purple), #9b59b6); }
+.gantt-bar--design    { background: linear-gradient(90deg, var(--fc-orange), #f1c40f); }
+.gantt-bar--impl      { background: linear-gradient(90deg, var(--fc-green), #2ecc71); }
+.gantt-bar--testing   { background: linear-gradient(90deg, var(--fc-red), #e74c3c); }
+.gantt-bar--deploy    { background: linear-gradient(90deg, var(--fc-gray), #bdc3c7); }
+
+/* ============================================
+   BACK TO HOME
+   ============================================ */
+.back-home-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.back-home-btn:hover {
+    background: #f1f5f9;
+    color: #1e293b;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 16px;
+    }
+
+    .diagram-card {
+        padding: 16px;
+    }
+}

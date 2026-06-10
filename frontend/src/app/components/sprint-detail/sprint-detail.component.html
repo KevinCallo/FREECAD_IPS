@@ -1,0 +1,118 @@
+@if (selectedSprint(); as sprint) {
+  <section class="section" id="sprint-detail">
+    <div class="container">
+
+      <!-- ==========================================
+           TOP BAR: "Detalle del Sprint" + breadcrumb
+           ========================================== -->
+      <div class="detail-top-bar">
+        <div class="detail-top-bar-left">
+          <i class="fa-solid fa-list"></i>
+          <h2>Detalle del Sprint</h2>
+        </div>
+        <span class="detail-breadcrumb">
+          {{ sprint.label }} · {{ sprint.description.split('.')[0] }}
+        </span>
+      </div>
+
+      <!-- ==========================================
+           MAIN CARD
+           ========================================== -->
+      <div class="sprint-detail-card">
+
+        <!-- Sprint header: title + badge + metadata -->
+        <div class="sprint-detail-header">
+          <div class="sprint-detail-title">
+            <div class="sprint-detail-title-left">
+              @if (sprint.status === 'active') {
+                <i class="fa-solid fa-bolt sprint-title-icon" style="color:var(--fc-orange);"></i>
+              } @else if (sprint.status === 'done') {
+                <i class="fa-solid fa-check-circle sprint-title-icon" style="color:var(--fc-green);"></i>
+              } @else {
+                <i class="fa-regular fa-clock sprint-title-icon" style="color:var(--fc-gray);"></i>
+              }
+              <span class="sprint-title-label">{{ sprint.label }} · {{ sprint.description.split('.')[0] }}</span>
+            </div>
+            <span class="sprint-status-badge"
+              [class.badge--active]="sprint.status === 'active'"
+              [class.badge--done]="sprint.status === 'done'"
+              [class.badge--pending]="sprint.status === 'pending'">
+              {{ sprint.status === 'active' ? 'EN CURSO' : sprint.status === 'done' ? 'COMPLETADO' : 'PLANEADO' }}
+            </span>
+          </div>
+
+          <div class="sprint-detail-meta">
+            <span class="meta-item">
+              <i class="fa-regular fa-calendar meta-icon"></i>
+              {{ sprint.start | date:'dd/MM/yyyy' }} → {{ sprint.end | date:'dd/MM/yyyy' }}
+            </span>
+            <span class="meta-item">
+              <i class="fa-regular fa-clock meta-icon"></i>
+              {{ sprintDuration(sprint) }} días
+            </span>
+            <span class="meta-item">
+              <i class="fa-regular fa-rectangle-list meta-icon"></i>
+              {{ sprint.storyPoints }} story points
+            </span>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             GOALS / MODULE CARDS (3-column grid)
+             ========================================== -->
+        @if (sprint.goals.length > 0) {
+          <div class="goals-grid">
+            @for (goal of sprint.goals; track goal.title) {
+              <div class="goal-card"
+                [class.goal-card--done]="goal.status === 'done'"
+                [class.goal-card--active]="goal.status === 'active'"
+                [class.goal-card--pending]="goal.status === 'pending'">
+                <div class="goal-card-body">
+                  <i class="fa-solid {{ goal.icon }} goal-card-icon"></i>
+                  <h4 class="goal-card-title">{{ goal.title }}</h4>
+                  <p class="goal-card-desc">{{ goal.description }}</p>
+                </div>
+                <span class="goal-card-badge"
+                  [class.goal-badge--done]="goal.status === 'done'"
+                  [class.goal-badge--active]="goal.status === 'active'"
+                  [class.goal-badge--pending]="goal.status === 'pending'">
+                  {{ goal.status === 'done' ? 'Completado' : goal.status === 'active' ? 'En Progreso' : 'Pendiente' }}
+                </span>
+              </div>
+            }
+          </div>
+        }
+
+        <!-- ==========================================
+             SPRINT BACKLOG
+             ========================================== -->
+        @if (sprint.backlog.length > 0) {
+          <div class="backlog-section">
+            <div class="backlog-section-title">
+              <i class="fa-solid fa-circle-check" style="color:var(--fc-green);"></i>
+              <h3>Sprint Backlog</h3>
+            </div>
+            <div class="backlog-list">
+              @for (item of sprint.backlog; track item.title) {
+                <div class="backlog-item" [class.backlog-item--done]="item.done">
+                  <span class="backlog-status-icon">
+                    @if (item.done) {
+                      <i class="fa-solid fa-circle-check backlog-icon--done"></i>
+                    } @else {
+                      <i class="fa-regular fa-circle backlog-icon--pending"></i>
+                    }
+                  </span>
+                  <span class="backlog-title" [class.backlog-title--done]="item.done">
+                    {{ item.title }}
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+      </div><!-- /sprint-detail-card -->
+
+    </div>
+  </section>
+}

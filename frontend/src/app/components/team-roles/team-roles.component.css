@@ -1,0 +1,520 @@
+/* ============================================
+   EQUIPO Y ROLES SCRUM — LAYOUT 40/60
+   Basado en especificación técnica de layout
+   ============================================ */
+
+/* ── BACKGROUND GENERAL ── */
+.section {
+    background: #f0f2f5;
+    padding: 24px 0;
+}
+
+/* ============================================
+   TOP BAR
+   ============================================ */
+.detail-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.detail-top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.detail-top-bar-left i {
+    font-size: 1.3rem;
+    color: var(--fc-blue-700);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--fc-blue-100);
+    border-radius: 10px;
+}
+
+.detail-top-bar-left h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--fc-blue-800);
+    margin: 0;
+}
+
+.detail-breadcrumb {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 420px;
+}
+
+/* ============================================
+   LAYOUT PRINCIPAL — 40% / 60%
+   ============================================ */
+.roles-layout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.roles-left {
+    flex: 0 0 40%;
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.roles-right {
+    flex: 0 0 calc(60% - 24px);
+    max-width: calc(60% - 24px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ============================================
+   COLUMNA IZQUIERDA — ZONAS DE ROLES (DROP)
+   ============================================ */
+.role-zone {
+    background: #f0f7ff;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px dashed #dbeafe;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.role-zone:hover {
+    border-color: #93c5fd;
+}
+
+.role-zone--over {
+    border-color: #e67e22;
+    background: #fff7ed;
+    transform: scale(1.015);
+}
+
+.role-zone--filled {
+    border-style: solid;
+    border-color: #dbeafe;
+}
+
+/* Header */
+.role-zone-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.role-zone-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #1e3a5f;
+}
+
+.role-zone-header-left i {
+    font-size: 1.05rem;
+}
+
+.role-zone-count {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* Body — chips */
+.role-zone-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 40px;
+}
+
+.role-zone-hint {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-style: italic;
+    padding: 6px 0;
+}
+
+/* ============================================
+   MEMBER CHIPS (usados en toda la UI)
+   ============================================ */
+.member-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    padding: 5px 14px 5px 5px;
+    cursor: grab;
+    user-select: none;
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.member-chip:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+}
+
+.member-chip:active {
+    cursor: grabbing;
+}
+
+.chip-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+}
+
+.chip-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* ============================================
+   COLUMNA DERECHA — CAJA SUPERIOR (POOL)
+   ============================================ */
+.pool-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    padding: 18px 20px;
+    border: 2px dashed #e2e8f0;
+    transition: all 0.2s ease;
+    min-height: 100px;
+}
+
+.pool-card--over {
+    border-color: #e67e22;
+    background: #fff7ed;
+}
+
+.pool-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.pool-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1e3a5f;
+}
+
+.pool-card-title i {
+    font-size: 0.95rem;
+    color: #64748b;
+}
+
+.pool-card-tag {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.pool-card-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 40px;
+}
+
+.pool-hint {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-style: italic;
+    padding: 6px 0;
+}
+
+/* ============================================
+   COLUMNA DERECHA — CAJA INFERIOR (DIAGRAMA)
+   ============================================ */
+.diagram-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+}
+
+.diagram-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.diagram-card-header i {
+    font-size: 1.05rem;
+}
+
+/* ============================================
+   DIAGRAMA — CANVAS + SVG + NODOS
+   ============================================ */
+.diagram-canvas {
+    position: relative;
+    flex: 1;
+    min-height: 300px;
+    width: 100%;
+}
+
+.diagram-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.conn-line {
+    fill: none;
+    stroke: #cbd5e1;
+    stroke-width: 1.5;
+    stroke-dasharray: 5 4;
+}
+
+/* ── Grid de nodos ── */
+.diagram-nodes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    position: relative;
+    z-index: 1;
+    height: 100%;
+}
+
+.dnode--sm {
+    grid-column: 1 / -1;
+    justify-self: center;
+    text-align: center;
+    margin-bottom: 8px;
+    padding-top: 8px;
+}
+
+.dnode--po {
+    grid-column: 1;
+    justify-self: center;
+    text-align: center;
+}
+
+.dnode--dev {
+    grid-column: 2;
+    justify-self: center;
+    text-align: center;
+}
+
+/* ── Anillo del nodo ── */
+.dnode-ring {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 6px;
+    border-width: 3px;
+    border-style: solid;
+}
+
+.dnode-ring--orange {
+    background: #fff7ed;
+    border-color: #e67e22;
+}
+
+.dnode-ring--purple {
+    background: #f3e8ff;
+    border-color: #8b5cf6;
+}
+
+.dnode-ring--green {
+    background: #ecfdf5;
+    border-color: #10b981;
+}
+
+.dnode-icon {
+    font-size: 1.05rem;
+}
+
+.dnode-ring--orange .dnode-icon { color: #e67e22; }
+.dnode-ring--purple .dnode-icon { color: #8b5cf6; }
+.dnode-ring--green .dnode-icon  { color: #10b981; }
+
+/* ── Label del nodo ── */
+.dnode-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.label--orange { color: #e67e22; }
+.label--purple { color: #8b5cf6; }
+.label--green  { color: #10b981; }
+
+/* ── Píldora del miembro en el diagrama ── */
+.dnode-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    padding: 4px 12px 4px 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #334155;
+    white-space: nowrap;
+}
+
+.dnode-pill--empty {
+    background: transparent;
+    border-color: transparent;
+    color: #94a3b8;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.dnode-pill-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+}
+
+/* ── Stack de developers ── */
+.dnode-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.dnode-stack .dnode-pill {
+    min-width: 120px;
+    justify-content: center;
+}
+
+/* ============================================
+   DIAGRAMA — FOOTER / LEYENDA
+   ============================================ */
+.diagram-footer {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.diagram-legend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.legend-item i {
+    font-size: 0.8rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+    .roles-layout {
+        flex-direction: column;
+    }
+
+    .roles-left,
+    .roles-right {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 16px 0;
+    }
+
+    .role-zone {
+        padding: 16px;
+    }
+
+    .diagram-card {
+        padding: 16px;
+        min-height: 320px;
+    }
+
+    .diagram-canvas {
+        min-height: 240px;
+    }
+
+    .dnode-ring {
+        width: 40px;
+        height: 40px;
+    }
+
+    .dnode-icon {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .diagram-legend {
+        gap: 12px;
+    }
+
+    .pool-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}

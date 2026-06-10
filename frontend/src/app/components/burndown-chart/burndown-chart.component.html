@@ -1,0 +1,186 @@
+<section class="section" id="metrics">
+  <div class="container">
+
+    <!-- ══════════════════════════════════════════
+         TOP BAR
+         ══════════════════════════════════════════ -->
+    <div class="detail-top-bar">
+      <div class="detail-top-bar-left">
+        <i class="fa-solid fa-chart-line"></i>
+        <h2>Burndown Charts</h2>
+      </div>
+      <span class="detail-breadcrumb">
+        Seguimiento de story points por sprint
+      </span>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         MAIN CARD
+         ══════════════════════════════════════════ -->
+    <div class="burndown-card">
+
+      @if (burndownData(); as data) {
+        <!-- Sprint pills -->
+        <div class="burndown-tabs">
+          @for (sk of getAvailableSprints(); track sk) {
+            @let status = getSprintStatus(sk);
+            <button
+              class="burndown-tab"
+              [class.burndown-tab--active]="sk === selectedSprintKey()"
+              [class.burndown-tab--done]="status === 'done' && sk !== selectedSprintKey()"
+              [class.burndown-tab--pending]="status === 'pending' && sk !== selectedSprintKey()"
+              (click)="selectSprint(sk)"
+            >
+              @if (status === 'done') {
+                <i class="fa-solid fa-check"></i>
+              } @else if (status === 'active') {
+                <i class="fa-solid fa-bolt"></i>
+              } @else {
+                <i class="fa-regular fa-clock"></i>
+              }
+              {{ getBurndown(sk)?.label ?? sk }}
+            </button>
+          }
+        </div>
+
+        <!-- ══════════════════════════════════════
+             CHART — SVG
+             ══════════════════════════════════════ -->
+        <div class="burndown-chart-area">
+          <svg
+            [attr.viewBox]="viewBox()"
+            class="burndown-svg"
+            role="img"
+            [attr.aria-label]="'Burndown chart for ' + data.label"
+          >
+
+            <!-- ── Grid horizontales (continuas, sutiles) ── -->
+            @for (l of yLabels(); track l.value) {
+              <line
+                [attr.x1]="padding" [attr.y1]="l.y"
+                [attr.x2]="chartWidth - padding" [attr.y2]="l.y"
+                class="grid-line"
+              />
+            }
+
+            <!-- ── Label "Story Points" (eje Y, rotado) ── -->
+            <text
+              [attr.transform]="yLabelTransform()"
+              [attr.x]="padding - 32"
+              [attr.y]="padding + innerH() / 2"
+              class="axis-label--rotated"
+              text-anchor="middle"
+            >Story Points</text>
+
+            <!-- ── Etiquetas Eje Y ── -->
+            @for (l of yLabels(); track l.value) {
+              <text
+                [attr.x]="padding - 10" [attr.y]="l.y + 4"
+                class="axis-label" text-anchor="end"
+              >{{ l.value }}</text>
+            }
+
+            <!-- ── Etiquetas Eje X (días) ── -->
+            @for (l of xLabels(); track l.day) {
+              <text
+                [attr.x]="l.x"
+                [attr.y]="chartHeight - padding + 18"
+                class="axis-label" text-anchor="middle"
+              >D{{ l.day }}</text>
+            }
+
+            <!-- ── Label central "Días del Sprint" ── -->
+            <text
+              [attr.x]="chartWidth / 2"
+              [attr.y]="chartHeight - 6"
+              class="axis-label--center"
+              text-anchor="middle"
+            >Días del Sprint</text>
+
+            <!-- ── Leyenda (esquina superior derecha) ── -->
+            <g [attr.transform]="legendTransform()">
+              <!-- Ideal -->
+              <line x1="0" y1="8" x2="30" y2="8" stroke="#94a3b8" stroke-dasharray="4 4" stroke-width="1.5" />
+              <text x="36" y="12" class="legend-label">Ideal</text>
+              <!-- Real -->
+              <line x1="90" y1="8" x2="120" y2="8" stroke="#f59e0b" stroke-width="3" />
+              <text x="126" y="12" class="legend-label">Real</text>
+            </g>
+
+            <!-- ── Línea Ideal (discontinua gris) ── -->
+            <path [attr.d]="idealLine()" class="line-ideal" [attr.transform]="transformAttr()" />
+
+            <!-- ── Línea Real (naranja sólida) ── -->
+            <path [attr.d]="actualLine()" class="line-actual" [attr.transform]="transformAttr()" />
+
+            <!-- ── Nodos (dots) ── -->
+            @for (pt of dataDots(); track $index) {
+              <circle [attr.cx]="pt.cx" [attr.cy]="pt.cy" r="4" class="dot-actual" />
+            }
+
+            <!-- ── Etiqueta de cierre "N pt" ── -->
+            @if (lastDotPos(); as pos) {
+              @if (lastDataPoint(); as lp) {
+                <text
+                  [attr.x]="pos.cx + 14"
+                  [attr.y]="pos.cy - 6"
+                  class="last-dot-label"
+                >{{ Math.round(lp.remaining) }} pt</text>
+              }
+            }
+
+          </svg>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             STATS GRID
+             ══════════════════════════════════════ -->
+        <div class="burndown-stats-grid">
+          @for (stat of stats(); track stat.label) {
+            <div class="stat-block">
+              <span class="stat-value" [style.color]="stat.color">{{ stat.value }}</span>
+              <span class="stat-label">{{ stat.label }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- ══════════════════════════════════════
+             INSIGHT BOX
+             ══════════════════════════════════════ -->
+        <div class="burndown-insight">
+
+          <!-- Bloque 1: Descripción General -->
+          <div class="insight-context">
+            <div class="insight-icon-wrap">
+              <span class="insight-icon">?</span>
+            </div>
+            <div class="insight-text">
+              <strong>{{ sprintLabel() }}</strong>
+              {{ insightBody() }}
+            </div>
+          </div>
+
+          <!-- Bloque 2: Notas del sprint — dinámico según estado -->
+          <div class="insight-achievement">
+            <div class="achievement-accent" [style.background]="achievementConfig().accentColor"></div>
+            <div class="achievement-content">
+              <span class="achievement-emoji">{{ achievementConfig().emoji }}</span>
+              <div>
+                {{ data.achievement }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      } @else {
+        <div class="empty-state">
+          <i class="fa-solid fa-chart-line"></i>
+          <p>No hay datos de burndown para este sprint.</p>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>
+

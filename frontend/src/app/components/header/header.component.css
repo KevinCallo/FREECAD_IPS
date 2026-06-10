@@ -1,0 +1,473 @@
+/* ============================================
+   HEADER / HERO
+   ============================================ */
+.hero {
+    position: relative;
+    background: linear-gradient(135deg, var(--fc-blue-900) 0%, var(--fc-blue-700) 50%, var(--fc-blue-600) 100%);
+    color: white;
+    padding: 60px 24px 50px;
+    text-align: center;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 600px 400px at 10% 20%, rgba(243,156,18,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 500px at 90% 80%, rgba(106,176,232,0.10) 0%, transparent 70%);
+    z-index: 0;
+}
+
+/* FreeCAD gear icon decoration */
+.hero-gear {
+    position: absolute;
+    font-size: 300px;
+    color: rgba(255,255,255,0.03);
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+}
+.hero-gear--1 {
+    top: -80px;
+    right: -60px;
+    transform: rotate(15deg);
+}
+.hero-gear--2 {
+    bottom: -100px;
+    left: -80px;
+    transform: rotate(-25deg);
+    font-size: 250px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.hero-badge i {
+    color: var(--fc-orange);
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+}
+.hero h1 span {
+    color: var(--fc-orange);
+}
+
+.hero-subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: rgba(255,255,255,0.8);
+    font-weight: 400;
+    margin-bottom: 30px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+}
+.hero-meta i {
+    color: var(--fc-orange);
+    margin-right: 6px;
+}
+
+/* ============================================
+   NAV (sticky sprint selector)
+   ============================================ */
+.top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: 56px;
+}
+
+.top-nav-left {
+    justify-self: start;
+}
+
+.top-nav-links {
+    justify-self: center;
+}
+
+.top-nav-diagram-filter,
+.top-nav-sprint {
+    justify-self: end;
+}
+
+.top-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.top-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--fc-blue-700);
+}
+.top-nav-brand i {
+    font-size: 1.3rem;
+    color: var(--fc-orange-dark);
+}
+
+/* Small Inicio button next to brand */
+.top-nav-inicio-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 50px;
+    background: #f1f5f9;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+.top-nav-inicio-btn:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+.top-nav-inicio-btn i {
+    font-size: 0.65rem;
+}
+
+.top-nav-links {
+    display: flex;
+    gap: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.top-nav-links a {
+    color: var(--text-secondary);
+    transition: var(--transition);
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+.top-nav-links a:hover {
+    color: var(--fc-blue-700);
+    border-bottom-color: var(--fc-orange);
+}
+.top-nav-links a.active {
+    color: var(--fc-blue-700);
+    border-bottom-color: var(--fc-orange);
+}
+
+.top-nav-sprint {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--fc-green-light);
+    color: #1a7a44;
+    padding: 4px 6px 4px 16px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+.top-nav-sprint .pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--fc-green);
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+    flex-shrink: 0;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+.nav-filter-label-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Nav sprint button */
+.nav-sprint-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 4px 8px 4px 4px;
+    border-radius: 50px;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.nav-sprint-btn:hover {
+    background: rgba(0,0,0,0.04);
+}
+.nav-sprint-btn:focus-visible {
+    outline: 2px solid var(--fc-blue-500);
+    outline-offset: 2px;
+}
+.nav-sprint-chevron {
+    font-size: 0.6rem;
+    transition: transform 0.2s ease;
+    opacity: 0.6;
+}
+.nav-sprint-btn[aria-expanded="true"] .nav-sprint-chevron {
+    transform: rotate(180deg);
+}
+
+/* Nav sprint dropdown */
+.nav-sprint-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 200px;
+    background: var(--fc-card-bg, #fff);
+    border: 1px solid var(--fc-border, #e8e8e8);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    overflow: hidden;
+    z-index: 1000;
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+}
+.nav-sprint-dropdown.nav-sprint-dropdown--open,
+.nav-sprint-dropdown.show {
+    display: block;
+}
+.nav-sprint-dropdown li {
+    margin: 0;
+    padding: 0;
+}
+.nav-sprint-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 10px 14px;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-primary, #222);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.nav-sprint-option:hover {
+    background: var(--fc-blue-50, #f0f4ff);
+    color: var(--fc-blue-700);
+}
+.nav-sprint-option--active {
+    font-weight: 700;
+    color: var(--fc-blue-700);
+    background: var(--fc-blue-50, #f0f4ff);
+}
+.nav-sprint-option--active::before {
+    content: '✓ ';
+    font-weight: 700;
+}
+
+/* ============================================
+   DIAGRAM FILTER DROPDOWN (reemplaza top-nav-sprint en diagrams page)
+   ============================================ */
+.top-nav-diagram-filter {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-diagram-filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--fc-blue-50);
+    border: 1px solid #dbeafe;
+    color: var(--fc-blue-700);
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 10px 6px 14px;
+    border-radius: 50px;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.nav-diagram-filter-btn:hover {
+    background: #dbeafe;
+}
+.nav-diagram-filter-btn:focus-visible {
+    outline: 2px solid var(--fc-blue-500);
+    outline-offset: 2px;
+}
+
+.nav-filter-chevron {
+    font-size: 0.6rem;
+    transition: transform 0.2s ease;
+    opacity: 0.6;
+}
+.nav-diagram-filter-btn[aria-expanded="true"] .nav-filter-chevron {
+    transform: rotate(180deg);
+}
+
+/* Dropdown */
+.nav-diagram-filter-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 200px;
+    background: var(--fc-card-bg, #fff);
+    border: 1px solid var(--fc-border, #e8e8e8);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    overflow: hidden;
+    z-index: 1000;
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+}
+.nav-diagram-filter-dropdown.open {
+    display: block;
+}
+.nav-diagram-filter-dropdown li {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-diagram-filter-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 10px 14px;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-primary, #222);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.nav-diagram-filter-option:hover {
+    background: var(--fc-blue-50, #f0f4ff);
+    color: var(--fc-blue-700);
+}
+.nav-diagram-filter-option.active {
+    font-weight: 700;
+    color: var(--fc-blue-700);
+    background: var(--fc-blue-50, #f0f4ff);
+}
+.nav-diagram-filter-option.active::before {
+    content: '✓ ';
+    font-weight: 700;
+}
+.nav-diagram-filter-option i {
+    margin-right: 6px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .hero { padding: 40px 16px 36px; }
+    .hero-gear { display: none; }
+
+    .top-nav {
+        display: flex;
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px 16px;
+        gap: 8px;
+    }
+    .top-nav-left {
+        justify-self: auto;
+    }
+    .top-nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        font-size: 0.75rem;
+        gap: 12px;
+        justify-self: auto;
+    }
+    .top-nav-sprint {
+        font-size: 0.7rem;
+        padding: 2px 6px 2px 12px;
+        justify-self: auto;
+    }
+    .top-nav-diagram-filter {
+        justify-self: auto;
+    }
+    .nav-sprint-btn {
+        padding: 3px 6px 3px 4px;
+    }
+    .nav-sprint-dropdown {
+        min-width: 170px;
+        right: 0;
+    }
+
+    /* Diagram filter dropdown responsive */
+    .nav-diagram-filter-btn {
+        font-size: 0.7rem;
+        padding: 4px 8px 4px 12px;
+    }
+    .nav-diagram-filter-dropdown {
+        min-width: 170px;
+        right: 0;
+    }
+    .top-nav-inicio-btn span {
+        display: none;
+    }
+}
+
+@media print {
+    .top-nav { display: none; }
+    .hero { padding: 30px 20px; }
+}

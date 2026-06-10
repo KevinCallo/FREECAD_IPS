@@ -1,0 +1,112 @@
+<section class="section" id="sprints">
+  <div class="container">
+    <div class="section-header">
+      <i class="fa-regular fa-calendar-check"></i>
+      <h2>Dashboard de Sprints</h2>
+      <span class="section-sub">Hacé clic en un sprint para ver su tablero</span>
+    </div>
+
+    <!-- Sprint Summary Metrics -->
+    <div class="metrics-grid">
+      <div class="metric-card metric-card--green fade-in">
+        <div class="metric-icon"><i class="fa-solid fa-check-circle"></i></div>
+        <div class="metric-value">{{ metrics().sprintsCompleted }}</div>
+        <div class="metric-label">Sprints Completados</div>
+      </div>
+      <div class="metric-card metric-card--orange fade-in">
+        <div class="metric-icon"><i class="fa-solid fa-spinner"></i></div>
+        <div class="metric-value">{{ metrics().activeSprint }}</div>
+        <div class="metric-label">Sprint Activo</div>
+      </div>
+      <div class="metric-card metric-card--purple fade-in">
+        <div class="metric-icon"><i class="fa-solid fa-list-check"></i></div>
+        <div class="metric-value">{{ metrics().totalSprints }}</div>
+        <div class="metric-label">Total Sprints</div>
+      </div>
+      <div class="metric-card metric-card--red fade-in">
+        <div class="metric-icon"><i class="fa-regular fa-clock"></i></div>
+        <div class="metric-value">{{ metrics().daysPerSprint }}</div>
+        <div class="metric-label">Días por Sprint</div>
+      </div>
+    </div>
+
+    <!-- Sprint Cards -->
+    <div class="sprint-grid sprint-selector">
+      @for (s of sprints(); track s.key) {
+        <div
+          class="card sprint-card sprint-card--{{ s.status }} fade-in sprint-selectable"
+          [class.sprint-selected]="s.key === selectedSprintKey()"
+          [attr.data-sprint]="s.key"
+          tabindex="0"
+          role="button"
+          [attr.aria-label]="'Ver ' + s.label"
+          (click)="selectSprint(s.key)"
+          (keydown.enter)="selectSprint(s.key)"
+        >
+          <div class="sprint-card-header">
+            @if (s.status === 'done') {
+              <h3><i class="fa-solid fa-check-circle" style="color:var(--fc-blue-500);"></i> {{ s.label }}</h3>
+              <span class="sprint-badge sprint-badge--done">Completado</span>
+            } @else if (s.status === 'active') {
+              <h3><i class="fa-solid fa-bolt" style="color:var(--fc-green);"></i> {{ s.label }}</h3>
+              <span class="sprint-badge sprint-badge--active">En Curso</span>
+            } @else {
+              <h3><i class="fa-regular fa-clock"></i> {{ s.label }}</h3>
+              <span class="sprint-badge sprint-badge--pending">Planeado</span>
+            }
+          </div>
+
+          <div class="sprint-dates">
+            <i class="fa-regular fa-calendar"></i> {{ formatDate(s.start) }} → {{ formatDate(s.end) }}
+          </div>
+
+          <p class="sprint-desc">{{ s.description }}</p>
+
+          <div class="progress-wrapper">
+            <div class="progress-label">
+              <span>Progreso</span>
+              <span>{{ s.status === 'done' ? 100 : sprintProgress(s.key) }}%</span>
+            </div>
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill progress-bar-fill--{{ s.status }}"
+                [style.width]="(s.status === 'done' ? 100 : sprintProgress(s.key)) + '%'"
+              ></div>
+            </div>
+          </div>
+
+          <div class="sprint-timeline">
+            @for (goal of s.goals; track $index) {
+              <span class="sprint-timeline-line" [class.sprint-timeline-line--fill]="goal.status === 'done'"></span>
+              <span
+                class="sprint-timeline-dot"
+                [class.sprint-timeline-dot--done]="goal.status === 'done'"
+                [class.sprint-timeline-dot--active]="goal.status === 'active'"
+                [class.sprint-timeline-dot--pending]="goal.status === 'pending'"
+              ></span>
+            }
+            <!-- Fill remaining dots -->
+            @for (i of fillArray(5 - s.goals.length); track $index) {
+              <span class="sprint-timeline-line"></span>
+              <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+            }
+          </div>
+
+          @if (s.key === selectedSprintKey()) {
+            <div class="sprint-click-hint"><i class="fa-solid fa-eye"></i> Viendo ahora</div>
+          } @else if (s.status !== 'pending') {
+            <div class="sprint-click-hint"><i class="fa-solid fa-mouse-pointer"></i> Ver tablero</div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Sprint Timeline Legend -->
+    <div class="sprint-legend">
+      <span><span class="sprint-timeline-dot sprint-timeline-dot--done" style="display:inline-block; vertical-align:middle; margin-right:4px;"></span> Completado</span>
+      <span><span class="sprint-timeline-dot sprint-timeline-dot--active" style="display:inline-block; vertical-align:middle; margin-right:4px;"></span> En curso</span>
+      <span><span class="sprint-timeline-dot sprint-timeline-dot--pending" style="display:inline-block; vertical-align:middle; margin-right:4px;"></span> Planeado</span>
+      <span><i class="fa-solid fa-eye" style="color:var(--fc-blue-500);"></i> Click para ver tablero, burndown y métricas</span>
+    </div>
+  </div>
+</section>

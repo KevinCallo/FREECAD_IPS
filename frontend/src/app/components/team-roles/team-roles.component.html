@@ -1,0 +1,201 @@
+<section class="section" id="team">
+  <div class="container">
+
+    <!-- ══════════════════════════════════════════
+         TOP BAR
+         ══════════════════════════════════════════ -->
+    <div class="detail-top-bar">
+      <div class="detail-top-bar-left">
+        <i class="fa-solid fa-users"></i>
+        <h2>Equipo y Roles Scrum</h2>
+      </div>
+      <span class="detail-breadcrumb">
+        {{ currentSprintLabel() }} · Arrastrá miembros para asignar roles
+      </span>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         LAYOUT PRINCIPAL: 40% / 60%
+         ══════════════════════════════════════════ -->
+    <div class="roles-layout">
+
+      <!-- ==========================================
+           COLUMNA IZQUIERDA (40%) — Zonas de Drop
+           ========================================== -->
+      <div class="roles-left">
+
+        @for (role of roles; track role.id) {
+          @let members = getRoleMembers(role.id);
+          <div
+            class="role-zone"
+            [class.role-zone--over]="dragOverRole === role.id"
+            [class.role-zone--filled]="members.length > 0"
+            (dragover)="onDragOver($event); dragOverRole = role.id"
+            (dragleave)="dragOverRole = null"
+            (drop)="onDrop(role.id, $event)"
+          >
+            <!-- Header: icon + name + counter -->
+            <div class="role-zone-header">
+              <div class="role-zone-header-left">
+                <i class="fa-solid {{ role.icon }}" [style.color]="role.color"></i>
+                <span>{{ role.label }}</span>
+              </div>
+              <span class="role-zone-count">{{ members.length }} {{ members.length === 1 ? 'miembro' : 'miembros' }}</span>
+            </div>
+
+            <!-- Body: member chips -->
+            <div class="role-zone-body">
+              @for (m of members; track m) {
+                <span
+                  class="member-chip"
+                  draggable="true"
+                  (dragstart)="onDragStart(m)"
+                  (dragend)="onDragEnd()"
+                >
+                  <span class="chip-avatar" [style.background]="getMemberColor(m)">
+                    {{ getMemberInitials(m) }}
+                  </span>
+                  <span class="chip-name">{{ m }}</span>
+                </span>
+              }
+              @if (members.length === 0) {
+                <span class="role-zone-hint">Soltá miembros aquí</span>
+              }
+            </div>
+          </div>
+        }
+
+      </div>
+
+      <!-- ==========================================
+           COLUMNA DERECHA (60%)
+           ========================================== -->
+      <div class="roles-right">
+
+        <!-- ── Caja superior: Integrantes del Equipo (pool) ── -->
+        @let pool = getRoleMembers('pool');
+        <div
+          class="pool-card"
+          [class.pool-card--over]="dragOverRole === 'pool'"
+          (dragover)="onDragOver($event); dragOverRole = 'pool'"
+          (dragleave)="dragOverRole = null"
+          (drop)="onDrop('pool', $event)"
+        >
+          <div class="pool-card-header">
+            <span class="pool-card-title">
+              <i class="fa-solid fa-people-group"></i>
+              Integrantes del Equipo
+            </span>
+            <span class="pool-card-tag">Arrastrá a un rol</span>
+          </div>
+          <div class="pool-card-body">
+            @for (m of pool; track m) {
+              <span
+                class="member-chip"
+                draggable="true"
+                (dragstart)="onDragStart(m)"
+                (dragend)="onDragEnd()"
+              >
+                <span class="chip-avatar" [style.background]="getMemberColor(m)">
+                  {{ getMemberInitials(m) }}
+                </span>
+                <span class="chip-name">{{ m }}</span>
+              </span>
+            }
+            @if (pool.length === 0) {
+              <span class="pool-hint">Todos los miembros están asignados</span>
+            }
+          </div>
+        </div>
+
+        <!-- ── Caja inferior: Diagrama de Roles Scrum ── -->
+        <div class="diagram-card">
+          <div class="diagram-card-header">
+            <i class="fa-solid fa-diagram-project" style="color:var(--fc-blue-600);"></i>
+            <span>Diagrama de Roles Scrum</span>
+          </div>
+
+          <!-- Canvas del diagrama -->
+          <div class="diagram-canvas">
+
+            <!-- SVG líneas de conexión -->
+            <svg class="diagram-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path d="M50,14 L25,70" class="conn-line" />
+              <path d="M50,14 L75,70" class="conn-line" />
+            </svg>
+
+            <!-- Nodos -->
+            <div class="diagram-nodes">
+
+              <!-- Scrum Master (cúspide) -->
+              <div class="dnode dnode--sm">
+                <div class="dnode-ring dnode-ring--orange">
+                  <i class="fa-solid fa-helmet-safety dnode-icon"></i>
+                </div>
+                <span class="dnode-label label--orange">Scrum Master</span>
+                @if (scrumMaster(); as sm) {
+                  <span class="dnode-pill">
+                    <span class="dnode-pill-avatar" [style.background]="sm.color">{{ sm.initials }}</span>
+                    {{ sm.name }}
+                  </span>
+                } @else {
+                  <span class="dnode-pill dnode-pill--empty">— Sin asignar —</span>
+                }
+              </div>
+
+              <!-- Product Owner (base izquierda) -->
+              <div class="dnode dnode--po">
+                <div class="dnode-ring dnode-ring--purple">
+                  <i class="fa-solid fa-clipboard-list dnode-icon"></i>
+                </div>
+                <span class="dnode-label label--purple">Product Owner</span>
+                @if (productOwner(); as po) {
+                  <span class="dnode-pill">
+                    <span class="dnode-pill-avatar" [style.background]="po.color">{{ po.initials }}</span>
+                    {{ po.name }}
+                  </span>
+                } @else {
+                  <span class="dnode-pill dnode-pill--empty">— Sin asignar —</span>
+                }
+              </div>
+
+              <!-- Developer (base derecha, stack vertical) -->
+              <div class="dnode dnode--dev">
+                <div class="dnode-ring dnode-ring--green">
+                  <i class="fa-solid fa-code dnode-icon"></i>
+                </div>
+                <span class="dnode-label label--green">Developer</span>
+                <div class="dnode-stack">
+                  @for (dev of developers(); track dev.name) {
+                    <span class="dnode-pill">
+                      <span class="dnode-pill-avatar" [style.background]="dev.color">{{ dev.initials }}</span>
+                      {{ dev.name }}
+                    </span>
+                  }
+                  @if (developers().length === 0) {
+                    <span class="dnode-pill dnode-pill--empty">— Sin asignar —</span>
+                  }
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Leyenda -->
+          <div class="diagram-footer">
+            <div class="diagram-legend">
+              @for (item of legendItems; track item.label) {
+                <span class="legend-item">
+                  <i class="fa-solid {{ item.icon }}" [style.color]="item.color"></i>
+                  {{ item.label }}
+                </span>
+              }
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

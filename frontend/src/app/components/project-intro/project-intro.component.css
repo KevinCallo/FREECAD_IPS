@@ -1,0 +1,84 @@
+/* ============================================
+   INTRO SECTION — clean & minimal
+   ============================================ */
+.section--intro {
+    padding-top: 32px;
+    padding-bottom: 0;
+}
+
+.intro-card {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 20px 0;
+}
+.intro-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+.intro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--fc-blue-100);
+    color: var(--fc-blue-700);
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+.intro-badge i {
+    color: var(--fc-orange);
+}
+.intro-card h2 {
+    font-size: 1.6rem;
+    color: var(--fc-blue-800);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+.intro-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto 18px;
+}
+.intro-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 0;
+}
+.intro-tags span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border: 1px solid var(--fc-gray-light);
+    padding: 4px 14px;
+    border-radius: 50px;
+    transition: var(--transition);
+    box-shadow: none;
+}
+.intro-tags span:hover {
+    border-color: var(--fc-blue-400);
+    color: var(--fc-blue-700);
+}
+.intro-tags span i {
+    color: var(--fc-orange);
+}
+
+@media (max-width: 600px) {
+    .intro-card h2 { font-size: 1.4rem; }
+}
