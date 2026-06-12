@@ -1,0 +1,544 @@
+<!-- ══════════════════════════════════════════
+     1. FUNDAMENTACIÓN FILOSÓFICA: DEVOPS VS CI/CD
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-devops-core">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-infinity" style="color:var(--fc-blue-600);"></i> Fundamentación Filosófica y Metodológica: DevOps vs. CI/CD</h3>
+  </div>
+  <p class="docs-intro">
+    Para garantizar la estabilidad dimensional, la integridad algorítmica y la velocidad de entrega del proyecto, se adoptó un enfoque basado en la cultura <strong>DevOps</strong>. Con el fin de evitar ambigüedades operativas, la arquitectura del sistema establece una relación de inclusión estricta entre ambos conceptos:
+  </p>
+
+  <div class="arch-cards" style="margin-bottom: 25px;">
+    <div class="arch-item" style="border-left: 4px solid var(--fc-blue-600);">
+      <div class="arch-icon"><i class="fa-solid fa-users-gear" style="color:var(--fc-blue-600);"></i></div>
+      <div class="arch-body">
+        <h4>DevOps (El Marco Metodológico)</h4>
+        <p>Una filosofía cultural y operativa que unifica el desarrollo de software (Dev) con las operaciones de sistemas (Ops). Su objetivo es automatizar y optimizar todo el ciclo de vida para entregar incrementos de software de alta calidad de forma continua, segura y predecible.</p>
+      </div>
+    </div>
+    <div class="arch-item" style="border-left: 4px solid #9b59b6;">
+      <div class="arch-icon"><i class="fa-solid fa-server" style="color:#9b59b6;"></i></div>
+      <div class="arch-body">
+        <h4>CI/CD (El Motor Técnico)</h4>
+        <p>La implementación táctica y tecnológica que hace viable la cultura DevOps. Se compone de tuberías lógicas (pipelines) automatizadas que se ejecutan de extremo a extremo sin necesidad de intervención humana.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     2. ARQUITECTURA DEL PIPELINE DE AUTOMATIZACIÓN
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-pipeline-architecture">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-diagram-project" style="color:var(--fc-blue-600);"></i> Arquitectura del Pipeline de Automatización</h3>
+  </div>
+  <p class="docs-intro">
+    El ciclo de vida del código fuente está regido por un flujo automatizado que reacciona instantáneamente a cada actualización en el repositorio. Este proceso mitiga el riesgo del <em>"síndrome de la máquina del desarrollador"</em> (código que funciona localmente pero falla en producción) dividiéndose en dos grandes macro-fases secuenciales:
+  </p>
+
+  <div class="pipeline-diagram">
+    <!-- Nodo 1: Código Local -->
+    <div class="pdiagram-node pdiagram-node--input">
+      <div class="pdiagram-node-icon"><i class="fa-solid fa-laptop-code"></i></div>
+      <div class="pdiagram-node-label">Código Local</div>
+      <div class="pdiagram-node-sub">git push</div>
+    </div>
+
+    <div class="pdiagram-arrow"><i class="fa-solid fa-arrow-right-long"></i></div>
+
+    <!-- Nodo 2: GitHub -->
+    <div class="pdiagram-node pdiagram-node--trigger">
+      <div class="pdiagram-node-icon"><i class="fa-brands fa-github"></i></div>
+      <div class="pdiagram-node-label">Repositorio GitHub</div>
+      <div class="pdiagram-node-sub">Disparo Automático</div>
+    </div>
+
+    <div class="pdiagram-arrow"><i class="fa-solid fa-arrow-right-long"></i></div>
+
+    <!-- Fase CI -->
+    <div class="pdiagram-phase pdiagram-phase--ci">
+      <div class="pdiagram-phase-header">
+        <span class="pdiagram-phase-badge">CI</span>
+        <strong>1. Integración Continua</strong>
+      </div>
+      <div class="pdiagram-phase-body">
+        <div class="pdiagram-step">Aislamiento en Runner Ubuntu</div>
+        <div class="pdiagram-step">Instalar Python y Dependencias</div>
+        <div class="pdiagram-step">Ejecución de Suite con Pytest</div>
+      </div>
+    </div>
+
+    <!-- Decisión -->
+    <div class="pdiagram-arrow"><i class="fa-solid fa-arrow-right-long"></i></div>
+
+    <div class="pdiagram-decision">
+      <div class="pdiagram-decision-text">¿Pasaron los tests?</div>
+      <div class="pdiagram-decision-branches">
+        <div class="pdiagram-decision-branch pdiagram-decision-branch--no">
+          <i class="fa-solid fa-xmark"></i> NO
+          <span class="pdiagram-decision-result pdiagram-decision-result--fail">Pipeline Abortado</span>
+        </div>
+        <div class="pdiagram-decision-branch pdiagram-decision-branch--yes">
+          <i class="fa-solid fa-check"></i> SÍ
+          <span class="pdiagram-decision-result pdiagram-decision-result--pass">Continúa a CD</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fase CD -->
+    <div class="pdiagram-arrow"><i class="fa-solid fa-arrow-right-long"></i></div>
+
+    <div class="pdiagram-phase pdiagram-phase--cd">
+      <div class="pdiagram-phase-header">
+        <span class="pdiagram-phase-badge">CD</span>
+        <strong>2. Despliegue Continuo</strong>
+      </div>
+      <div class="pdiagram-phase-body">
+        <div class="pdiagram-step">Compilación Estática de Artefactos</div>
+        <div class="pdiagram-step">Empuje Automático a GitHub Pages</div>
+      </div>
+    </div>
+
+    <div class="pdiagram-arrow"><i class="fa-solid fa-arrow-right-long"></i></div>
+
+    <!-- Fase Telemetría -->
+    <div class="pdiagram-phase pdiagram-phase--telemetry">
+      <div class="pdiagram-phase-header">
+        <span class="pdiagram-phase-badge"><i class="fa-solid fa-signal"></i></span>
+        <strong>3. Telemetría en Vivo</strong>
+      </div>
+      <div class="pdiagram-phase-body">
+        <div class="pdiagram-step">Handshake doble API v3 (REST)</div>
+        <div class="pdiagram-step">Dashboard Actualizado en Vivo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modulos-grid">
+    <div class="modulo-card" style="text-align:left; grid-column: span 3;">
+      <div class="modulo-icon" style="margin:0 0 12px 0;">
+        <i class="fa-solid fa-vial" style="color:#3498db;"></i>
+        <span class="phase-badge phase-badge--ci">CI</span>
+      </div>
+      <h4>A. Integración Continua (Continuous Integration)</h4>
+      <p>Cada evento de actualización (<code>git push</code>) dirigido a la rama principal <code>main</code> desencadena esta fase de forma mandatoria y restrictiva:</p>
+      <ul class="phase-list">
+        <li><strong>Instanciación y Checkout:</strong> El servidor en la nube (Runner) inicializa un contenedor virtual limpio y efímero basado en Ubuntu Linux y clona el código fuente.</li>
+        <li><strong>Configuración del Entorno:</strong> Se aprovisiona el contenedor inyectando el intérprete de Python en su versión exacta y se descargan las dependencias.</li>
+        <li><strong>Ejecución de Pruebas Unitarias:</strong> Se invoca de forma automatizada la suite de aseguramiento de la calidad mediante el motor <strong>Pytest</strong>.</li>
+      </ul>
+      <blockquote class="blockquote blockquote--danger">
+        <i class="fa-solid fa-ban"></i> <strong>Efecto Circuit Breaker:</strong> Si una sola prueba falla, el pipeline se interrumpe inmediatamente (<code>exit code != 0</code>), notificando el error y protegiendo la rama de producción contra código corrupto.
+      </blockquote>
+    </div>
+
+    <div class="modulo-card" style="text-align:left; grid-column: span 3;">
+      <div class="modulo-icon" style="margin:0 0 12px 0;">
+        <i class="fa-solid fa-cloud-arrow-up" style="color:#2ecc71;"></i>
+        <span class="phase-badge phase-badge--cd">CD</span>
+      </div>
+      <h4>B. Despliegue Continuo (Continuous Deployment)</h4>
+      <p>Si, y solo si, la suite de pruebas devuelve un estado de éxito rotundo (<strong>SUCCESS</strong>), la tubería avanza de forma síncrona a la fase de distribución automatizada:</p>
+      <ul class="phase-list">
+        <li><strong>Construcción de Artefactos:</strong> Se procesan y empaquetan los recursos listos para producción (vistas HTML, estilos distribuidos, lógica interactiva en JS y las dependencias dinámicas del Dashboard).</li>
+        <li><strong>Publicación Automatizada:</strong> El motor realiza el despliegue de los artefactos en los servidores de infraestructura perimetral de <strong>GitHub Pages</strong>.</li>
+      </ul>
+      <blockquote class="blockquote blockquote--success">
+        <i class="fa-solid fa-circle-check"></i> <strong>Cero Despliegues Manuales:</strong> La última versión estable del software queda expuesta al cliente de manera inmediata y transparente, erradicando los despliegues tradicionales por FTP o SSH.
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     3. PIPELINE CI/CD (Vista Rápida)
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="devops-pipeline">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-code-branch" style="color:var(--fc-blue-600);"></i> Pipeline CI/CD — Vista Rápida</h3>
+  </div>
+  <p class="docs-intro">
+    El pipeline de Integración Continua y Despliegue Continuo automatiza todo el ciclo de vida
+    del código, desde el commit hasta el despliegue en producción, utilizando
+    <strong>GitHub Actions</strong> como plataforma de orquestación.
+  </p>
+  <div class="pipeline-flow">
+    <span class="pipeline-step pipeline-step--success"><i class="fa-solid fa-check-circle"></i> Commit</span>
+    <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <span class="pipeline-step pipeline-step--success"><i class="fa-solid fa-check-circle"></i> Lint</span>
+    <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <span class="pipeline-step pipeline-step--success"><i class="fa-solid fa-check-circle"></i> Tests</span>
+    <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <span class="pipeline-step pipeline-step--running"><i class="fa-solid fa-spinner"></i> Build</span>
+    <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <span class="pipeline-step pipeline-step--success"><i class="fa-solid fa-check-circle"></i> Deploy</span>
+  </div>
+  <div class="arch-cards">
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-brands fa-github"></i></div>
+      <div class="arch-body">
+        <h4>GitHub Actions</h4>
+        <p>Workflow YAML en <code>.github/workflows/</code>. Se activa en push a <code>main</code> y pull requests.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-rotate"></i></div>
+      <div class="arch-body">
+        <h4>Integración Continua</h4>
+        <p>Cada push ejecuta linting, pruebas unitarias y build. El código solo se mergea si pasa todos los checks.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-rocket"></i></div>
+      <div class="arch-body">
+        <h4>Despliegue Continuo</h4>
+        <p>Al mergear a <code>main</code>, se despliega automáticamente a GitHub Pages sin intervención manual.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="arch-body">
+        <h4>CodeQL Analysis</h4>
+        <p>Análisis estático de seguridad integrado en el pipeline. Detecta vulnerabilidades antes del deploy.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     4. ESPECIFICACIÓN TÉCNICA DE LA INFRAESTRUCTURA
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-infrastructure-matrix">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-server" style="color:var(--fc-blue-600);"></i> Especificación Técnica de la Infraestructura en la Nube</h3>
+  </div>
+  <p class="docs-intro">
+    Para la orquestación, gobernanza y ejecución elástica del flujo automatizado, se seleccionó la plataforma <strong>GitHub Actions</strong> debido a su acoplamiento nativo con el control de versiones Git y su modelo de virtualización aislada bajo demanda.
+  </p>
+
+  <div class="comparison-table-wrap">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Componente del Sistema</th>
+          <th>Especificación Tecnológica de la Infraestructura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Orquestador Principal</strong></td>
+          <td>GitHub Actions Workflow Engine</td>
+        </tr>
+        <tr>
+          <td><strong>Entorno Virtual (Runner)</strong></td>
+          <td><code>ubuntu-latest</code> <span class="table-note">(Contenedor Docker administrado por GitHub de forma efímera)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Evento Disparador (Trigger)</strong></td>
+          <td>Evento síncrono <code>push</code> exclusivo en la rama principal <code>main</code></td>
+        </tr>
+        <tr>
+          <td><strong>Framework de QA</strong></td>
+          <td>Python + <code>pytest</code> <span class="table-note">(Suite automatizada de aserciones y pruebas unitarias core)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Servidor de Producción</strong></td>
+          <td>Infraestructura de distribución perimetral y CDN de GitHub Pages</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     5. HISTORIAL DE RAMAS DEL PROYECTO
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="devops-branches">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-fork" style="color:var(--fc-blue-600);"></i> Historial de Ramas del Proyecto</h3>
+  </div>
+  <p class="docs-intro">
+    El repositorio ha evolucionado a través de distintas ramas que reflejan las etapas del proyecto.
+    A continuación se detalla el propósito y la cronología de cada una:
+  </p>
+
+  <!-- Timeline de ramas -->
+  <div class="branch-timeline">
+
+    <div class="branch-timeline-item">
+      <div class="branch-timeline-marker" style="background:#2c3e50; border-color:#2c3e50;">
+        <i class="fa-solid fa-code"></i>
+      </div>
+      <div class="branch-timeline-card">
+        <div class="branch-timeline-header">
+          <code class="branch-name">main</code>
+          <span class="branch-tag" style="background:#2c3e50;">Rama Original</span>
+        </div>
+        <p>
+          Rama principal inicial del proyecto. Albergaba el sitio web original de GitHub Pages
+          con un <code>index.html</code> estático, CSS y JS planos. Fue el punto de partida
+          antes de cualquier migración o automatización.
+        </p>
+      </div>
+    </div>
+
+    <div class="branch-timeline-item">
+      <div class="branch-timeline-marker" style="background:#3498db; border-color:#3498db;">
+        <i class="fa-solid fa-angular"></i>
+      </div>
+      <div class="branch-timeline-card">
+        <div class="branch-timeline-header">
+          <code class="branch-name">angular-migration</code>
+          <span class="branch-tag" style="background:#3498db;">Migración</span>
+        </div>
+        <p>
+          Rama dedicada a la migración de la aplicación desde HTML estático hacia
+          <strong>Angular</strong>. Aquí se reescribió toda la interfaz como una SPA
+          moderna con componentes, enrutamiento y las herramientas del ecosistema Angular.
+        </p>
+      </div>
+    </div>
+
+    <div class="branch-timeline-item">
+      <div class="branch-timeline-marker" style="background:#e67e22; border-color:#e67e22;">
+        <i class="fa-solid fa-vial"></i>
+      </div>
+      <div class="branch-timeline-card">
+        <div class="branch-timeline-header">
+          <code class="branch-name">TestAuto</code>
+          <span class="branch-tag" style="background:#e67e22;">CI/CD + Testing</span>
+        </div>
+        <p>
+          Rama de desarrollo y mejora del pipeline de <strong>CI/CD</strong>. Aquí se
+          implementaron los test automatizados con <strong>Pytest</strong>, la
+          configuración de <strong>GitHub Actions</strong> para integración continua,
+          y la validación automática de calidad de código antes del despliegue.
+        </p>
+      </div>
+    </div>
+
+    <div class="branch-timeline-item">
+      <div class="branch-timeline-marker" style="background:#27ae60; border-color:#27ae60;">
+        <i class="fa-solid fa-globe"></i>
+      </div>
+      <div class="branch-timeline-card">
+        <div class="branch-timeline-header">
+          <code class="branch-name">gh-pages</code>
+          <span class="branch-tag" style="background:#27ae60;">Deploy</span>
+        </div>
+        <p>
+          Rama de despliegue automatizado. Contiene el <em>build</em> compilado de la
+          aplicación Angular listo para ser servido por <strong>GitHub Pages</strong>.
+          Es actualizada automáticamente por el pipeline de CD cada vez que se valida
+          exitosamente la integración continua. Es la única rama que ve el usuario final.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <blockquote class="blockquote blockquote--warning" style="margin-top: 28px;">
+    <i class="fa-solid fa-diagram-project"></i>
+    <strong>Flujo Evolutivo:</strong>
+    <code>main</code> (sitio estático) →
+    <code>angular-migration</code> (SPA Angular) →
+    <code>TestAuto</code> (CI/CD + Tests) →
+    <code>gh-pages</code> (deploy automático)
+  </blockquote>
+</div>
+
+<!-- ══════════════════════════════════════════
+     6. CALIDAD DE CÓDIGO
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="devops-quality">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-shield-halved" style="color:var(--fc-blue-600);"></i> Calidad de Código</h3>
+  </div>
+  <p class="docs-intro">
+    La calidad se garantiza mediante una combinación de herramientas automatizadas y revisiones
+    humanas en cada etapa del pipeline.
+  </p>
+  <div class="modulos-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+      <h4>Linting</h4>
+      <p>ESLint + Prettier para TypeScript/Angular. Estilo consistente y detección de errores comunes.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-vial"></i></div>
+      <h4>Pruebas Unitarias</h4>
+      <p>Jasmine + Karma para pruebas unitarias. Cobertura mínima del 80% en lógica crítica.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-users-between-lines"></i></div>
+      <h4>Code Review</h4>
+      <p>Todo PR requiere al menos una aprobación. Se verifica estilo, lógica y cobertura de tests.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-shield"></i></div>
+      <h4>CodeQL</h4>
+      <p>Análisis estático de seguridad integrado en GitHub Actions. Detecta vulnerabilidades críticas.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-gauge-high"></i></div>
+      <h4>Métricas</h4>
+      <p>Complejidad ciclomática, duplicación de código y mantenibilidad evaluadas en cada PR.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-check-double"></i></div>
+      <h4>DoD Checks</h4>
+      <p>Verificación automatizada de que se cumple la Definition of Done antes del merge.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     7. DESPLIEGUE (GITHUB PAGES)
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="devops-deploy">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-rocket" style="color:var(--fc-blue-600);"></i> Despliegue (GitHub Pages)</h3>
+  </div>
+  <p class="docs-intro">
+    El despliegue del frontend se realiza en <strong>GitHub Pages</strong> de forma automática
+    mediante GitHub Actions. Cada push a <code>main</code> dispara el build y la publicación.
+  </p>
+  <div class="arch-cards">
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-file-zipper"></i></div>
+      <div class="arch-body">
+        <h4>Build Automatizado</h4>
+        <p><code>ng build --configuration production</code> ejecutado en el CI. Genera los assets estáticos en <code>dist/</code>.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-brands fa-github"></i></div>
+      <div class="arch-body">
+        <h4>GitHub Pages</h4>
+        <p>Los assets se despliegan en la rama <code>gh-pages</code> y se sirven desde <code>kevincallo.github.io/FREECAD_IPS/</code>.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-arrow-rotate-left"></i></div>
+      <div class="arch-body">
+        <h4>Rollback</h4>
+        <p>GitHub Pages mantiene el historial de deploys. Revertir a una versión anterior es tan simple como restaurar un commit.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-eye"></i></div>
+      <div class="arch-body">
+        <h4>Preview Deploy</h4>
+        <p>Los PRs generan un deploy preview automático para revisar cambios antes del merge.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     8. TELEMETRÍA DEL PIPELINE
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-telemetry-system">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-chart-line" style="color:var(--fc-blue-600);"></i> Telemetría del Pipeline: Monitoreo Asíncrono de Doble Nivel</h3>
+  </div>
+  <p class="docs-intro">
+    En concordancia con el pilar de <strong>Monitoreo Continuo</strong> de la cultura DevOps, la aplicación implementa un motor de telemetría embebido directamente en la terminal interactiva del cliente (<code>js/app.js</code>). Este componente elimina la necesidad de consultar paneles externos, consumiendo de forma asíncrona la <strong>API REST de GitHub v3</strong> mediante un patrón de consulta encadenada de doble nivel:
+  </p>
+
+  <div class="modulos-grid" style="margin-bottom: 20px;">
+    <div class="modulo-card" style="text-align:left; grid-column: span 3;">
+      <div class="modulo-icon" style="margin:0 0 12px 0;"><i class="fa-solid fa-layer-group" style="color:var(--fc-blue-600);"></i></div>
+      <h4>1. Nivel Superior (Workflow Runs API)</h4>
+      <p>El script intercepta dinámicamente las propiedades <code>window.location.hostname</code> y <code>window.location.pathname</code> para deducir de forma autónoma el propietario y el repositorio actual. Con esta información, consulta el endpoint <code>/actions/runs?per_page=1</code> para extraer los metadatos globales de la ejecución:</p>
+      <ul class="phase-list">
+        <li>Número de ejecución y autor del <code>push</code>.</li>
+        <li>Mensaje del commit y hash abreviado (<code>head_sha</code>).</li>
+        <li>Estado del contenedor (<code>queued</code>, <code>in_progress</code>, <code>completed</code>) y conclusión final (<code>success</code>, <code>failure</code>), mutando el color del Badge de Estado Superior en tiempo real.</li>
+      </ul>
+    </div>
+
+    <div class="modulo-card" style="text-align:left; grid-column: span 3;">
+      <div class="modulo-icon" style="margin:0 0 12px 0;"><i class="fa-solid fa-magnifying-glass-chart" style="color:var(--fc-blue-600);"></i></div>
+      <h4>2. Nivel Interno (Jobs & Steps API)</h4>
+      <p>Utilizando la URL dinámica inyectada en el payload anterior (<code>run.jobs_url</code>), el script realiza una segunda petición asíncrona para inspeccionar el contenedor por dentro. El algoritmo implementa un ciclo iterativo (<code>forEach</code>) que mapea en vivo el arreglo de tareas individuales (<code>steps</code>) configuradas en el archivo YAML.</p>
+      <p style="margin-top: 8px; font-size: 13px;"><strong>Cálculo Dinámico de Compilación:</strong> Extrae las marcas de tiempo ISO de alta precisión (<code>started_at</code> y <code>completed_at</code>). Mediante diferencias de milisegundos, el script calcula e imprime en la consola del Dashboard la duración exacta en segundos de cada fase operativa, mutando los estilos CSS de la terminal (<span style="color:#2ecc71; font-weight:bold;">Verde</span> para éxito, <span style="color:#3498db; font-weight:bold;">Azul</span> para procesos activos, y <span style="color:#e74c3c; font-weight:bold;">Rojo</span> para fallas).</p>
+    </div>
+  </div>
+
+  <blockquote class="blockquote blockquote--warning">
+    <strong style="color:#d35400;"><i class="fa-solid fa-triangle-exclamation"></i> Mecanismo de Tolerancia a Fallos (Circuit Breaker Estético):</strong><br>
+    Conscientes de las restricciones de red, firewalls o el uso de VPNs institucionales durante las fases de evaluación y sustentación, la consola cuenta con un bloque robusto de manejo de excepciones (<code>try/catch</code>). Si la conexión asíncrona con el servidor de GitHub se bloquea o sufre de alta latencia, el sistema intercepta el error inmediatamente y conmuta a un estado de <strong>Caché Local de Contingencia</strong>, pintando una simulación fluida y estable para proteger la continuidad de la presentación sin congelar la interfaz web.
+  </blockquote>
+</div>
+
+<!-- ══════════════════════════════════════════
+     9. MONITOREO Y OBSERVABILIDAD
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="devops-monitoring">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-gauge-high" style="color:var(--fc-blue-600);"></i> Monitoreo y Observabilidad</h3>
+  </div>
+  <p class="docs-intro">
+    El monitoreo continuo permite detectar problemas de rendimiento, disponibilidad y calidad
+    antes de que afecten a los usuarios finales.
+  </p>
+  <div class="modulos-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-brands fa-github"></i></div>
+      <h4>Actions Dashboard</h4>
+      <p>Panel de GitHub Actions con historial de ejecuciones, tiempos y tasas de éxito/fallo del pipeline.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-chart-simple"></i></div>
+      <h4>PageSpeed Insights</h4>
+      <p>Monitoreo de rendimiento web: LCP, INP, CLS y accesibilidad. Auditorías periódicas con Lighthouse.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-regular fa-bell"></i></div>
+      <h4>Alertas</h4>
+      <p>Notificaciones automáticas en Slack/email ante fallos del pipeline, degradación de rendimiento o vulnerabilidades.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-file-lines"></i></div>
+      <h4>Logs</h4>
+      <p>Logs centralizados de builds, deploys y pruebas disponibles en GitHub Actions para debugging.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+      <h4>Métricas de CI</h4>
+      <p>Tiempo promedio de build, frecuencia de deploys, tasa de fallos y tiempo de recuperación (MTTR).</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-shield"></i></div>
+      <h4>Dependencias</h4>
+      <p>Dependabot alerta sobre vulnerabilidades en dependencias. Se actualizan automáticamente vía PRs.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     10. VENTAJAS DE LA ARQUITECTURA
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-devops-advantages">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-star" style="color:var(--fc-blue-600);"></i> Ventajas de la Arquitectura Implementada</h3>
+  </div>
+  <p class="docs-intro">
+    La adopción estratégica de esta infraestructura e integración DevOps se traduce en beneficios cuantitativos y cualitativos inmediatos para el proyecto:
+  </p>
+
+  <ul class="advantages-list">
+    <li>
+      <strong>Mitigación Completa del Error Humano:</strong> El proceso de validación e inyección a producción está blindado en su totalidad por código explícito, impidiendo fallas catastróficas por descuidos de empaquetado o configuraciones de entornos locales.
+    </li>
+    <li>
+      <strong>Garantía Estricta de No Regresión:</strong> Al requerir que el paso por la suite de pruebas unitarias sea obligatorio para habilitar el despliegue, se asegura matemáticamente que las nuevas características añadidas al sistema no rompan algoritmos de diseño paramétrico, de simulación o flujos de interfaz que ya funcionaban con anterioridad.
+    </li>
+    <li>
+      <strong>Trazabilidad Absoluta y Auditoría:</strong> Cada ciclo DevOps reflejado en la consola interactiva está indexado unívocamente con el Hash del commit de Git. Esto permite un control transparente y una auditoría directa para determinar qué cambio exacto provocó el estado actual de la plataforma de producción.
+    </li>
+  </ul>
+</div>

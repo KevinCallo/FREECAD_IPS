@@ -177,6 +177,7 @@
     gap: 20px;
     font-size: 0.85rem;
     font-weight: 500;
+    align-items: center;
 }
 .top-nav-links a {
     color: var(--text-secondary);
@@ -192,6 +193,50 @@
 .top-nav-links a.active {
     color: var(--fc-blue-700);
     border-bottom-color: var(--fc-orange);
+}
+
+/* Cuando los links son pills (documentación) */
+.top-nav-links--pills {
+    gap: 4px;
+}
+.top-nav-links--pills .docs-pill {
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    border-radius: 50px;
+    border: 1px solid var(--fc-gray-light);
+    background: transparent;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    line-height: 1;
+}
+.top-nav-links--pills .docs-pill:hover {
+    border-color: var(--fc-blue-400);
+    color: var(--fc-blue-600);
+    background: var(--fc-blue-100);
+}
+.top-nav-links--pills .docs-pill.active {
+    border-color: var(--fc-blue-500);
+    background: var(--fc-blue-500);
+    color: #fff;
+}
+.top-nav-links--pills .docs-pill i {
+    font-size: 0.7rem;
+}
+
+/* Separador vertical entre grupos de pills */
+.nav-pill-sep {
+    width: 1px;
+    height: 20px;
+    background: var(--fc-gray-light);
+    flex-shrink: 0;
+    margin: 0 2px;
 }
 
 .top-nav-sprint {
@@ -307,10 +352,6 @@
     color: var(--fc-blue-700);
     background: var(--fc-blue-50, #f0f4ff);
 }
-.nav-sprint-option--active::before {
-    content: '✓ ';
-    font-weight: 700;
-}
 
 /* ============================================
    DIAGRAM FILTER DROPDOWN (reemplaza top-nav-sprint en diagrams page)
@@ -403,10 +444,6 @@
     font-weight: 700;
     color: var(--fc-blue-700);
     background: var(--fc-blue-50, #f0f4ff);
-}
-.nav-diagram-filter-option.active::before {
-    content: '✓ ';
-    font-weight: 700;
 }
 .nav-diagram-filter-option i {
     margin-right: 6px;

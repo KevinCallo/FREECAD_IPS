@@ -1,0 +1,614 @@
+<!-- ══════════════════════════════════════════
+     1. DESCRIPCIÓN GENERAL
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="docs-descripcion">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-cube" style="color:var(--fc-blue-600);"></i> ¿Qué es FreeCAD?</h3>
+  </div>
+  <p class="docs-intro">
+    FreeCAD es un modelador 3D paramétrico de propósito general, de código abierto y uso libre,
+    orientado a la ingeniería mecánica, el diseño de productos, la arquitectura y el
+    Building Information Modeling (BIM). Es una herramienta CAD/CAM/CAE con soporte para
+    análisis de elementos finitos (FEM).
+  </p>
+  <div class="arch-cards">
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-code-branch"></i></div>
+      <div class="arch-body">
+        <h4>Código Abierto</h4>
+        <p>Distribuido bajo licencia LGPL-2.0. Permite uso académico, personal y comercial sin restricciones.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-laptop"></i></div>
+      <div class="arch-body">
+        <h4>Multiplataforma</h4>
+        <p>Disponible para Windows, macOS y Linux. Interfaz consistente en todos los sistemas operativos.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-rotate"></i></div>
+      <div class="arch-body">
+        <h4>Paramétrico</h4>
+        <p>Modelado no destructivo mediante árbol de operaciones. Cualquier paso puede editarse en cualquier momento.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-brands fa-python"></i></div>
+      <div class="arch-body">
+        <h4>Scriptable</h4>
+        <p>Python profundamente integrado. Permite automatizar tareas, crear macros y desarrollar módulos propios.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     2. HISTORIA Y EVOLUCIÓN
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="docs-historia">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-clock-rotate-left" style="color:var(--fc-blue-600);"></i> Historia y Evolución</h3>
+  </div>
+  <p class="docs-intro">
+    FreeCAD comenzó en enero de 2001 cuando Jürgen Riegel empezó a trabajar en el proyecto GOM
+    (Modelador Gráfico de Objetos), aprovechando OpenCASCADE — un kernel CAD que acababa de
+    publicarse como código abierto. El 17 de marzo de 2002 registró el software con el nombre
+    <strong>FreeCAD</strong>. En 2003, Werner Mayer se unió como co-desarrollador; en 2008,
+    Yorik van Havre se incorporó y desarrolló el módulo Draft completamente en Python,
+    demostrando el potencial de extensibilidad de la plataforma.
+  </p>
+  <div class="modulos-grid">
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-flag"></i></div>
+      <h4>2001 – 2002</h4>
+      <p>Inicio del proyecto por Jürgen Riegel. Primera versión pública: FreeCAD 0.0.1.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-people-group"></i></div>
+      <h4>2003 – 2008</h4>
+      <p>Werner Mayer se une. Anuncio público en OpenCASCADE Forum. Yorik van Havre se incorpora.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-gears"></i></div>
+      <h4>2009 – 2015</h4>
+      <p>Versiones 0.7 a 0.15. Módulos Draft, PartDesign, Sketcher y FEM introducidos.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-code"></i></div>
+      <h4>2016 – 2023</h4>
+      <p>Adopción de flujo ágil e iterativo. Versiones 0.16 a 0.21 con mejoras en BIM y CAM.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-trophy"></i></div>
+      <h4>2024 – FreeCAD 1.0</h4>
+      <p>Primera versión estable mayor. Solución al histórico problema de nomenclatura topológica.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-bolt"></i></div>
+      <h4>2026 – FreeCAD 1.1</h4>
+      <p>Versión más reciente (marzo 2026). Mejoras en rendimiento, módulos y soporte Apple Silicon.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     3. INSTALACIÓN
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-instalacion">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-download" style="color:var(--fc-blue-600);"></i> Instalación</h3>
+  </div>
+  <p class="docs-intro">
+    FreeCAD puede instalarse en los tres sistemas operativos principales. La forma recomendada
+    es descargar el instalador oficial desde
+    <strong>freecad.org/downloads.php</strong>. También permite instalar
+    componentes adicionales de terceros a través del Gestor de Complementos integrado.
+  </p>
+  <div class="arch-cards">
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-brands fa-windows"></i></div>
+      <div class="arch-body">
+        <h4>Windows</h4>
+        <p>Instalador .exe descargable. Compatible con Windows 10 y 11 (64 bits). Instalación guiada sin dependencias externas.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-brands fa-apple"></i></div>
+      <div class="arch-body">
+        <h4>macOS</h4>
+        <p>Archivo .dmg para Mac. Compatible desde macOS 10.12 Sierra. Soporte nativo para Apple Silicon (M1/M2/M3).</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-brands fa-linux"></i></div>
+      <div class="arch-body">
+        <h4>Linux</h4>
+        <p>Disponible en repositorios de Ubuntu, Debian, Fedora y Arch. También como AppImage portable sin instalación.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+      <div class="arch-body">
+        <h4>Componentes Adicionales</h4>
+        <p>Gestor de Complementos integrado para instalar workbenches externos y macros de la comunidad con un clic.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     4. PRIMEROS PASOS
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="docs-primeros-pasos">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-play" style="color:var(--fc-blue-600);"></i> Primeros Pasos</h3>
+  </div>
+  <p class="docs-intro">
+    Al abrir FreeCAD por primera vez aparece la pantalla de inicio con accesos rápidos a documentos
+    recientes y plantillas. El flujo de trabajo básico consiste en seleccionar un workbench,
+    crear geometría 2D en el Sketcher y aplicar operaciones 3D para obtener sólidos paramétricos.
+  </p>
+  <div class="modulos-grid">
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-1"></i></div>
+      <h4>Seleccionar Workbench</h4>
+      <p>Elegir el entorno de trabajo según la tarea: Part Design para mecánica, BIM para arquitectura.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-2"></i></div>
+      <h4>Crear Sketch</h4>
+      <p>Dibujar geometría 2D en un plano de referencia con restricciones de longitud, ángulo y coincidencia.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-3"></i></div>
+      <h4>Operaciones 3D</h4>
+      <p>Aplicar Pastilla (extrusión), Cajera (corte) o Revolución para generar sólidos paramétricos.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-4"></i></div>
+      <h4>Guardar y Exportar</h4>
+      <p>Guardar en formato .FCStd (nativo) y exportar a STEP, STL, DXF, IFC u otros formatos según necesidad.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-5"></i></div>
+      <h4>Editar Historial</h4>
+      <p>El árbol de modelo permite volver a cualquier operación previa y modificarla sin reconstruir el modelo.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-6"></i></div>
+      <h4>Usar Macros</h4>
+      <p>Automatizar tareas repetitivas con macros Python o grabar acciones directamente desde la interfaz.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     5. INTERFAZ DE USUARIO
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-interfaz">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-desktop" style="color:var(--fc-blue-600);"></i> Interfaz de Usuario</h3>
+  </div>
+  <p class="docs-intro">
+    La interfaz de FreeCAD está construida sobre Qt y se compone de varios elementos gráficos
+    que trabajan de manera integrada. Cada panel cumple una función específica dentro del
+    flujo de trabajo de modelado.
+  </p>
+  <div class="arch-cards">
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-cube"></i></div>
+      <div class="arch-body">
+        <h4>Vista 3D</h4>
+        <p>Área principal de trabajo. Visualización y manipulación del modelo 3D con soporte para vistas ortogonales y perspectiva.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-sitemap"></i></div>
+      <div class="arch-body">
+        <h4>Vista de Árbol</h4>
+        <p>Panel izquierdo con jerarquía del documento: todos los objetos, operaciones y relaciones del modelo.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-sliders"></i></div>
+      <div class="arch-body">
+        <h4>Editor de Propiedades</h4>
+        <p>Panel inferior izquierdo con las propiedades del objeto seleccionado, editables en tiempo real.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-list-check"></i></div>
+      <div class="arch-body">
+        <h4>Panel de Tareas</h4>
+        <p>Aparece al activar herramientas. Muestra opciones y parámetros de la operación en curso.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-brands fa-python"></i></div>
+      <div class="arch-body">
+        <h4>Consola Python</h4>
+        <p>Terminal integrada para ejecutar comandos Python directamente sobre el modelo abierto.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-toolbox"></i></div>
+      <div class="arch-body">
+        <h4>Barra de Herramientas</h4>
+        <p>Accesos rápidos a las herramientas más usadas del workbench activo. Configurable por el usuario.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     6. NAVEGACIÓN Y SELECCIÓN
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="docs-navegacion">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-computer-mouse" style="color:var(--fc-blue-600);"></i> Navegación y Selección</h3>
+  </div>
+  <p class="docs-intro">
+    FreeCAD ofrece múltiples estilos de navegación configurables desde
+    <strong>Editar → Preferencias → Pantalla → Navegación 3D</strong>.
+    El estilo por defecto usa el botón central del ratón para rotar y la rueda para zoom.
+  </p>
+  <div class="modulos-grid">
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-computer-mouse"></i></div>
+      <h4>FreeCAD (Default)</h4>
+      <p>Botón central para rotar, Shift + central para desplazar, rueda para zoom.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-drafting-compass"></i></div>
+      <h4>CAD Navigation</h4>
+      <p>Similar a AutoCAD. Recomendado para usuarios con experiencia en software CAD tradicional.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-hand-pointer"></i></div>
+      <h4>Gesture</h4>
+      <p>Rotación con clic derecho arrastrado. Ideal para pantallas táctiles y trackpads de laptop.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-expand"></i></div>
+      <h4>Selección Simple</h4>
+      <p>Clic en un objeto o cara. Ctrl + clic para selección múltiple en la vista 3D.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-object-group"></i></div>
+      <h4>Selección por Caja</h4>
+      <p>Arrastrar para seleccionar múltiples objetos dentro de un área rectangular.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-tree"></i></div>
+      <h4>Selección en Árbol</h4>
+      <p>Clic en el árbol del modelo para seleccionar y resaltar el objeto en la vista 3D.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     7. FORMATOS DE ARCHIVO
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-formatos">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-file-export" style="color:var(--fc-blue-600);"></i> Formatos de Archivo</h3>
+  </div>
+  <p class="docs-intro">
+    FreeCAD soporta una amplia variedad de formatos de importación y exportación,
+    facilitando la interoperabilidad con otros programas CAD, herramientas BIM y
+    software de impresión 3D.
+  </p>
+  <div class="comparison-table-wrap">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Formato</th>
+          <th>Lectura</th>
+          <th>Escritura</th>
+          <th>Uso principal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>.FCStd</td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td>Formato nativo de FreeCAD (ZIP con XML interno)</td>
+        </tr>
+        <tr>
+          <td>STEP (.stp)</td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td>Estándar industrial para intercambio de geometría sólida</td>
+        </tr>
+        <tr>
+          <td>STL</td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td>Mallas trianguladas para impresión 3D</td>
+        </tr>
+        <tr>
+          <td>DXF</td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td>Dibujos 2D — compatible con AutoCAD</td>
+        </tr>
+        <tr>
+          <td>IFC</td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td>Estándar BIM — interoperabilidad con Revit y ArchiCAD</td>
+        </tr>
+        <tr>
+          <td>OBJ</td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td>Geometría 3D para renderizado y animación</td>
+        </tr>
+        <tr>
+          <td>SVG</td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td>Gráficos vectoriales 2D para dibujo técnico</td>
+        </tr>
+        <tr>
+          <td>PDF</td>
+          <td><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i></td>
+          <td><i class="fa-solid fa-check" style="color:var(--fc-green);"></i></td>
+          <td>Exportación de planos técnicos desde TechDraw</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     8. ARQUITECTURA DE FREECAD
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-arquitectura">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-sitemap" style="color:var(--fc-blue-600);"></i> Arquitectura de FreeCAD</h3>
+  </div>
+  <p class="docs-intro">
+    FreeCAD está construido sobre una arquitectura modular que integra múltiples
+    bibliotecas de código abierto de alto rendimiento. Cada capa puede ser reemplazada
+    o extendida de forma independiente.
+  </p>
+  <div class="arch-cards">
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-cube"></i></div>
+      <div class="arch-body">
+        <h4>OpenCASCADE</h4>
+        <p>Núcleo de modelado geométrico. Operaciones booleanas, superficies NURBS y el kernel CAD subyacente (BREP).</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-cube"></i></div>
+      <div class="arch-body">
+        <h4>Coin3D</h4>
+        <p>Biblioteca de visualización 3D basada en Open Inventor. Renderiza la escena y maneja la interacción en el viewport.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-cube"></i></div>
+      <div class="arch-body">
+        <h4>Qt Framework</h4>
+        <p>Framework de interfaz de usuario. Proporciona ventanas, paneles, menús y toda la interacción gráfica del entorno.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-brands fa-python"></i></div>
+      <div class="arch-body">
+        <h4>Python</h4>
+        <p>Lenguaje de scripting y extensión. Todos los módulos y workbenches se pueden escribir en Python sobre la API C++.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     9. MÓDULOS DEL SISTEMA (WORKBENCHES)
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-modulos">
+  <div class="card-header-row">
+    <h3><i class="fa-regular fa-folder-open" style="color:var(--fc-blue-600);"></i> Módulos del Sistema (Workbenches)</h3>
+  </div>
+  <p class="docs-intro">
+    FreeCAD organiza su funcionalidad en <strong>workbenches</strong> (entornos de trabajo).
+    Cada uno agrupa herramientas para una tarea específica. El usuario cambia de workbench
+    según el tipo de trabajo sin perder el avance realizado.
+  </p>
+  <div class="modulos-grid">
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-regular fa-building"></i></div>
+      <h4>BIM</h4>
+      <p>Building Information Modeling. Muros, losas, ventanas y estructuras con soporte IFC para interoperabilidad.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-shapes"></i></div>
+      <h4>Part</h4>
+      <p>Modelado paramétrico de sólidos. Operaciones booleanas, extrusiones, revoluciones y operaciones CSG.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+      <h4>Draft</h4>
+      <p>Dibujo 2D y 3D. Herramientas de croquizado, cotas, capas, snap y anotaciones técnicas.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-regular fa-compass"></i></div>
+      <h4>Arch</h4>
+      <p>Arquitectura. Elementos constructivos, espacios, terrenos y documentación arquitectónica.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-chart-simple"></i></div>
+      <h4>Sketcher</h4>
+      <p>Croquizador 2D con restricciones geométricas, cotas inteligentes y perfiles para operaciones 3D.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-gears"></i></div>
+      <h4>FEM</h4>
+      <p>Análisis de elementos finitos. Mallado, condiciones de borde y simulaciones mecánicas y térmicas.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+      <h4>TechDraw</h4>
+      <p>Producción de planos técnicos 2D con cotas y anotaciones a partir de modelos 3D.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-table"></i></div>
+      <h4>Spreadsheet</h4>
+      <p>Hoja de cálculo integrada para gestionar datos, parámetros y relaciones del modelo.</p>
+    </div>
+    <div class="modulo-card">
+      <div class="modulo-icon"><i class="fa-solid fa-route"></i></div>
+      <h4>CAM (Path)</h4>
+      <p>Manufactura asistida por computadora. Genera G-code para máquinas CNC desde modelos 3D.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     10. MACROS
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="docs-macros">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-terminal" style="color:var(--fc-blue-600);"></i> Macros</h3>
+  </div>
+  <p class="docs-intro">
+    Las macros son fragmentos de código Python que automatizan tareas simples o complejas
+    no disponibles de forma nativa en la interfaz. Pueden ejecutarse manualmente, asignarse
+    a atajos de teclado o integrarse en barras de herramientas personalizadas.
+  </p>
+  <div class="arch-cards">
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-user-pen"></i></div>
+      <div class="arch-body">
+        <h4>Macros de Usuario</h4>
+        <p>Creadas por el propio usuario para automatizar su flujo de trabajo específico o tareas repetitivas.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-people-group"></i></div>
+      <div class="arch-body">
+        <h4>Macros de la Comunidad</h4>
+        <p>Más de 200 macros publicadas en el repositorio oficial. Instalables desde el Gestor de Complementos.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-solid fa-circle-play"></i></div>
+      <div class="arch-body">
+        <h4>Macros Grabadas</h4>
+        <p>FreeCAD puede grabar acciones del usuario y convertirlas automáticamente en código Python reutilizable.</p>
+      </div>
+    </div>
+    <div class="arch-item">
+      <div class="arch-icon"><i class="fa-brands fa-python"></i></div>
+      <div class="arch-body">
+        <h4>Consola Python</h4>
+        <p>Permite ejecutar scripts directamente sobre el modelo abierto para pruebas rápidas y acceso a la API interna.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     11. WATERFALL VS SCRUM + DEVOPS
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="docs-comparacion">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-code-compare" style="color:var(--fc-blue-600);"></i> Waterfall vs Scrum + DevOps</h3>
+  </div>
+  <p class="docs-intro">
+    Comparación entre el enfoque tradicional en cascada que FreeCAD utilizó históricamente
+    y la metodología ágil que aplicamos en este proyecto.
+  </p>
+  <div class="comparison-grid">
+    <div class="comparison-card comparison-card--waterfall">
+      <h4><i class="fa-solid fa-arrow-down"></i> Waterfall (Tradicional)</h4>
+      <ul>
+        <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Fases secuenciales sin retorno</li>
+        <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Entrega única al final del proyecto</li>
+        <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Cambios tardíos son costosos</li>
+        <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> El cliente ve el producto al final</li>
+        <li><i class="fa-solid fa-xmark" style="color:#e74c3c;"></i> Sin automatización de procesos</li>
+      </ul>
+      <p class="comparison-note"><i class="fa-regular fa-clock"></i> Así desarrolló FreeCAD históricamente (2002–2018)</p>
+    </div>
+    <div class="comparison-card comparison-card--agile">
+      <h4><i class="fa-solid fa-rotate"></i> Scrum + DevOps (Nuestro enfoque)</h4>
+      <ul>
+        <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Sprints iterativos de 15 días</li>
+        <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Entregas continuas por sprint</li>
+        <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Adaptación rápida a cambios del cliente</li>
+        <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> Feedback constante del equipo y stakeholders</li>
+        <li><i class="fa-solid fa-check" style="color:var(--fc-green);"></i> CI/CD automatizado con GitHub Actions</li>
+      </ul>
+      <p class="comparison-note"><i class="fa-solid fa-bolt" style="color:var(--fc-green);"></i> Aplicado por el equipo en Sprint 0, 1 y 2</p>
+    </div>
+  </div>
+  <div class="comparison-table-wrap">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Waterfall</th>
+          <th>Scrum + DevOps</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Planificación</td><td>Todo al inicio</td><td>Por sprint (adaptativa)</td></tr>
+        <tr><td>Entregas</td><td>Única al final</td><td>Cada 15 días</td></tr>
+        <tr><td>Cambios</td><td>Costosos</td><td>Bienvenidos y rápidos</td></tr>
+        <tr><td>Calidad</td><td>Pruebas al final</td><td>Pruebas continuas (CI)</td></tr>
+        <tr><td>Equipo</td><td>Roles fijos</td><td>Autoorganizado y rotativo</td></tr>
+        <tr><td>Cliente</td><td>Ve al final</td><td>Feedback continuo</td></tr>
+        <tr><td>Despliegue</td><td>Manual y esporádico</td><td>Automático con GitHub Actions</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     12. FAQ
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="docs-faq">
+  <div class="card-header-row">
+    <h3><i class="fa-regular fa-circle-question" style="color:var(--fc-blue-600);"></i> Preguntas Frecuentes</h3>
+  </div>
+  <p class="docs-intro">
+    Respuestas a las dudas más comunes sobre FreeCAD, su uso y sus capacidades.
+  </p>
+  <div class="modulos-grid">
+    <div class="modulo-card" style="text-align:left;">
+      <div class="modulo-icon" style="margin:0 0 10px 0;"><i class="fa-solid fa-dollar-sign"></i></div>
+      <h4>¿Es realmente gratuito para uso comercial?</h4>
+      <p>Sí. La licencia LGPL-2.0 permite uso en proyectos comerciales sin ninguna obligación adicional.</p>
+    </div>
+    <div class="modulo-card" style="text-align:left;">
+      <div class="modulo-icon" style="margin:0 0 10px 0;"><i class="fa-solid fa-file-import"></i></div>
+      <h4>¿Puedo importar archivos de SolidWorks o Revit?</h4>
+      <p>Sí. FreeCAD importa STEP e IGES de SolidWorks, DXF de AutoCAD e IFC de Revit sin plugins adicionales.</p>
+    </div>
+    <div class="modulo-card" style="text-align:left;">
+      <div class="modulo-icon" style="margin:0 0 10px 0;"><i class="fa-solid fa-graduation-cap"></i></div>
+      <h4>¿Es difícil aprender FreeCAD?</h4>
+      <p>Curva de aprendizaje moderada. La wiki oficial en wiki.freecad.org es muy completa y hay comunidad activa en el foro.</p>
+    </div>
+    <div class="modulo-card" style="text-align:left;">
+      <div class="modulo-icon" style="margin:0 0 10px 0;"><i class="fa-solid fa-code"></i></div>
+      <h4>¿En qué lenguaje está programado?</h4>
+      <p>El núcleo en C++ con OpenCASCADE. La interfaz usa Qt. Python está integrado para scripting y módulos.</p>
+    </div>
+    <div class="modulo-card" style="text-align:left;">
+      <div class="modulo-icon" style="margin:0 0 10px 0;"><i class="fa-solid fa-tag"></i></div>
+      <h4>¿Cuál es la versión más reciente?</h4>
+      <p>FreeCAD 1.1 lanzada en marzo de 2026. La versión 1.0 (2024) fue el primer release estable mayor.</p>
+    </div>
+    <div class="modulo-card" style="text-align:left;">
+      <div class="modulo-icon" style="margin:0 0 10px 0;"><i class="fa-solid fa-users"></i></div>
+      <h4>¿Qué tan activa es la comunidad?</h4>
+      <p>Más de 3,000 contribuidores en GitHub, 22,000+ estrellas y un foro oficial muy activo en forum.freecad.org.</p>
+    </div>
+  </div>
+</div>

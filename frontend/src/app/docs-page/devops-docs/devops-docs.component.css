@@ -1,0 +1,425 @@
+/* ============================================
+   PIPELINE DIAGRAM (Flujo visual CI/CD)
+   ============================================ */
+.pipeline-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 28px 20px;
+  background: #0f0f1e;
+  border: 1px solid #2a2a4a;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+/* Nodos de entrada/disparo */
+.pdiagram-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 28px;
+  border-radius: 10px;
+  min-width: 180px;
+  text-align: center;
+}
+.pdiagram-node--input {
+  background: linear-gradient(135deg, #1a1a3e, #16213e);
+  border: 1px solid #3498db44;
+}
+.pdiagram-node--trigger {
+  background: linear-gradient(135deg, #1a1a2e, #2d1b2e);
+  border: 1px solid #f1c40f44;
+}
+.pdiagram-node-icon {
+  font-size: 22px;
+  color: #e0e0e0;
+}
+.pdiagram-node-label {
+  font-weight: 700;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+.pdiagram-node-sub {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* Flechas */
+.pdiagram-arrow {
+  color: #555;
+  font-size: 18px;
+  line-height: 1;
+}
+.pdiagram-arrow .fa-arrow-right-long {
+  display: block;
+  transform: rotate(90deg);
+}
+
+/* Fases CI / CD / Telemetría */
+.pdiagram-phase {
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 300px;
+  border: 1px solid;
+}
+.pdiagram-phase--ci {
+  border-color: #3498db44;
+}
+.pdiagram-phase--cd {
+  border-color: #2ecc7144;
+}
+.pdiagram-phase--telemetry {
+  border-color: #f1c40f44;
+}
+.pdiagram-phase-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #e0e0e0;
+}
+.pdiagram-phase--ci .pdiagram-phase-header {
+  background: linear-gradient(90deg, #1a2744, transparent);
+}
+.pdiagram-phase--cd .pdiagram-phase-header {
+  background: linear-gradient(90deg, #1a3a2a, transparent);
+}
+.pdiagram-phase--telemetry .pdiagram-phase-header {
+  background: linear-gradient(90deg, #2a2a1a, transparent);
+}
+.pdiagram-phase-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  color: #fff;
+}
+.pdiagram-phase--ci .pdiagram-phase-badge {
+  background: #3498db;
+}
+.pdiagram-phase--cd .pdiagram-phase-badge {
+  background: #2ecc71;
+}
+.pdiagram-phase--telemetry .pdiagram-phase-badge {
+  background: #f1c40f;
+  color: #1a1a2e;
+}
+.pdiagram-phase-body {
+  padding: 8px 16px 14px;
+  font-size: 12px;
+  color: #aaa;
+  font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+}
+
+/* Steps dentro de fases */
+.pdiagram-step {
+  padding: 2px 0 2px 12px;
+  position: relative;
+}
+.pdiagram-step::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #555;
+}
+
+/* Bloque de decisión */
+.pdiagram-decision {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: #16162a;
+  border: 1px dashed #444;
+  border-radius: 10px;
+  min-width: 300px;
+}
+.pdiagram-decision-text {
+  font-size: 12px;
+  color: #888;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.pdiagram-decision-branches {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.pdiagram-decision-branch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.pdiagram-decision-branch--no {
+  color: #e74c3c;
+}
+.pdiagram-decision-branch--yes {
+  color: #2ecc71;
+}
+.pdiagram-decision-result {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+.pdiagram-decision-result--fail {
+  background: #c0392b;
+  color: #fff;
+}
+.pdiagram-decision-result--pass {
+  background: #27ae60;
+  color: #fff;
+}
+
+/* ============================================
+   BRANCH TIMELINE
+   ============================================ */
+.branch-timeline {
+  position: relative;
+  padding-left: 50px;
+  margin: 20px 0 10px;
+}
+/* Línea vertical */
+.branch-timeline::before {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #2c3e50, #3498db, #e67e22, #27ae60);
+  border-radius: 2px;
+}
+.branch-timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+  padding-left: 10px;
+}
+.branch-timeline-item:last-child {
+  margin-bottom: 0;
+}
+.branch-timeline-marker {
+  position: absolute;
+  left: -50px;
+  top: 4px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+  border: 3px solid;
+  z-index: 1;
+  box-shadow: 0 0 0 4px #0f0f1e;
+}
+.branch-timeline-card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.branch-timeline-card p {
+  margin: 8px 0 0 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-muted, #94a3b8);
+}
+.branch-timeline-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.branch-name {
+  background: #0f0f1e;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
+.branch-tag {
+  font-size: 10px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+/* ============================================
+   PHASE BADGES (CI / CD)
+   ============================================ */
+.phase-badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.phase-badge--ci {
+  background: #3498db;
+  color: #fff;
+}
+.phase-badge--cd {
+  background: #2ecc71;
+  color: #fff;
+}
+
+/* ============================================
+   PHASE LIST (ul for pipeline phases)
+   ============================================ */
+.phase-list {
+  margin: 8px 0 0 18px;
+  padding: 0;
+  font-size: 13px;
+  color: var(--text-muted, #64748b);
+}
+.phase-list li {
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+/* ============================================
+   BLOCKQUOTES (Circuit breaker, etc.)
+   ============================================ */
+.blockquote {
+  margin: 12px 0 0 0;
+  padding: 10px 14px;
+  font-size: 12.8px;
+  line-height: 1.5;
+  border-radius: 0 8px 8px 0;
+}
+.blockquote--danger {
+  background: rgba(231,76,60,0.05);
+  border-left: 3px solid #e74c3c;
+  color: #c0392b;
+}
+.blockquote--success {
+  background: rgba(46,204,113,0.05);
+  border-left: 3px solid #2ecc71;
+  color: #27ae60;
+}
+.blockquote--warning {
+  background: rgba(243,156,18,0.05);
+  border-left: 3px solid #f39c12;
+  color: #7f5c0a;
+}
+
+/* ============================================
+   PIPELINE FLOW (visual step badges)
+   ============================================ */
+.pipeline-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.pipeline-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.pipeline-step--success {
+  background: #dcfce7;
+  color: #166534;
+}
+.pipeline-step--running {
+  background: #fef3c7;
+  color: #92400e;
+}
+.pipeline-arrow {
+  color: #94a3b8;
+  font-size: 0.7rem;
+}
+
+/* ============================================
+   TABLE NOTES (infrastructure table)
+   ============================================ */
+.table-note {
+  color: var(--text-muted, #94a3b8);
+  font-size: 12.5px;
+}
+
+/* ============================================
+   ADVANTAGES LIST
+   ============================================ */
+.advantages-list {
+  margin: 10px 0 0 20px;
+  padding: 0;
+  font-size: 13.8px;
+  line-height: 1.7;
+  color: var(--text-dark, #222);
+}
+.advantages-list li {
+  margin-bottom: 12px;
+}
+.advantages-list strong {
+  color: var(--fc-blue-700);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .pipeline-flow {
+    gap: 4px;
+  }
+  .pipeline-step {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+  }
+  .pipeline-diagram {
+    padding: 16px 12px;
+  }
+  .pdiagram-phase,
+  .pdiagram-decision,
+  .pdiagram-node {
+    min-width: unset;
+    width: 100%;
+  }
+  .pdiagram-arrow .fa-arrow-right-long {
+    font-size: 14px;
+  }
+  .branch-timeline {
+    padding-left: 40px;
+  }
+  .branch-timeline::before {
+    left: 18px;
+  }
+  .branch-timeline-marker {
+    left: -40px;
+    width: 34px;
+    height: 34px;
+    font-size: 13px;
+  }
+  .branch-timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

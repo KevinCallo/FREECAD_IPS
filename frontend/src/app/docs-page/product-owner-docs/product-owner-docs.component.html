@@ -1,0 +1,485 @@
+<!-- ══════════════════════════════════════════
+     1. PRODUCT BACKLOG INICIAL
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-product-backlog">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-list-check" style="color:var(--fc-blue-600);"></i> Product Backlog Inicial</h3>
+  </div>
+  <p class="docs-intro">
+    El Product Backlog representa el conjunto de funcionalidades y requisitos funcionales identificados
+    para el proyecto FreeCAD. Estas especificaciones fueron definidas mediante historias de usuario bajo
+    el marco de la metodología Scrum, permitiendo organizar, priorizar y abordar de forma iterativa
+    las características del sistema.
+  </p>
+
+  <div class="arch-cards" style="margin-bottom: 25px;">
+    <div class="arch-item" style="border-left: 4px solid #e74c3c;">
+      <div class="arch-icon"><i class="fa-solid fa-triangle-exclamation" style="color:#e74c3c;"></i></div>
+      <div class="arch-body">
+        <h4>Prioridad Alta (Capabilities Avanzadas)</h4>
+        <p>Ensamblajes, simulación FEM, impresión 3D, automatización por Python y gestión de complementos. Extienden el modelado y análisis.</p>
+      </div>
+    </div>
+    <div class="arch-item" style="border-left: 4px solid #f39c12;">
+      <div class="arch-icon"><i class="fa-solid fa-circle-exclamation" style="color:#f39c12;"></i></div>
+      <div class="arch-body">
+        <h4>Prioridad Media (Intercambio y Documentación)</h4>
+        <p>Importación/exportación de archivos CAD y generación de planos técnicos. Complementan el flujo de información externa.</p>
+      </div>
+    </div>
+    <div class="arch-item" style="border-left: 4px solid #2ecc71;">
+      <div class="arch-icon"><i class="fa-solid fa-layer-group" style="color:#2ecc71;"></i></div>
+      <div class="arch-body">
+        <h4>Prioridad Baja (Capa Fundamental)</h4>
+        <p>Sketcher, modelado 3D y control paramétrico. Corresponden a los cimientos esenciales sobre los cuales se construye todo el sistema.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="comparison-table-wrap">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th style="width: 80px;">ID</th>
+          <th>Funcionalidad del Sistema</th>
+          <th>Prioridad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>B-06</strong></td>
+          <td>Implementar sistema de ensamblajes</td>
+          <td><span class="badge badge--alta">Alta</span></td>
+        </tr>
+        <tr>
+          <td><strong>B-07</strong></td>
+          <td>Implementar simulación mediante elementos finitos (FEM)</td>
+          <td><span class="badge badge--alta">Alta</span></td>
+        </tr>
+        <tr>
+          <td><strong>B-08</strong></td>
+          <td>Implementar herramientas para impresión 3D</td>
+          <td><span class="badge badge--alta">Alta</span></td>
+        </tr>
+        <tr>
+          <td><strong>B-09</strong></td>
+          <td>Implementar automatización mediante Python</td>
+          <td><span class="badge badge--alta">Alta</span></td>
+        </tr>
+        <tr>
+          <td><strong>B-10</strong></td>
+          <td>Implementar gestión de complementos y módulos adicionales</td>
+          <td><span class="badge badge--alta">Alta</span></td>
+        </tr>
+        <tr>
+          <td><strong>B-05</strong></td>
+          <td>Implementar generación de planos técnicos</td>
+          <td><span class="badge badge--media">Media</span></td>
+        </tr>
+        <tr>
+          <td><strong>B-04</strong></td>
+          <td>Implementar importación y exportación de archivos CAD</td>
+          <td><span class="badge badge--media">Media</span></td>
+        </tr>
+        <tr>
+          <td><strong>B-03</strong></td>
+          <td>Implementar sistema de modificación mediante parámetros</td>
+          <td><span class="badge badge--baja">Baja</span></td>
+        </tr>
+        <tr>
+          <td><strong>B-02</strong></td>
+          <td>Implementar modelado paramétrico 3D</td>
+          <td><span class="badge badge--baja">Baja</span></td>
+        </tr>
+        <tr>
+          <td><strong>B-01</strong></td>
+          <td>Crear bocetos 2D mediante Sketcher</td>
+          <td><span class="badge badge--baja">Baja</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     2. DESCRIPCIÓN DETALLADA DEL BACKLOG
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="fc-detalles-backlog">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-circle-info" style="color:var(--fc-blue-600);"></i> Descripción Detallada del Backlog</h3>
+  </div>
+  <p class="docs-intro">
+    A continuación se desglosan las características técnicas, operativas e historias de usuario
+    asignadas a cada componente del Product Backlog.
+  </p>
+
+  <div class="modulos-grid">
+
+    <div class="modulo-card backlog-detail-card">
+      <div class="modulo-card-head">
+        <i class="fa-solid fa-chart-simple" style="color:var(--fc-blue-600);"></i>
+        <span class="modulo-id">B-01</span>
+      </div>
+      <h4>Crear bocetos 2D mediante Sketcher</h4>
+      <p>Permite el trazado de geometría bidimensional (líneas, arcos, curvas) como base analítica para el diseño 3D. Incorpora un solucionador de restricciones geométricas y dimensionales.</p>
+      <div class="user-story-box user-story-box--baja">
+        <strong>User Story:</strong> Como diseñador, quiero crear bocetos 2D restrictivos para estructurar bases sólidas de modelos tridimensionales.
+        <br><span class="user-story-meta"><strong>Prioridad:</strong> Baja (Core fundamental)</span>
+      </div>
+    </div>
+
+    <div class="modulo-card backlog-detail-card">
+      <div class="modulo-card-head">
+        <i class="fa-solid fa-shapes" style="color:var(--fc-blue-600);"></i>
+        <span class="modulo-id">B-02</span>
+      </div>
+      <h4>Implementar modelado paramétrico 3D</h4>
+      <p>Transforma los perfiles 2D del Sketcher en sólidos tridimensionales mediante operaciones constructivas como extrusión, revolución, vaciado y redondeos.</p>
+      <div class="user-story-box user-story-box--baja">
+        <strong>User Story:</strong> Como diseñador mecánico, quiero generar sólidos 3D paramétricos para editar características sin reconstruir la pieza.
+        <br><span class="user-story-meta"><strong>Prioridad:</strong> Baja (Core fundamental)</span>
+      </div>
+    </div>
+
+    <div class="modulo-card backlog-detail-card">
+      <div class="modulo-card-head">
+        <i class="fa-solid fa-sliders" style="color:var(--fc-blue-600);"></i>
+        <span class="modulo-id">B-03</span>
+      </div>
+      <h4>Sistema de modificación mediante parámetros</h4>
+      <p>Abstrae las cotas y variables del diseño permitiendo gobernarlas mediante valores globales interconectados. El cambio de una sola variable propaga la actualización por todo el modelo.</p>
+      <div class="user-story-box user-story-box--baja">
+        <strong>User Story:</strong> Como usuario, quiero controlar las dimensiones mediante variables globales para acelerar cambios complejos de ingeniería.
+        <br><span class="user-story-meta"><strong>Prioridad:</strong> Baja (Core fundamental)</span>
+      </div>
+    </div>
+
+    <div class="modulo-card backlog-detail-card">
+      <div class="modulo-card-head">
+        <i class="fa-solid fa-file-import" style="color:var(--fc-blue-600);"></i>
+        <span class="modulo-id">B-04</span>
+      </div>
+      <h4>Importación y exportación de archivos CAD</h4>
+      <p>Garantiza la interoperabilidad del sistema mediante la lectura y escritura de formatos universales de la industria como STEP, IGES y STL.</p>
+      <div class="user-story-box user-story-box--media">
+        <strong>User Story:</strong> Como ingeniero, quiero intercambiar archivos en formatos estándar (STEP, STL) para colaborar con software de terceros.
+        <br><span class="user-story-meta"><strong>Prioridad:</strong> Media (Interoperabilidad)</span>
+      </div>
+    </div>
+
+    <div class="modulo-card backlog-detail-card">
+      <div class="modulo-card-head">
+        <i class="fa-solid fa-ruler-combined" style="color:var(--fc-blue-600);"></i>
+        <span class="modulo-id">B-05</span>
+      </div>
+      <h4>Generación de planos técnicos</h4>
+      <p>Traduce la geometría tridimensional en documentación normalizada 2D con proyecciones automáticas, cotas y anotaciones vinculadas al modelo.</p>
+      <div class="user-story-box user-story-box--media">
+        <strong>User Story:</strong> Como dibujante, quiero proyectar planos 2D normalizados con cotas para documentar rigurosamente la fabricación.
+        <br><span class="user-story-meta"><strong>Prioridad:</strong> Media (Documentación)</span>
+      </div>
+    </div>
+
+    <div class="modulo-card backlog-detail-card">
+      <div class="modulo-card-head">
+        <i class="fa-solid fa-gears" style="color:var(--fc-blue-600);"></i>
+        <span class="modulo-id">B-06</span>
+      </div>
+      <h4>Implementar sistema de ensamblajes</h4>
+      <p>Permite agrupar piezas independientes con restricciones espaciales (coincidencia de caras, concentricidad, distancias fijas) para validar tolerancias y simular cinemática.</p>
+      <div class="user-story-box user-story-box--alta">
+        <strong>User Story:</strong> Como diseñador mecánico, quiero articular múltiples piezas bajo restricciones de posición para validar su acoplamiento.
+        <br><span class="user-story-meta"><strong>Prioridad:</strong> Alta (Análisis avanzado)</span>
+      </div>
+    </div>
+
+    <div class="modulo-card backlog-detail-card">
+      <div class="modulo-card-head">
+        <i class="fa-solid fa-chart-line" style="color:var(--fc-blue-600);"></i>
+        <span class="modulo-id">B-07</span>
+      </div>
+      <h4>Simulación mediante elementos finitos (FEM)</h4>
+      <p>Integra capacidades analíticas avanzadas para predecir comportamiento físico: fuerzas, restricciones y flujos térmicos sobre la geometría con mallas numéricas.</p>
+      <div class="user-story-box user-story-box--alta">
+        <strong>User Story:</strong> Como analista estructural, quiero someter el modelo a cargas físicas virtuales para asegurar su integridad operativa.
+        <br><span class="user-story-meta"><strong>Prioridad:</strong> Alta (Análisis avanzado)</span>
+      </div>
+    </div>
+
+    <div class="modulo-card backlog-detail-card">
+      <div class="modulo-card-head">
+        <i class="fa-solid fa-cube" style="color:var(--fc-blue-600);"></i>
+        <span class="modulo-id">B-08</span>
+      </div>
+      <h4>Herramientas para impresión 3D</h4>
+      <p>Prepara y valida el sólido geométrico para manufactura aditiva. Analiza estanqueidad de mallas y optimiza la conversión a formatos STL de alta fidelidad.</p>
+      <div class="user-story-box user-story-box--alta">
+        <strong>User Story:</strong> Como operador, quiero verificar y exportar mallas estancas óptimas para agilizar la manufactura de prototipos físicos.
+        <br><span class="user-story-meta"><strong>Prioridad:</strong> Alta (Producción)</span>
+      </div>
+    </div>
+
+    <div class="modulo-card backlog-detail-card">
+      <div class="modulo-card-head">
+        <i class="fa-brands fa-python" style="color:var(--fc-blue-600);"></i>
+        <span class="modulo-id">B-09</span>
+      </div>
+      <h4>Automatización mediante Python</h4>
+      <p>Expone la API interna de C++ a un intérprete Python integrado. Facilita macros, generación paramétrica de componentes y comandos personalizados.</p>
+      <div class="user-story-box user-story-box--alta">
+        <strong>User Story:</strong> Como desarrollador, quiero interactuar con la API mediante Python para automatizar rutinas de modelado monótonas.
+        <br><span class="user-story-meta"><strong>Prioridad:</strong> Alta (Extensibilidad)</span>
+      </div>
+    </div>
+
+    <div class="modulo-card backlog-detail-card">
+      <div class="modulo-card-head">
+        <i class="fa-solid fa-puzzle-piece" style="color:var(--fc-blue-600);"></i>
+        <span class="modulo-id">B-10</span>
+      </div>
+      <h4>Gestión de complementos y módulos adicionales</h4>
+      <p>Administra la arquitectura modular extensible con interfaz para descubrir, instalar y actualizar workbenches y macros de la comunidad.</p>
+      <div class="user-story-box user-story-box--alta">
+        <strong>User Story:</strong> Como usuario avanzado, quiero un gestor integrado para inyectar entornos especializados a mi espacio CAD dinámicamente.
+        <br><span class="user-story-meta"><strong>Prioridad:</strong> Alta (Extensibilidad)</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     3. DISTRIBUCIÓN POR SPRINTS
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="po-sprints">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-rotate" style="color:var(--fc-blue-600);"></i> Distribución del Backlog por Sprints</h3>
+  </div>
+  <p class="docs-intro">
+    En la metodología Scrum el Product Backlog se distribuye a lo largo de los sprints según la
+    prioridad, dependencias técnicas y capacidad del equipo. A continuación se muestra cómo los
+    requisitos identificados fueron asignados a cada hito del proyecto.
+  </p>
+
+  <div class="sprint-timeline">
+
+    <!-- Sprint 0 -->
+    <div class="sprint-milestone">
+      <div class="sprint-milestone-head">
+        <div class="sprint-milestone-badge sprint-milestone-badge--done">
+          <i class="fa-solid fa-check"></i>
+          <span>Sprint 0</span>
+        </div>
+        <div class="sprint-milestone-info">
+          <h4>Fundación y Core del Modelado</h4>
+          <span class="sprint-milestone-dates">Semana 1-2 · 15 días</span>
+        </div>
+        <span class="sprint-milestone-sp">8 SP</span>
+      </div>
+      <div class="sprint-milestone-body">
+        <p class="sprint-milestone-desc">
+          Establecer la base paramétrica del producto. Sin el Sketcher ni el modelado 3D
+          ningún otro componente puede funcionar, por lo que estas capacidades se abordan primero
+          a pesar de tener prioridad "baja" en el backlog inicial.
+        </p>
+        <div class="sprint-items">
+          <div class="sprint-item" style="border-left-color:#2ecc71;">
+            <span class="sprint-item-id">B-01</span>
+            <span class="sprint-item-label">Crear bocetos 2D mediante Sketcher</span>
+          </div>
+          <div class="sprint-item" style="border-left-color:#2ecc71;">
+            <span class="sprint-item-id">B-02</span>
+            <span class="sprint-item-label">Implementar modelado paramétrico 3D</span>
+          </div>
+          <div class="sprint-item" style="border-left-color:#2ecc71;">
+            <span class="sprint-item-id">B-03</span>
+            <span class="sprint-item-label">Sistema de modificación mediante parámetros</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sprint 1 -->
+    <div class="sprint-milestone">
+      <div class="sprint-milestone-head">
+        <div class="sprint-milestone-badge sprint-milestone-badge--done">
+          <i class="fa-solid fa-check"></i>
+          <span>Sprint 1</span>
+        </div>
+        <div class="sprint-milestone-info">
+          <h4>Interoperabilidad y Documentación</h4>
+          <span class="sprint-milestone-dates">Semana 3-4 · 15 días</span>
+        </div>
+        <span class="sprint-milestone-sp">5 SP</span>
+      </div>
+      <div class="sprint-milestone-body">
+        <p class="sprint-milestone-desc">
+          Una vez que el modelo paramétrico está operativo, se necesita poder importar/exportar
+          archivos con otros programas CAD y generar planos técnicos a partir de la geometría 3D.
+        </p>
+        <div class="sprint-items">
+          <div class="sprint-item" style="border-left-color:#f39c12;">
+            <span class="sprint-item-id">B-04</span>
+            <span class="sprint-item-label">Importación y exportación de archivos CAD</span>
+          </div>
+          <div class="sprint-item" style="border-left-color:#f39c12;">
+            <span class="sprint-item-id">B-05</span>
+            <span class="sprint-item-label">Generación de planos técnicos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sprint 2 -->
+    <div class="sprint-milestone">
+      <div class="sprint-milestone-head">
+        <div class="sprint-milestone-badge sprint-milestone-badge--done">
+          <i class="fa-solid fa-check"></i>
+          <span>Sprint 2</span>
+        </div>
+        <div class="sprint-milestone-info">
+          <h4>Análisis y Manufactura Avanzada</h4>
+          <span class="sprint-milestone-dates">Semana 5-6 · 15 días</span>
+        </div>
+        <span class="sprint-milestone-sp">10 SP</span>
+      </div>
+      <div class="sprint-milestone-body">
+        <p class="sprint-milestone-desc">
+          Con el núcleo de modelado e interoperabilidad estable, se incorporan capacidades
+          analíticas de alto valor: ensamblajes complejos, simulación por elementos finitos
+          y preparación para manufactura aditiva (impresión 3D).
+        </p>
+        <div class="sprint-items">
+          <div class="sprint-item" style="border-left-color:#e74c3c;">
+            <span class="sprint-item-id">B-06</span>
+            <span class="sprint-item-label">Implementar sistema de ensamblajes</span>
+          </div>
+          <div class="sprint-item" style="border-left-color:#e74c3c;">
+            <span class="sprint-item-id">B-07</span>
+            <span class="sprint-item-label">Simulación mediante elementos finitos (FEM)</span>
+          </div>
+          <div class="sprint-item" style="border-left-color:#e74c3c;">
+            <span class="sprint-item-id">B-08</span>
+            <span class="sprint-item-label">Herramientas para impresión 3D</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sprint 3 -->
+    <div class="sprint-milestone">
+      <div class="sprint-milestone-head">
+        <div class="sprint-milestone-badge sprint-milestone-badge--active">
+          <i class="fa-solid fa-bolt"></i>
+          <span>Sprint 3</span>
+        </div>
+        <div class="sprint-milestone-info">
+          <h4>Extensibilidad y Automatización</h4>
+          <span class="sprint-milestone-dates">Semana 7-8 · 15 días</span>
+        </div>
+        <span class="sprint-milestone-sp">8 SP</span>
+      </div>
+      <div class="sprint-milestone-body">
+        <p class="sprint-milestone-desc">
+          El sprint final se enfoca en potenciar la extensibilidad del sistema: automatización
+          mediante scripting Python y un gestor de complementos para workbenches de terceros.
+        </p>
+        <div class="sprint-items">
+          <div class="sprint-item" style="border-left-color:#e74c3c;">
+            <span class="sprint-item-id">B-09</span>
+            <span class="sprint-item-label">Automatización mediante Python</span>
+          </div>
+          <div class="sprint-item" style="border-left-color:#e74c3c;">
+            <span class="sprint-item-id">B-10</span>
+            <span class="sprint-item-label">Gestión de complementos y módulos adicionales</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     4. EVOLUCIÓN DE REQUERIMIENTOS
+     ══════════════════════════════════════════ -->
+<div class="card docs-card" id="po-evolucion">
+  <div class="card-header-row">
+    <h3><i class="fa-solid fa-arrow-trend-up" style="color:var(--fc-blue-600);"></i> Evolución de Requerimientos entre Sprints</h3>
+  </div>
+  <p class="docs-intro">
+    Una de las fortalezas de Scrum es la capacidad de adaptar los requerimientos según el feedback
+    recibido en cada Sprint Review. A continuación se muestra cómo evolucionaron los requisitos
+    del proyecto a lo largo de los sprints.
+  </p>
+
+  <div class="evolucion-grid">
+
+    <div class="evolucion-card evolucion-card--refined">
+      <div class="evolucion-card-icon"><i class="fa-solid fa-arrows-split-up-and-left"></i></div>
+      <h4>B-06: Ensamblajes refinado</h4>
+      <p class="evolucion-card-desc">
+        Originalmente definido como "sistema de ensamblajes simple". Durante el Sprint 1 Review,
+        el equipo identificó la necesidad de restricciones espaciales avanzadas (concentricidad,
+        distancia fija), lo que amplió el alcance. Se refinó en Sprint 2.
+      </p>
+      <div class="evolucion-meta">
+        <span class="evolucion-tag evolucion-tag--sprint">Sprint 1 → Sprint 2</span>
+        <span class="evolucion-tag evolucion-tag--change">+3 SP</span>
+      </div>
+    </div>
+
+    <div class="evolucion-card evolucion-card--added">
+      <div class="evolucion-card-icon"><i class="fa-solid fa-plus"></i></div>
+      <h4>B-08: Impresión 3D agregado</h4>
+      <p class="evolucion-card-desc">
+        No estaba contemplado en el backlog inicial. Se agregó durante Sprint 2 Planning por
+        solicitud del stakeholder académico, que necesitaba validar prototipos físicos para
+        la materia de Manufactura.
+      </p>
+      <div class="evolucion-meta">
+        <span class="evolucion-tag evolucion-tag--sprint">Agregado en Sprint 2</span>
+        <span class="evolucion-tag evolucion-tag--new">Nuevo</span>
+      </div>
+    </div>
+
+    <div class="evolucion-card evolucion-card--reprioritized">
+      <div class="evolucion-card-icon"><i class="fa-solid fa-arrow-up-wide-short"></i></div>
+      <h4>B-09 y B-10: Repriorizados a Alta</h4>
+      <p class="evolucion-card-desc">
+        Originalmente prioridad media, se repriorizaron a alta durante Sprint 2 Retrospective
+        porque el equipo reconoció que la automatización Python era crítica para las pruebas
+        y la gestión de complementos para la demostración final.
+      </p>
+      <div class="evolucion-meta">
+        <span class="evolucion-tag evolucion-tag--sprint">Repriorizado en Sprint 2</span>
+        <span class="evolucion-tag evolucion-tag--change">Media → Alta</span>
+      </div>
+    </div>
+
+    <div class="evolucion-card evolucion-card--removed">
+      <div class="evolucion-card-icon"><i class="fa-solid fa-xmark"></i></div>
+      <h4>B-11 (planeado): Renderizado fotorealista</h4>
+      <p class="evolucion-card-desc">
+        Se había planificado un módulo de renderizado, pero se eliminó en Sprint 2 Planning
+        por restricciones de tiempo. El equipo acordó documentarlo como deuda técnica para
+        futuras iteraciones del proyecto.
+      </p>
+      <div class="evolucion-meta">
+        <span class="evolucion-tag evolucion-tag--sprint">Eliminado en Sprint 2</span>
+        <span class="evolucion-tag evolucion-tag--removed">Postergado</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="evolucion-resumen">
+    <h4><i class="fa-solid fa-scale-balanced"></i> Lección de Scrum aplicada</h4>
+    <p>
+      Esta evolución demuestra cómo Scrum permite adaptar el producto al contexto real del proyecto.
+      Los requerimientos <strong>no son estáticos</strong>: cambian por feedback de stakeholders,
+      descubrimientos técnicos del equipo y restricciones de tiempo. El Product Owner gestiona estos
+      cambios priorizando continuamente el valor entregado en cada sprint.
+    </p>
+  </div>
+</div>

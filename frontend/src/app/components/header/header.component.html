@@ -26,10 +26,27 @@ HERO
         pipeline CI/CD, línea de tiempo Gantt y más.
       </p>
     } @else if (page === 'docs') {
-      <p class="hero-subtitle">
-        Documentación técnica completa de la <strong>arquitectura de FreeCAD</strong>,
-        sus módulos y la comparativa metodológica del proyecto.
-      </p>
+      @if (docsFilter === 'freecad') {
+        <p class="hero-subtitle">
+          Documentación técnica completa de la <strong>arquitectura de FreeCAD</strong>,
+          sus módulos, instalación y funcionalidades principales.
+        </p>
+      } @else if (docsFilter === 'product-owner') {
+        <p class="hero-subtitle">
+          Documentación del <strong>rol de Product Owner</strong>,
+          gestión del product backlog, user stories y planificación de releases.
+        </p>
+      } @else if (docsFilter === 'scrum-master') {
+        <p class="hero-subtitle">
+          Documentación completa sobre el <strong>rol de Scrum Master</strong>,
+          ceremonias, artefactos y gestión ágil del equipo.
+        </p>
+      } @else if (docsFilter === 'devops') {
+        <p class="hero-subtitle">
+          Documentación de la <strong>infraestructura DevOps</strong>,
+          pipeline CI/CD y estrategias de integración y despliegue continuo.
+        </p>
+      }
     } @else {
       <p class="hero-subtitle">
         Implementación de un proceso de desarrollo ágil integrando
@@ -75,11 +92,21 @@ STICKY NAV
       <a (click)="scrollTo('diagrams-gantt')"><i class="fa-solid fa-chart-bar"></i> Gantt</a>
     </div>
   } @else if (page === 'docs') {
-    <!-- Nav para página de documentación -->
-    <div class="top-nav-links">
-      <a (click)="scrollTo('docs-arquitectura')"><i class="fa-solid fa-sitemap"></i> Arquitectura</a>
-      <a (click)="scrollTo('docs-modulos')"><i class="fa-regular fa-folder-open"></i> Módulos</a>
-      <a (click)="scrollTo('docs-comparacion')"><i class="fa-solid fa-code-compare"></i> Comparación</a>
+    <!-- Nav para página de documentación — pills según el tipo seleccionado -->
+    <div class="top-nav-links top-nav-links--pills">
+      @let navLinks = getActiveDocsOption()?.navLinks ?? [];
+      @for (link of navLinks; track link.id; let i = $index) {
+        @if (i > 0 && link.group && link.group !== navLinks[i - 1].group) {
+          <span class="nav-pill-sep" aria-hidden="true"></span>
+        }
+        <button
+          class="docs-pill"
+          [class.active]="activeDocSection() === link.id"
+          (click)="scrollTo(link.id)"
+        >
+          <i class="{{ link.icon }}"></i> {{ link.label }}
+        </button>
+      }
     </div>
   } @else {
     <!-- Nav para home -->
@@ -160,8 +187,39 @@ STICKY NAV
       </ul>
     </div>
   } @else if (page === 'docs') {
-    <!-- Sin filtros en docs — div vacío para mantener el grid balanceado -->
-    <div></div>
+    <!-- Filtro desplegable de documentación -->
+    <div class="top-nav-diagram-filter">
+      <button
+        class="nav-diagram-filter-btn"
+        aria-haspopup="true"
+        [attr.aria-expanded]="docsFilterOpen"
+        (click)="toggleDocsFilter()"
+        title="Filtrar documentación"
+      >
+        <span class="nav-filter-label-inner">
+          @let docOpt = getActiveDocsOption();
+          @if (docOpt) {
+            <i class="{{ docOpt.icon }}"></i>
+            <span>{{ docOpt.labelShort }}</span>
+          }
+        </span>
+        <i class="fa-solid fa-chevron-down nav-filter-chevron"></i>
+      </button>
+      <ul class="nav-diagram-filter-dropdown" role="menu" [class.open]="docsFilterOpen">
+        @for (opt of docsFilterOptions; track opt.key) {
+          <li>
+            <button
+              class="nav-diagram-filter-option"
+              [class.active]="docsFilter === opt.key"
+              (click)="setDocsFilter(opt.key); closeDocsFilter()"
+              role="menuitem"
+            >
+              <i class="{{ opt.icon }}"></i> {{ opt.label }}
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
   } @else {
     <!-- Selector de sprint (solo en home) -->
     <div class="top-nav-sprint">
