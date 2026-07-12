@@ -59,4 +59,4 @@ jobs:
 
     - name: Desplegar en Servidores Públicos de GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v4
+      uses: actions/deploy-pages@v5
