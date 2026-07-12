@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeCAD · Proyecto IPS 2026-A | Scrum + DevOps</title>
+    <meta name="description"
+        content="Dashboard del proyecto FreeCAD IPS — Implementación de Scrum y DevOps sobre el modelador 3D paramétrico de código abierto.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+    TOAST CONTAINER
+    ========================================== -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- ==========================================
+    BACK TO TOP
+    ========================================== -->
+    <button id="back-to-top" class="back-to-top" aria-label="Volver arriba">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- ==========================================
+    HERO
+    ========================================== -->
+    <header class="hero">
+        <div class="hero-gear hero-gear--1">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+        <div class="hero-gear hero-gear--2">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-cube"></i>
+                <span>Ingeniería y Procesos de Software · 2026-A</span>
+            </div>
+
+            <h1>
+                <i class="fa-solid fa-cubes" style="font-size:0.8em; color:var(--fc-orange);"></i>
+                FreeCAD <span>·</span> IPS
+            </h1>
+            <p class="hero-subtitle">
+                Implementación de un proceso de desarrollo ágil integrando
+                <strong>Scrum</strong> con prácticas <strong>DevOps</strong>
+                sobre el modelador 3D paramétrico de código abierto.
+            </p>
+
+            <div class="hero-meta">
+                <span><i class="fa-solid fa-people-group"></i> 5 integrantes</span>
+                <span><i class="fa-solid fa-rotate"></i> Sprints 15 días</span>
+                <span><i class="fa-solid fa-code-branch"></i> Producto: FreeCAD</span>
+                <span><i class="fa-regular fa-calendar"></i> <span id="hero-current-sprint">Sprint 2
+                        Activo</span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+    STICKY NAV
+    ========================================== -->
+    <nav class="top-nav" aria-label="Navegación principal">
+        <div class="top-nav-brand">
+            <i class="fa-solid fa-cube"></i>
+            <span>FreeCAD IPS</span>
+        </div>
+
+        <div class="top-nav-links">
+            <a href="#sprints"><i class="fa-regular fa-calendar-check"></i> Sprints</a>
+            <a href="#board"><i class="fa-solid fa-columns"></i> Board</a>
+            <a href="#sprint-detail"><i class="fa-solid fa-list"></i> Detalle</a>
+            <a href="#metrics"><i class="fa-solid fa-chart-line"></i> Métricas</a>
+            <a href="#team"><i class="fa-solid fa-users"></i> Equipo</a>
+            <a href="#diagrams"><i class="fa-solid fa-diagram-project"></i> Diagramas</a>
+            <a href="#docs"><i class="fa-regular fa-file-lines"></i> Docs</a>
+            <a href="https://github.com/users/KevinCallo/projects/4/" target="_blank" title="Abrir GitHub Projects"
+                style="color:var(--fc-orange-dark);">
+                <i class="fa-brands fa-github"></i> Projects
+            </a>
+        </div>
+
+        <div class="top-nav-sprint">
+            <span class="pulse-dot"></span>
+            <button class="nav-sprint-btn" aria-haspopup="true" aria-expanded="false" title="Cambiar de sprint">
+                <span class="nav-sprint-text">Sprint 2 · En curso</span>
+                <i class="fa-solid fa-chevron-down nav-sprint-chevron"></i>
+            </button>
+            <ul class="nav-sprint-dropdown" role="menu">
+                <li><button class="nav-sprint-option" data-sprint="sprint0" role="menuitem">Sprint 0 ·
+                        Historial</button></li>
+                <li><button class="nav-sprint-option" data-sprint="sprint1" role="menuitem">Sprint 1 ·
+                        Historial</button></li>
+                <li><button class="nav-sprint-option nav-sprint-option--active" data-sprint="sprint2"
+                        role="menuitem">Sprint 2 · En curso</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+    INTRODUCCIÓN AL PROYECTO
+    ========================================== -->
+    <section class="section section--intro" id="intro">
+        <div class="container">
+            <div class="intro-card">
+                <div class="intro-badge">
+                    <i class="fa-solid fa-cube"></i> Ingeniería y Procesos de Software
+                </div>
+                <h2>Introducción al Proyecto</h2>
+                <p>
+                    Este proyecto aplica la metodología ágil <strong>Scrum</strong> integrada con
+                    prácticas <strong>DevOps</strong> sobre <strong>FreeCAD</strong>, un modelador
+                    3D paramétrico de código abierto con licencia LGPL-2.0, desarrollado desde 2002
+                    por Jürgen Riegel, Werner Mayer y Yorik van Havre.
+                </p>
+                <p style="margin-top:12px;">
+                    FreeCAD está construido sobre tres pilares tecnológicos: <strong>OpenCASCADE</strong>
+                    como núcleo de modelado geométrico, <strong>Coin3D</strong> para la visualización 3D,
+                    y <strong>Qt</strong> como framework de interfaz. Su arquitectura modular permite
+                    extender sus capacidades mediante <strong>Python</strong>, siendo ampliamente usado
+                    en ingeniería mecánica, arquitectura y BIM (Building Information Modeling).
+                </p>
+                <p style="margin-top:12px;">
+                    El equipo conformado por 5 estudiantes de EPIS-UNSA —
+                    trabaja sobre el módulo <strong>BIM de FreeCAD</strong>, aplicando sprints de 15 días,
+                    pipeline CI/CD automatizado con <strong>GitHub Actions</strong>, y seguimiento del
+                    proceso mediante <strong>GitHub Projects</strong> e <strong>Issues</strong>.
+                </p>
+                <div class="intro-tags">
+                    <span><i class="fa-brands fa-github"></i> GitHub Projects</span>
+                    <span><i class="fa-brands fa-github-alt"></i> GitHub Actions CI/CD</span>
+                    <span><i class="fa-solid fa-people-group"></i> Scrum · 5 integrantes</span>
+                    <span><i class="fa-solid fa-cubes"></i> FreeCAD · OpenCASCADE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    SPRINT DASHBOARD
+    ========================================== -->
+    <section class="section" id="sprints">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-regular fa-calendar-check"></i>
+                <h2>Dashboard de Sprints</h2>
+                <span class="section-sub">Hacé clic en un sprint para ver su tablero</span>
+            </div>
+
+            <!-- Sprint Summary Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card metric-card--green fade-in">
+                    <div class="metric-icon"><i class="fa-solid fa-check-circle"></i></div>
+                    <div class="metric-value">2</div>
+                    <div class="metric-label">Sprints Completados</div>
+                </div>
+                <div class="metric-card metric-card--orange fade-in">
+                    <div class="metric-icon"><i class="fa-solid fa-spinner"></i></div>
+                    <div class="metric-value" id="active-sprint-count">1</div>
+                    <div class="metric-label">Sprint Activo</div>
+                </div>
+                <div class="metric-card metric-card--purple fade-in">
+                    <div class="metric-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="metric-value">5</div>
+                    <div class="metric-label">Total Sprints</div>
+                </div>
+                <div class="metric-card metric-card--red fade-in">
+                    <div class="metric-icon"><i class="fa-regular fa-clock"></i></div>
+                    <div class="metric-value">15</div>
+                    <div class="metric-label">Días por Sprint</div>
+                </div>
+            </div>
+
+            <!-- Sprint Cards - Click to switch Kanban -->
+            <div class="sprint-grid sprint-selector">
+
+                <!-- Sprint 0 - Done -->
+                <div class="card sprint-card sprint-card--done fade-in sprint-selectable" data-sprint="sprint0"
+                    tabindex="0" role="button" aria-label="Ver Sprint 0">
+                    <div class="sprint-card-header">
+                        <h3><i class="fa-solid fa-check-circle" style="color:var(--fc-blue-500);"></i> Sprint 0</h3>
+                        <span class="sprint-badge sprint-badge--done">Completado</span>
+                    </div>
+                    <div class="sprint-dates">
+                        <i class="fa-regular fa-calendar"></i> 01/05/2026 → 13/05/2026
+                    </div>
+                    <p class="sprint-desc">
+                        Planificación, análisis del sistema FreeCAD (OpenCASCADE, Coin3D, Qt),
+                        configuración del repositorio y GitHub Projects.
+                    </p>
+                    <div class="progress-wrapper">
+                        <div class="progress-label">
+                            <span>Progreso</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill progress-bar-fill--done" style="width:100%"></div>
+                        </div>
+                    </div>
+                    <div class="sprint-timeline">
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                    </div>
+                    <div class="sprint-click-hint"><i class="fa-solid fa-mouse-pointer"></i> Ver tablero</div>
+                </div>
+
+                <!-- Sprint 1 - Done -->
+                <div class="card sprint-card sprint-card--done fade-in sprint-selectable" data-sprint="sprint1"
+                    tabindex="0" role="button" aria-label="Ver Sprint 1">
+                    <div class="sprint-card-header">
+                        <h3><i class="fa-solid fa-check-circle" style="color:var(--fc-blue-500);"></i> Sprint 1</h3>
+                        <span class="sprint-badge sprint-badge--done">Completado</span>
+                    </div>
+                    <div class="sprint-dates">
+                        <i class="fa-regular fa-calendar"></i> 14/05/2026 → 28/05/2026
+                    </div>
+                    <p class="sprint-desc">
+                        Desarrollo del pipeline CI/CD con GitHub Actions,
+                        prototipos funcionales e integración continua.
+                    </p>
+                    <div class="progress-wrapper">
+                        <div class="progress-label">
+                            <span>Progreso</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill progress-bar-fill--done" style="width:100%"></div>
+                        </div>
+                    </div>
+                    <div class="sprint-timeline">
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                    </div>
+                    <div class="sprint-click-hint"><i class="fa-solid fa-mouse-pointer"></i> Ver tablero</div>
+                </div>
+
+                <!-- Sprint 2 - Active -->
+                <div class="card sprint-card sprint-card--active fade-in sprint-selectable sprint-selected"
+                    data-sprint="sprint2" tabindex="0" role="button" aria-label="Ver Sprint 2">
+                    <div class="sprint-card-header">
+                        <h3><i class="fa-solid fa-bolt" style="color:var(--fc-green);"></i> Sprint 2</h3>
+                        <span class="sprint-badge sprint-badge--active">En Curso</span>
+                    </div>
+                    <div class="sprint-dates">
+                        <i class="fa-regular fa-calendar"></i> 29/05/2026 → 10/06/2026
+                    </div>
+                    <p class="sprint-desc">
+                        Implementación de funcionalidades del módulo BIM de FreeCAD,
+                        desarrollo de herramientas paramétricas y pruebas de integración.
+                    </p>
+                    <div class="progress-wrapper">
+                        <div class="progress-label">
+                            <span>Progreso</span>
+                            <span id="sprint2-progress">—</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill progress-bar-fill--active" id="sprint2-bar" style="width:0%">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sprint-timeline">
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--active"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                    </div>
+                    <div class="sprint-click-hint"><i class="fa-solid fa-eye"></i> Viendo ahora</div>
+                </div>
+
+                <!-- Sprint 3 - Pending -->
+                <div class="card sprint-card sprint-card--pending fade-in">
+                    <div class="sprint-card-header">
+                        <h3><i class="fa-regular fa-clock"></i> Sprint 3</h3>
+                        <span class="sprint-badge sprint-badge--pending">Planeado</span>
+                    </div>
+                    <div class="sprint-dates">
+                        <i class="fa-regular fa-calendar"></i> 11/06/2026 → 25/06/2026
+                    </div>
+                    <p class="sprint-desc">
+                        Mejoras y optimización del código, refactorización,
+                        pruebas de integración y rendimiento.
+                    </p>
+                    <div class="progress-wrapper">
+                        <div class="progress-label">
+                            <span>Progreso</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div class="sprint-timeline">
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                    </div>
+                </div>
+
+                <!-- Sprint 4 - Pending -->
+                <div class="card sprint-card sprint-card--pending fade-in">
+                    <div class="sprint-card-header">
+                        <h3><i class="fa-regular fa-clock"></i> Sprint 4</h3>
+                        <span class="sprint-badge sprint-badge--pending">Planeado</span>
+                    </div>
+                    <div class="sprint-dates">
+                        <i class="fa-regular fa-calendar"></i> 26/06/2026 → 13/07/2026
+                    </div>
+                    <p class="sprint-desc">
+                        Documentación técnica y entrega final. Diagramas de clases
+                        de módulos BIM, manual de arquitectura.
+                    </p>
+                    <div class="progress-wrapper">
+                        <div class="progress-label">
+                            <span>Progreso</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div class="sprint-timeline">
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--done"></span>
+                        <span class="sprint-timeline-line sprint-timeline-line--fill"></span>
+                        <span class="sprint-timeline-dot sprint-timeline-dot--pending"></span>
+                    </div>
+                </div>
+
+            </div><!-- /sprint-grid -->
+
+            <!-- Sprint Timeline Legend -->
+            <div
+                style="display:flex; gap:20px; flex-wrap:wrap; font-size:0.78rem; color:var(--text-muted); margin-top:8px;">
+                <span><span class="sprint-timeline-dot sprint-timeline-dot--done"
+                        style="display:inline-block; vertical-align:middle; margin-right:4px;"></span> Completado</span>
+                <span><span class="sprint-timeline-dot sprint-timeline-dot--active"
+                        style="display:inline-block; vertical-align:middle; margin-right:4px;"></span> En curso</span>
+                <span><span class="sprint-timeline-dot sprint-timeline-dot--pending"
+                        style="display:inline-block; vertical-align:middle; margin-right:4px;"></span> Planeado</span>
+                <span><i class="fa-solid fa-eye" style="color:var(--fc-blue-500);"></i> Click para ver tablero, burndown
+                    y métricas</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    BOARD - KANBAN INTERACTIVO (GitHub Projects)
+    ========================================== -->
+    <section class="section" id="board" style="background: var(--bg-body);">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-solid fa-columns"></i>
+                <h2>Tablero Kanban</h2>
+                <span class="section-sub">Arrastrá las tarjetas · <a
+                        href="https://github.com/users/KevinCallo/projects/4/" target="_blank"
+                        style="color:var(--fc-blue-600);text-decoration:underline;">Sincronizado con GitHub
+                        Projects</a></span>
+            </div>
+
+            <!-- Sprint tabs for kanban -->
+            <div class="kanban-sprint-tabs">
+                <button class="kanban-sprint-tab" data-kanban-sprint="sprint0">
+                    <i class="fa-solid fa-check-circle" style="font-size:0.7rem;"></i> Sprint 0
+                </button>
+                <button class="kanban-sprint-tab" data-kanban-sprint="sprint1">
+                    <i class="fa-solid fa-check-circle" style="font-size:0.7rem;"></i> Sprint 1
+                </button>
+                <button class="kanban-sprint-tab kanban-sprint-tab--active" data-kanban-sprint="sprint2">
+                    <i class="fa-solid fa-bolt" style="font-size:0.7rem;"></i> Sprint 2 <span
+                        class="sprint-badge sprint-badge--active" style="font-size:0.55rem; padding:1px 8px;">En
+                        curso</span>
+                </button>
+            </div>
+
+            <p id="kanban-desc"
+                style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:20px; max-width:700px;">
+                Las tareas del equipo se gestionan a través de
+                <strong>GitHub Projects</strong> con un flujo Kanban.
+                <strong>Arrastrá las tarjetas</strong> entre columnas para actualizar el estado.
+                También podés hacer <strong>clic en las cards del dashboard</strong> para cambiar de sprint histórico.
+            </p>
+
+            <div class="kanban">
+                <!-- Product Backlog -->
+                <div class="kanban-column" data-column="product-backlog">
+                    <div class="kanban-column-header" data-column="product-backlog">
+                        <i class="fa-solid fa-inbox"></i> Product Backlog
+                        <span class="count">0</span>
+                    </div>
+                    <div class="kanban-items" data-column="product-backlog">
+                        <!-- Tasks rendered by JS -->
+                        <div class="kanban-add-card">
+                            <i class="fa-solid fa-plus"></i> Agregar tarea
+                        </div>
+                        <div class="kanban-card-form">
+                            <input type="text" class="kanban-form-title" placeholder="Nombre de la tarea..."
+                                maxlength="80">
+                            <select class="kanban-form-assignee">
+                                <option value="">Sin asignar</option>
+                            </select>
+                            <select class="kanban-form-type">
+                                <option value="task">Task</option>
+                                <option value="feature">Feature</option>
+                                <option value="bug">Bug</option>
+                                <option value="docs">Docs</option>
+                                <option value="research">Research</option>
+                            </select>
+                            <div class="kanban-card-form-actions">
+                                <button class="kanban-card-form-add">Agregar</button>
+                                <button class="kanban-card-form-cancel">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint Backlog -->
+                <div class="kanban-column" data-column="sprint-backlog">
+                    <div class="kanban-column-header" data-column="sprint-backlog">
+                        <i class="fa-regular fa-rectangle-list"></i> Sprint Backlog
+                        <span class="count">0</span>
+                    </div>
+                    <div class="kanban-items" data-column="sprint-backlog">
+                        <!-- Tasks rendered by JS -->
+                        <div class="kanban-add-card">
+                            <i class="fa-solid fa-plus"></i> Agregar tarea
+                        </div>
+                        <div class="kanban-card-form">
+                            <input type="text" class="kanban-form-title" placeholder="Nombre de la tarea..."
+                                maxlength="80">
+                            <select class="kanban-form-assignee">
+                                <option value="">Sin asignar</option>
+                            </select>
+                            <select class="kanban-form-type">
+                                <option value="task">Task</option>
+                                <option value="feature">Feature</option>
+                                <option value="bug">Bug</option>
+                                <option value="docs">Docs</option>
+                                <option value="research">Research</option>
+                            </select>
+                            <div class="kanban-card-form-actions">
+                                <button class="kanban-card-form-add">Agregar</button>
+                                <button class="kanban-card-form-cancel">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- In Progress -->
+                <div class="kanban-column" data-column="inprogress">
+                    <div class="kanban-column-header" data-column="inprogress">
+                        <i class="fa-solid fa-spinner"></i> In Progress
+                        <span class="count">0</span>
+                    </div>
+                    <div class="kanban-items" data-column="inprogress">
+                        <!-- Tasks rendered by JS -->
+                        <div class="kanban-add-card">
+                            <i class="fa-solid fa-plus"></i> Agregar tarea
+                        </div>
+                        <div class="kanban-card-form">
+                            <input type="text" class="kanban-form-title" placeholder="Nombre de la tarea..."
+                                maxlength="80">
+                            <select class="kanban-form-assignee">
+                                <option value="">Sin asignar</option>
+                            </select>
+                            <select class="kanban-form-type">
+                                <option value="task">Task</option>
+                                <option value="feature">Feature</option>
+                                <option value="bug">Bug</option>
+                                <option value="docs">Docs</option>
+                                <option value="research">Research</option>
+                            </select>
+                            <div class="kanban-card-form-actions">
+                                <button class="kanban-card-form-add">Agregar</button>
+                                <button class="kanban-card-form-cancel">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review / QA (Testing) -->
+                <div class="kanban-column" data-column="review">
+                    <div class="kanban-column-header" data-column="review">
+                        <i class="fa-solid fa-flask"></i> Review/QA (Testing)
+                        <span class="count">0</span>
+                    </div>
+                    <div class="kanban-items" data-column="review">
+                        <!-- Tasks rendered by JS -->
+                        <div class="kanban-add-card">
+                            <i class="fa-solid fa-plus"></i> Agregar tarea
+                        </div>
+                        <div class="kanban-card-form">
+                            <input type="text" class="kanban-form-title" placeholder="Nombre de la tarea..."
+                                maxlength="80">
+                            <select class="kanban-form-assignee">
+                                <option value="">Sin asignar</option>
+                            </select>
+                            <select class="kanban-form-type">
+                                <option value="task">Task</option>
+                                <option value="feature">Feature</option>
+                                <option value="bug">Bug</option>
+                                <option value="docs">Docs</option>
+                                <option value="research">Research</option>
+                            </select>
+                            <div class="kanban-card-form-actions">
+                                <button class="kanban-card-form-add">Agregar</button>
+                                <button class="kanban-card-form-cancel">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Done -->
+                <div class="kanban-column" data-column="done">
+                    <div class="kanban-column-header" data-column="done">
+                        <i class="fa-solid fa-check-circle"></i> Done
+                        <span class="count">0</span>
+                    </div>
+                    <div class="kanban-items" data-column="done">
+                        <!-- Tasks rendered by JS -->
+                        <div class="kanban-add-card">
+                            <i class="fa-solid fa-plus"></i> Agregar tarea
+                        </div>
+                        <div class="kanban-card-form">
+                            <input type="text" class="kanban-form-title" placeholder="Nombre de la tarea..."
+                                maxlength="80">
+                            <select class="kanban-form-assignee">
+                                <option value="">Sin asignar</option>
+                            </select>
+                            <select class="kanban-form-type">
+                                <option value="task">Task</option>
+                                <option value="feature">Feature</option>
+                                <option value="bug">Bug</option>
+                                <option value="docs">Docs</option>
+                                <option value="research">Research</option>
+                            </select>
+                            <div class="kanban-card-form-actions">
+                                <button class="kanban-card-form-add">Agregar</button>
+                                <button class="kanban-card-form-cancel">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA to GitHub Projects -->
+            <div class="github-projects-cta">
+                <div>
+                    <h3><i class="fa-brands fa-github"></i> Ver en GitHub Projects</h3>
+                    <p>Accedé al tablero completo con milestones y seguimiento en tiempo real.</p>
+                </div>
+                <a href="https://github.com/users/KevinCallo/projects/4/" target="_blank" class="btn btn--primary">
+                    <i class="fa-brands fa-github"></i> Ir al Projects Board
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    SPRINT DETAILS
+    ========================================== -->
+    <section class="section" id="sprint-detail">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-solid fa-list"></i>
+                <h2>Detalle del Sprint</h2>
+                <span class="section-sub" id="sprint-detail-sub">Sprint 2 · BIM y Herramientas Paramétricas</span>
+            </div>
+
+            <!-- ===== SPRINT 0 DETAIL ===== -->
+            <div id="sprint0-detail" class="sprint-detail-content" style="display:none;">
+                <div class="card" style="padding:28px;">
+                    <div class="sprint-detail-header">
+                        <div class="sprint-detail-title">
+                            <span style="font-size:1.6rem; color:var(--fc-blue-500);"><i
+                                    class="fa-solid fa-cube"></i></span>
+                            <h3>Sprint 0 · Setup y Planificación</h3>
+                            <span class="sprint-badge sprint-badge--done">Completado</span>
+                        </div>
+                        <div class="sprint-detail-meta">
+                            <span><i class="fa-regular fa-calendar"></i> 01/05/2026 → 13/05/2026</span>
+                            <span><i class="fa-regular fa-clock"></i> 12 días</span>
+                            <span><i class="fa-solid fa-list-check"></i> 12 story points</span>
+                        </div>
+                    </div>
+
+                    <div class="sprint-goals">
+                        <div class="card goal-card goal-card--done">
+                            <h4><i class="fa-solid fa-server" style="color:var(--fc-green);"></i> Infraestructura</h4>
+                            <p>Configuración del repositorio GitHub, Git Pages y Projects board.</p>
+                        </div>
+                        <div class="card goal-card goal-card--done">
+                            <h4><i class="fa-solid fa-magnifying-glass-chart" style="color:var(--fc-green);"></i>
+                                Análisis</h4>
+                            <p>Análisis de arquitectura FreeCAD: OpenCASCADE, Coin3D, Qt, Python.</p>
+                        </div>
+                        <div class="card goal-card goal-card--done">
+                            <h4><i class="fa-solid fa-clipboard" style="color:var(--fc-green);"></i> Planificación</h4>
+                            <p>Definición de historias de usuario, épicas y roadmap del proyecto.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:16px;">
+                        <h4 style="font-size:0.9rem; margin-bottom:8px; color:var(--text-primary);">
+                            <i class="fa-regular fa-circle-check" style="color:var(--fc-green);"></i>
+                            Sprint Backlog
+                        </h4>
+                        <ul style="list-style:none; font-size:0.85rem; color:var(--text-secondary); line-height:2;">
+                            <li><i class="fa-solid fa-check-circle" style="color:var(--fc-green); width:20px;"></i>
+                                Configurar repositorio GitHub y ramas</li>
+                            <li><i class="fa-solid fa-check-circle" style="color:var(--fc-green); width:20px;"></i>
+                                Analizar arquitectura FreeCAD (OpenCASCADE, Coin3D, Qt)</li>
+                            <li><i class="fa-solid fa-check-circle" style="color:var(--fc-green); width:20px;"></i>
+                                Configurar GitHub Projects con columnas Kanban</li>
+                            <li><i class="fa-solid fa-check-circle" style="color:var(--fc-green); width:20px;"></i>
+                                Definir historias de usuario del proyecto</li>
+                            <li><i class="fa-solid fa-check-circle" style="color:var(--fc-green); width:20px;"></i>
+                                Crear planificación inicial y épicas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SPRINT 1 DETAIL ===== -->
+            <div id="sprint1-detail" class="sprint-detail-content" style="display:none;">
+                <div class="card" style="padding:28px;">
+                    <div class="sprint-detail-header">
+                        <div class="sprint-detail-title">
+                            <span style="font-size:1.6rem; color:var(--fc-green);"><i
+                                    class="fa-solid fa-bolt"></i></span>
+                            <h3>Sprint 1 · CI/CD y Prototipado</h3>
+                            <span class="sprint-badge sprint-badge--done">Completado</span>
+                        </div>
+                        <div class="sprint-detail-meta">
+                            <span><i class="fa-regular fa-calendar"></i> 14/05/2026 → 28/05/2026</span>
+                            <span><i class="fa-regular fa-clock"></i> 15 días</span>
+                            <span><i class="fa-solid fa-list-check"></i> 20 story points</span>
+                        </div>
+                    </div>
+
+                    <div class="sprint-goals">
+                        <div class="card goal-card goal-card--done">
+                            <h4><i class="fa-solid fa-gears" style="color:var(--fc-green);"></i> CI/CD Pipeline</h4>
+                            <p>Configurar GitHub Actions con integración continua y despliegue automático a Pages.</p>
+                        </div>
+                        <div class="card goal-card goal-card--done">
+                            <h4><i class="fa-solid fa-cube" style="color:var(--fc-green);"></i> Prototipado</h4>
+                            <p>Primeros prototipos funcionales de módulos paramétricos en FreeCAD.</p>
+                        </div>
+                        <div class="card goal-card goal-card--pending">
+                            <h4><i class="fa-solid fa-vial" style="color:var(--fc-gray);"></i> Pruebas Iniciales</h4>
+                            <p>Plan de pruebas unitarias y validación del pipeline.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:16px;">
+                        <h4 style="font-size:0.9rem; margin-bottom:8px; color:var(--text-primary);">
+                            <i class="fa-regular fa-circle-check" style="color:var(--fc-green);"></i>
+                            Sprint Backlog
+                        </h4>
+                        <ul style="list-style:none; font-size:0.85rem; color:var(--text-secondary); line-height:2;">
+                            <li><i class="fa-solid fa-check-circle" style="color:var(--fc-green); width:20px;"></i>
+                                Crear repositorio y configurar GitHub Pages</li>
+                            <li><i class="fa-solid fa-check-circle" style="color:var(--fc-green); width:20px;"></i>
+                                Configurar GitHub Actions para CI/CD</li>
+                            <li><i class="fa-solid fa-check-circle" style="color:var(--fc-green); width:20px;"></i>
+                                Diseñar dashboard del proyecto (actual)</li>
+                            <li><i class="fa-regular fa-circle" style="color:var(--fc-orange); width:20px;"></i>
+                                Implementar tests automatizados</li>
+                            <li><i class="fa-regular fa-circle" style="color:var(--fc-muted); width:20px;"></i>
+                                Documentar pipeline DevOps</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SPRINT 2 DETAIL ===== -->
+            <div id="sprint2-detail" class="sprint-detail-content">
+                <div class="card" style="padding:28px;">
+                    <div class="sprint-detail-header">
+                        <div class="sprint-detail-title">
+                            <span style="font-size:1.6rem; color:var(--fc-orange);"><i
+                                    class="fa-solid fa-bolt"></i></span>
+                            <h3>Sprint 2 · BIM y Herramientas Paramétricas</h3>
+                            <span class="sprint-badge sprint-badge--active">En Curso</span>
+                        </div>
+                        <div class="sprint-detail-meta">
+                            <span><i class="fa-regular fa-calendar"></i> 29/05/2026 → 10/06/2026</span>
+                            <span><i class="fa-regular fa-clock"></i> 12 días</span>
+                            <span><i class="fa-solid fa-list-check"></i> 25 story points</span>
+                        </div>
+                    </div>
+
+                    <div class="sprint-goals">
+                        <div class="card goal-card goal-card--active">
+                            <h4><i class="fa-solid fa-building" style="color:var(--fc-orange);"></i> Módulo BIM</h4>
+                            <p>Implementación de funcionalidades del módulo BIM de FreeCAD.</p>
+                        </div>
+                        <div class="card goal-card goal-card--active">
+                            <h4><i class="fa-solid fa-cubes" style="color:var(--fc-orange);"></i> Paramétricas</h4>
+                            <p>Desarrollo de herramientas paramétricas y restricciones en Part.</p>
+                        </div>
+                        <div class="card goal-card goal-card--pending">
+                            <h4><i class="fa-solid fa-vial" style="color:var(--fc-gray);"></i> Integración</h4>
+                            <p>Pruebas de integración entre módulos BIM y herramientas existentes.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:16px;">
+                        <h4 style="font-size:0.9rem; margin-bottom:8px; color:var(--text-primary);">
+                            <i class="fa-regular fa-circle-check" style="color:var(--fc-green);"></i>
+                            Sprint Backlog
+                        </h4>
+                        <ul style="list-style:none; font-size:0.85rem; color:var(--text-secondary); line-height:2;">
+                            <li><i class="fa-solid fa-check-circle" style="color:var(--fc-green); width:20px;"></i>
+                                Setup del entorno de desarrollo BIM</li>
+                            <li><i class="fa-regular fa-circle" style="color:var(--fc-orange); width:20px;"></i>
+                                Implementar funcionalidades BIM</li>
+                            <li><i class="fa-regular fa-circle" style="color:var(--fc-orange); width:20px;"></i>
+                                Desarrollar herramientas paramétricas Part</li>
+                            <li><i class="fa-regular fa-circle" style="color:var(--fc-muted); width:20px;"></i> Pruebas
+                                de integración módulo BIM</li>
+                            <li><i class="fa-regular fa-circle" style="color:var(--fc-muted); width:20px;"></i>
+                                Documentación de módulos BIM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    BURNDOWN CHARTS
+    ========================================== -->
+    <section class="section" id="burndown" style="background: var(--bg-body);">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-regular fa-chart-bar"></i>
+                <h2>Burndown Charts</h2>
+                <span class="section-sub">Seguimiento de story points por sprint</span>
+            </div>
+
+            <div class="card" style="padding:28px;">
+                <div class="burndown-tabs">
+                    <button class="burndown-tab" data-sprint="sprint0">
+                        <i class="fa-solid fa-check-circle"></i> Sprint 0
+                    </button>
+                    <button class="burndown-tab" data-sprint="sprint1">
+                        <i class="fa-solid fa-check-circle"></i> Sprint 1
+                    </button>
+                    <button class="burndown-tab burndown-tab--active" data-sprint="sprint2">
+                        <i class="fa-solid fa-bolt"></i> Sprint 2
+                    </button>
+                </div>
+
+                <div class="burndown-chart-container">
+                    <!-- SVG rendered by JS -->
+                </div>
+                <div class="burndown-info">
+                    <!-- Stats rendered by JS -->
+                </div>
+
+                <!-- Burndown description -->
+                <div class="burndown-description">
+                    <div class="burndown-desc-icon">
+                        <i class="fa-regular fa-circle-question"></i>
+                    </div>
+                    <div class="burndown-desc-text">
+                        <strong>¿Qué es el Burndown Chart?</strong><br>
+                        Muestra el trabajo pendiente (<em>story points</em>) a lo largo del sprint.
+                        La línea <strong>gris punteada</strong> representa el ritmo <strong>ideal</strong>
+                        (quemado perfecto). La línea <strong>de color</strong> muestra el progreso <strong>real</strong>
+                        del equipo. Si va por debajo de la ideal → vamos bien. Si va por encima → estamos atrasados.
+                    </div>
+                    <div class="burndown-desc-logro">
+                        <strong><i class="fa-solid fa-trophy" style="color:var(--fc-orange);"></i> Logros del
+                            equipo:</strong>
+                        <span id="burndown-achievement">Sprint 1 completado con 17/20 story points quemados (85%).
+                            Pipeline CI/CD funcional y dashboard desplegado en GitHub Pages.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    TEAM & ROLES DRAG & DROP
+    ========================================== -->
+    <section class="section" id="team">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-solid fa-users"></i>
+                <h2>Equipo · Roles Scrum</h2>
+                <span class="section-sub">Arrastrá los integrantes a su rol</span>
+            </div>
+
+            <div class="roles-area">
+                <!-- Drop zones for roles -->
+                <div class="roles-dropzones">
+                    <!-- Scrum Master -->
+                    <div class="role-dropzone" data-role="sm">
+                        <div class="role-dropzone-header">
+                            <i class="fa-solid fa-helmet-safety" style="color:#e67e22;"></i>
+                            Scrum Master
+                            <span class="role-count">Vacío</span>
+                        </div>
+                        <div class="role-dropzone-members"></div>
+                    </div>
+
+                    <!-- Product Owner -->
+                    <div class="role-dropzone" data-role="po">
+                        <div class="role-dropzone-header">
+                            <i class="fa-solid fa-clipboard-list" style="color:#8e44ad;"></i>
+                            Product Owner
+                            <span class="role-count">Vacío</span>
+                        </div>
+                        <div class="role-dropzone-members"></div>
+                    </div>
+
+                    <!-- Developer -->
+                    <div class="role-dropzone" data-role="dev">
+                        <div class="role-dropzone-header">
+                            <i class="fa-solid fa-code" style="color:#27ae60;"></i>
+                            Developer
+                            <span class="role-count">Vacío</span>
+                        </div>
+                        <div class="role-dropzone-members"></div>
+                    </div>
+                </div>
+
+                <!-- Team Pool + Diagram -->
+                <div>
+                    <!-- Team Pool (unassigned) -->
+                    <div class="team-pool">
+                        <div class="team-pool-header">
+                            <i class="fa-solid fa-people-group" style="color:var(--fc-blue-600);"></i>
+                            Integrantes del Equipo
+                            <span
+                                style="font-weight:400; font-size:0.75rem; color:var(--text-muted); margin-left:auto;">Arrastrá
+                                a un rol</span>
+                        </div>
+                        <div class="team-pool-members">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Roles Diagram -->
+                    <div class="roles-diagram" style="margin-top:16px;">
+                        <h3><i class="fa-solid fa-diagram-project" style="color:var(--fc-blue-600);"></i> Diagrama de
+                            Roles Scrum</h3>
+                        <div class="roles-diagram-content" style="min-height:200px;">
+                            <!-- SVG rendered by JS -->
+                        </div>
+                        <div class="roles-legend">
+                            <span><i class="fa-solid fa-helmet-safety" style="color:#e67e22;"></i> Scrum Master</span>
+                            <span><i class="fa-solid fa-clipboard-list" style="color:#8e44ad;"></i> Product Owner</span>
+                            <span><i class="fa-solid fa-code" style="color:#27ae60;"></i> Developer</span>
+                            <span><i class="fa-regular fa-user"></i> Sin asignar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    DIAGRAMS
+    ========================================== -->
+    <section class="section" id="diagrams" style="background: var(--bg-body);">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-solid fa-diagram-project"></i>
+                <h2>Diagramas del Proyecto</h2>
+                <span class="section-sub">CI/CD · Gantt histórico FreeCAD</span>
+            </div>
+
+            <div class="diagram-section">
+
+                <!-- CI/CD Pipeline -->
+                <div class="card diagram-card">
+                    <h3><i class="fa-solid fa-gears" style="color:var(--fc-blue-600);"></i> Pipeline CI/CD DevOps</h3>
+                    <div class="pipeline">
+                        <span class="pipeline-step pipeline-step--success">
+                            <i class="fa-solid fa-check-circle"></i> Commit
+                        </span>
+                        <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="pipeline-step pipeline-step--success">
+                            <i class="fa-solid fa-check-circle"></i> Push
+                        </span>
+                        <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="pipeline-step pipeline-step--running">
+                            <i class="fa-solid fa-spinner"></i> GitHub Actions
+                        </span>
+                        <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="pipeline-step pipeline-step--success">
+                            <i class="fa-solid fa-check-circle"></i> Tests
+                        </span>
+                        <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="pipeline-step pipeline-step--success">
+                            <i class="fa-solid fa-check-circle"></i> Build
+                        </span>
+                        <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="pipeline-step pipeline-step--success">
+                            <i class="fa-solid fa-check-circle"></i> Pages Deploy
+                        </span>
+                    </div>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:8px;">
+                        <i class="fa-regular fa-circle-check" style="color:var(--fc-green);"></i>
+                        Último deploy exitoso · Pages actualizado automáticamente en cada push a <code>main</code>
+                    </p>
+                    <div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">
+                        <span
+                            style="font-size:0.7rem; padding:3px 10px; border-radius:50px; background:#eafaf1; color:#1a7a44; font-weight:600;">
+                            <i class="fa-solid fa-check-circle" style="font-size:0.6rem;"></i> CodeQL Analysis
+                        </span>
+                        <span
+                            style="font-size:0.7rem; padding:3px 10px; border-radius:50px; background:#eafaf1; color:#1a7a44; font-weight:600;">
+                            <i class="fa-solid fa-check-circle" style="font-size:0.6rem;"></i> Lint & Format
+                        </span>
+                        <span
+                            style="font-size:0.7rem; padding:3px 10px; border-radius:50px; background:#fef5e7; color:#a04000; font-weight:600;">
+                            <i class="fa-solid fa-spinner" style="font-size:0.6rem;"></i> Deploy Preview
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Gantt Chart - FreeCAD Traditional Development -->
+                <div class="card diagram-card">
+                    <h3><i class="fa-solid fa-chart-bar" style="color:var(--fc-blue-600);"></i> Gantt · Desarrollo
+                        Tradicional FreeCAD</h3>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">
+                        Línea de tiempo del desarrollo en cascada (<strong>waterfall</strong>)
+                        que FreeCAD utilizó históricamente, contrastando con el enfoque ágil Scrum.
+                    </p>
+                    <div class="gantt-container">
+                        <div class="gantt-chart">
+                            <!-- Header: Phases -->
+                            <div class="gantt-header">
+                                <div class="gantt-header-cell">Fase</div>
+                                <div class="gantt-header-cell">2002</div>
+                                <div class="gantt-header-cell">2005</div>
+                                <div class="gantt-header-cell">2008</div>
+                                <div class="gantt-header-cell">2011</div>
+                                <div class="gantt-header-cell">2014</div>
+                                <div class="gantt-header-cell">2017</div>
+                                <div class="gantt-header-cell">2020</div>
+                                <div class="gantt-header-cell">2023+</div>
+                            </div>
+
+                            <!-- Row: Planificación -->
+                            <div class="gantt-row">
+                                <div class="gantt-row-label">Planificación</div>
+                                <div class="gantt-bar-wrapper">
+                                    <div class="gantt-bar gantt-bar--plan" style="left:0%; width:20%;"
+                                        title="Planificación inicial del proyecto FreeCAD">
+                                        2002–2005
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Row: Análisis -->
+                            <div class="gantt-row">
+                                <div class="gantt-row-label">Análisis</div>
+                                <div class="gantt-bar-wrapper">
+                                    <div class="gantt-bar gantt-bar--analysis" style="left:12%; width:25%;"
+                                        title="Análisis de requisitos y diseño arquitectónico">
+                                        2004–2007
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Row: Diseño -->
+                            <div class="gantt-row">
+                                <div class="gantt-row-label">Diseño</div>
+                                <div class="gantt-bar-wrapper">
+                                    <div class="gantt-bar gantt-bar--design" style="left:25%; width:30%;"
+                                        title="Diseño del núcleo OpenCASCADE y módulos iniciales">
+                                        2006–2010
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Row: Implementación -->
+                            <div class="gantt-row">
+                                <div class="gantt-row-label">Implementación</div>
+                                <div class="gantt-bar-wrapper">
+                                    <div class="gantt-bar gantt-bar--impl" style="left:35%; width:45%;"
+                                        title="Implementación continua de módulos (Part, Draft, Arch, BIM)">
+                                        2008–2018
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Row: Pruebas -->
+                            <div class="gantt-row">
+                                <div class="gantt-row-label">Pruebas</div>
+                                <div class="gantt-bar-wrapper">
+                                    <div class="gantt-bar gantt-bar--testing" style="left:55%; width:30%;"
+                                        title="Pruebas de integración y estabilización">
+                                        2014–2020
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Row: Mantenimiento -->
+                            <div class="gantt-row">
+                                <div class="gantt-row-label">Mantenimiento</div>
+                                <div class="gantt-bar-wrapper">
+                                    <div class="gantt-bar gantt-bar--deploy" style="left:75%; width:25%;"
+                                        title="Mantenimiento continuo y releases">
+                                        2018–Presente
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /diagram-section -->
+        </div>
+    </section>
+
+    <!-- ==========================================
+    MÉTRICAS DEVOPS
+    ========================================== -->
+    <section class="section" id="metrics">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-solid fa-chart-line"></i>
+                <h2>Métricas DevOps</h2>
+                <span class="section-sub">Pipeline Status · Automatización</span>
+            </div>
+
+            <div class="card" style="padding:20px 24px; margin-bottom:24px;">
+                <h3 style="font-size:0.95rem; margin-bottom:14px; color:var(--text-primary);">
+                    <i class="fa-solid fa-gears" style="color:var(--fc-blue-600);"></i>
+                    Estado del Pipeline
+                </h3>
+                <div class="pipeline">
+                    <span class="pipeline-step pipeline-step--success">
+                        <i class="fa-solid fa-check-circle"></i> Commit
+                    </span>
+                    <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span class="pipeline-step pipeline-step--success">
+                        <i class="fa-solid fa-check-circle"></i> Push
+                    </span>
+                    <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span class="pipeline-step pipeline-step--running">
+                        <i class="fa-solid fa-spinner"></i> GitHub Actions
+                    </span>
+                    <span class="pipeline-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span class="pipeline-step pipeline-step--success">
+                        <i class="fa-solid fa-check-circle"></i> Pages Deploy
+                    </span>
+
+                    <div class="pipeline-status">
+                        <span class="status-dot"></span>
+                        <span style="font-weight:600; color:#1a7a44;">3/3 runs · Passing</span>
+                    </div>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:8px; margin-bottom: 20px;">
+                    <i class="fa-regular fa-circle-check" style="color:var(--fc-green);"></i>
+                    Último deploy exitoso · Pages actualizado automáticamente en cada push a <code>main</code>
+                </p>
+
+                <div style="border-top: 1px solid var(--border-color); padding-top: 16px; display: flex; justify-content: flex-start;">
+                    <button id="toggle-console-btn"
+                        style="background: var(--fc-blue-600); color: white; border: none; padding: 10px 16px; font-size: 0.8rem; font-weight: 600; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s ease;">
+                        <i class="fa-solid fa-terminal"></i> Inspeccionar Log del Servidor (CI/CD)
+                    </button>
+                </div>
+            </div>
+
+            <div id="dynamic-console-section" style="display: none; margin-bottom: 24px; animation: fadeIn 0.3s ease;">
+                <div class="card"
+                    style="background: #0f172a; color: #94a3b8; font-family: 'Fira Code', Consolas, Monaco, monospace; font-size: 0.82rem; padding: 20px; border-radius: 8px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.5); border: 1px solid #1e293b; line-height: 1.6;">
+                    <div style="border-bottom: 1px solid #334155; padding-bottom: 10px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; color: #cbd5e1;">
+                        <span style="font-size: 0.75rem; font-weight: 600;">
+                            <i class="fa-solid fa-circle-nodes" style="color: #38bdf8;"></i> github-actions-api // real-time-fetch
+                        </span>
+                        <span id="pipeline-badge" style="font-size: 0.75rem; background: #334155; color: #94a3b8; padding: 2px 8px; border-radius: 4px; font-weight: 700;">
+                            <i class="fa-solid fa-spinner fa-spin"></i> CONECTANDO...
+                        </span>
+                    </div>
+                    <div id="console-live-log"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+    TECHNICAL DOCS
+    ========================================== -->
+    <section class="section" id="docs">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-regular fa-file-lines"></i>
+                <h2>Documentación Técnica</h2>
+                <span class="section-sub">Arquitectura FreeCAD</span>
+            </div>
+
+            <div class="card" style="padding:28px;">
+                <div style="display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start;">
+                    <div style="flex:1; min-width:240px;">
+                        <h3 style="font-size:1rem; margin-bottom:12px;">
+                            <i class="fa-solid fa-sitemap" style="color:var(--fc-blue-600);"></i>
+                            Arquitectura de FreeCAD
+                        </h3>
+                        <ul style="list-style:none; font-size:0.85rem; color:var(--text-secondary); line-height:2;">
+                            <li>
+                                <i class="fa-solid fa-cube" style="color:var(--fc-orange); width:20px;"></i>
+                                <strong>OpenCASCADE</strong> — Núcleo de modelado geométrico
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-cube" style="color:var(--fc-orange); width:20px;"></i>
+                                <strong>Coin3D</strong> — Visualización 3D (Open Inventor)
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-cube" style="color:var(--fc-orange); width:20px;"></i>
+                                <strong>Qt</strong> — Framework de interfaz de usuario
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-cube" style="color:var(--fc-orange); width:20px;"></i>
+                                <strong>Python</strong> — Lenguaje de scripting y módulos
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="flex:1; min-width:240px;">
+                        <h3 style="font-size:1rem; margin-bottom:12px;">
+                            <i class="fa-regular fa-folder-open" style="color:var(--fc-blue-600);"></i>
+                            Módulos a Documentar
+                        </h3>
+                        <ul style="list-style:none; font-size:0.85rem; color:var(--text-secondary); line-height:2;">
+                            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400); width:20px;"></i>
+                                BIM · Building Information Modeling</li>
+                            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400); width:20px;"></i>
+                                Part · Modelado paramétrico</li>
+                            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400); width:20px;"></i>
+                                Draft · Dibujo 2D/3D</li>
+                            <li><i class="fa-regular fa-file-code" style="color:var(--fc-blue-400); width:20px;"></i>
+                                Arch · Arquitectura</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top:24px; padding-top:20px; border-top:1px solid var(--fc-gray-light);">
+                    <h3 style="font-size:1rem; margin-bottom:16px;">
+                        <i class="fa-solid fa-code-compare" style="color:var(--fc-blue-600);"></i>
+                        Waterfall vs Scrum + DevOps
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:16px;">
+
+                        <!-- Waterfall -->
+                        <div
+                            style="flex:1; min-width:220px; background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; padding:16px;">
+                            <h4 style="font-size:0.88rem; color:#e74c3c; margin-bottom:10px;">
+                                <i class="fa-solid fa-arrow-down"></i> Waterfall (Tradicional)
+                            </h4>
+                            <ul style="list-style:none; font-size:0.82rem; color:var(--text-secondary); line-height:2;">
+                                <li><i class="fa-solid fa-xmark" style="color:#e74c3c; width:18px;"></i> Fases
+                                    secuenciales sin retorno</li>
+                                <li><i class="fa-solid fa-xmark" style="color:#e74c3c; width:18px;"></i> Entrega única
+                                    al final del proyecto</li>
+                                <li><i class="fa-solid fa-xmark" style="color:#e74c3c; width:18px;"></i> Cambios
+                                    costosos y difíciles</li>
+                                <li><i class="fa-solid fa-xmark" style="color:#e74c3c; width:18px;"></i> Cliente ve el
+                                    producto al final</li>
+                                <li><i class="fa-solid fa-xmark" style="color:#e74c3c; width:18px;"></i> Sin
+                                    automatización de despliegue</li>
+                            </ul>
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin-top:8px;">
+                                <i class="fa-regular fa-clock"></i> Así desarrolló FreeCAD históricamente (2002–2018)
+                            </p>
+                        </div>
+
+                        <!-- Scrum + DevOps -->
+                        <div
+                            style="flex:1; min-width:220px; background:var(--bg-card); border:1px solid var(--fc-green); border-radius:10px; padding:16px;">
+                            <h4 style="font-size:0.88rem; color:var(--fc-green); margin-bottom:10px;">
+                                <i class="fa-solid fa-rotate"></i> Scrum + DevOps (Nuestro enfoque)
+                            </h4>
+                            <ul style="list-style:none; font-size:0.82rem; color:var(--text-secondary); line-height:2;">
+                                <li><i class="fa-solid fa-check" style="color:var(--fc-green); width:18px;"></i> Sprints
+                                    iterativos de 15 días</li>
+                                <li><i class="fa-solid fa-check" style="color:var(--fc-green); width:18px;"></i>
+                                    Entregas continuas por sprint</li>
+                                <li><i class="fa-solid fa-check" style="color:var(--fc-green); width:18px;"></i>
+                                    Adaptación rápida a cambios</li>
+                                <li><i class="fa-solid fa-check" style="color:var(--fc-green); width:18px;"></i>
+                                    Feedback constante del equipo</li>
+                                <li><i class="fa-solid fa-check" style="color:var(--fc-green); width:18px;"></i> CI/CD
+                                    automatizado con GitHub Actions</li>
+                            </ul>
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin-top:8px;">
+                                <i class="fa-solid fa-bolt" style="color:var(--fc-green);"></i> Aplicado por el equipo
+                                en Sprint 0, 1 y 2
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div
+                    style="margin-top:20px; padding-top:20px; border-top:1px solid var(--fc-gray-light); text-align:center;">
+                    <p style="font-size:0.85rem; color:var(--text-muted);">
+                        <i class="fa-regular fa-clock"></i>
+                        La documentación completa con diagramas de clases estará disponible al finalizar el Hito 2.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+EVIDENCIAS
+========================================== -->
+    <section class="section" id="evidencias">
+        <div class="container">
+            <div class="section-header">
+                <i class="fa-solid fa-camera"></i>
+                <h2>Evidencias del Proyecto</h2>
+                <span class="section-sub">Pipeline CI/CD · Tests · GitHub Pages</span>
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:20px;">
+
+                <!-- Evidencia 1 -->
+                <div class="card" style="flex:1; min-width:280px; padding:20px;">
+                    <h3 style="font-size:0.95rem; margin-bottom:10px;">
+                        <i class="fa-solid fa-list-check" style="color:var(--fc-blue-600);"></i>
+                        Workflows CI/CD — GitHub Actions
+                    </h3>
+                    <img src="img/evidencias/pipeline-actions.png" alt="Pipeline Actions"
+                        style="width:100%; border-radius:8px; border:1px solid var(--border-color);">
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:10px;">
+                        Todos los workflows ejecutados correctamente en la rama <code>main</code>.
+                        Se evidencian los commits del equipo con status <strong>Success</strong>.
+                    </p>
+                </div>
+
+                <!-- Evidencia 2 -->
+                <div class="card" style="flex:1; min-width:280px; padding:20px;">
+                    <h3 style="font-size:0.95rem; margin-bottom:10px;">
+                        <i class="fa-solid fa-gears" style="color:var(--fc-green);"></i>
+                        Pipeline Detalle — Integration & Deployment
+                    </h3>
+                    <img src="img/evidencias/pipeline-detalle.png" alt="Pipeline Detalle"
+                        style="width:100%; border-radius:8px; border:1px solid var(--border-color);">
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:10px;">
+                        Job <code>integration-and-deployment</code> completado en 22s.
+                        Tests Python ejecutados y GitHub Pages actualizado automáticamente.
+                    </p>
+                </div>
+
+                <!-- Evidencia 3 -->
+                <div class="card" style="flex:1; min-width:280px; padding:20px;">
+                    <h3 style="font-size:0.95rem; margin-bottom:10px;">
+                        <i class="fa-solid fa-globe" style="color:var(--fc-orange);"></i>
+                        GitHub Pages — Sitio Desplegado
+                    </h3>
+                    <img src="img/evidencias/gitpages-web.png" alt="GitHub Pages"
+                        style="width:100%; border-radius:8px; border:1px solid var(--border-color);">
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:10px;">
+                        Dashboard del proyecto publicado en GitHub Pages con introducción
+                        ampliada, navegación completa y Sprint 2 activo.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    FOOTER
+    ========================================== -->
+    <footer>
+        <div class="footer-brand">
+            FreeCAD <span>·</span> IPS
+        </div>
+        <p style="margin-bottom:6px;">
+            Proyecto académico · Ingeniería y Procesos de Software 2026-A
+        </p>
+        <p>
+            <a href="https://github.com/KevinCallo/FREECAD_IPS" target="_blank">
+                <i class="fa-brands fa-github"></i> KevinCallo/FREECAD_IPS
+            </a>
+            &nbsp;·&nbsp;
+            <a href="https://KevinCallo.github.io/FREECAD_IPS/" target="_blank">
+                <i class="fa-solid fa-globe"></i> GitHub Pages
+            </a>
+            &nbsp;·&nbsp;
+            <a href="https://github.com/users/KevinCallo/projects/4/" target="_blank">
+                <i class="fa-solid fa-columns"></i> Projects Board
+            </a>
+        </p>
+    </footer>
+
+    <!-- ==========================================
+    JAVASCRIPT
+    ========================================== -->
+    <script src="js/app.js"></script>
+    <script src="js/kanban.js"></script>
+    <script src="js/roles.js"></script>
+    <script src="js/burndown.js"></script>
+
+    <!-- Sprint Detail switching happens via kanban.setActiveSprint -->
+
+</body>
+
+</html>
