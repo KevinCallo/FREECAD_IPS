@@ -29,6 +29,7 @@
 #include <QPainter>
 #include <QPointer>
 #include <QStatusBar>
+#include <QTabWidget>
 #include <QToolBar>
 #include <QToolButton>
 #include <QStyleOption>
@@ -623,6 +624,48 @@ QPointer<QWidget> createActionWidget()
 
     return actionWidget;
 }
+
+QString createToolbarToolTip(const QString& title, const QString& objectName)
+{
+    QString cleanTitle = title;
+    cleanTitle.remove(QLatin1Char('&'));
+
+    QString desc;
+    if (objectName == QStringLiteral("Part Design Feature") || objectName == QStringLiteral("PartDesign_Feature")) {
+        desc = QApplication::translate("Workbench", "Contenedor con herramientas para crear croquis y operaciones de diseño de piezas (Extrusión, Vaciado, Revolución).");
+    } else if (objectName == QStringLiteral("Part Design Helper") || objectName == QStringLiteral("PartDesign_Helper")) {
+        desc = QApplication::translate("Workbench", "Contenedor con herramientas auxiliares como redondeos, chaflanes, patrones repetitivos y geometría de referencia.");
+    } else if (objectName == QStringLiteral("Sketcher")) {
+        desc = QApplication::translate("Workbench", "Contenedor con herramientas para croquizar formas en 2D y aplicar restricciones geométricas y dimensionales.");
+    } else if (objectName == QStringLiteral("Sketcher geometries")) {
+        desc = QApplication::translate("Workbench", "Contenedor con herramientas de dibujo geométrico 2D (Línea, Círculo, Arco, Rectángulo).");
+    } else if (objectName == QStringLiteral("Sketcher constraints")) {
+        desc = QApplication::translate("Workbench", "Contenedor con herramientas para aplicar restricciones geométricas y dimensionales en croquis.");
+    } else if (objectName == QStringLiteral("Solids") || objectName == QStringLiteral("Part_Solids")) {
+        desc = QApplication::translate("Workbench", "Contenedor de formas geométricas sólidas primitivas (Cubo, Cilindro, Esfera, Cono).");
+    } else if (objectName == QStringLiteral("Part") || objectName == QStringLiteral("Part_Primitives")) {
+        desc = QApplication::translate("Workbench", "Contenedor con operaciones booleanas y de modificación general sobre sólidos.");
+    } else if (objectName == QStringLiteral("Macro")) {
+        desc = QApplication::translate("Workbench", "Contenedor con comandos para grabar, ejecutar y gestionar macros de automatización.");
+    } else if (objectName == QStringLiteral("View")) {
+        desc = QApplication::translate("Workbench", "Contenedor con herramientas para cambiar la visualización, estilo de dibujo y vistas en 3D.");
+    } else if (objectName == QStringLiteral("Standard")) {
+        desc = QApplication::translate("Workbench", "Contenedor con comandos estándar de archivo y edición (Nuevo, Abrir, Guardar, Deshacer, Rehacer).");
+    } else if (objectName == QStringLiteral("Structure")) {
+        desc = QApplication::translate("Workbench", "Contenedor con herramientas para crear grupos y estructurar la jerarquía del documento.");
+    } else {
+        desc = QApplication::translate("Workbench", "Contenedor de herramientas para el módulo correspondiente.");
+    }
+
+    QString tooltip = QStringLiteral("<p style='white-space:pre; margin-bottom:0.5em;'><b>%1</b></p>")
+                          .arg(cleanTitle.toHtmlEscaped());
+    tooltip += QStringLiteral("<p style='white-space:pre; margin:0;'>%1</p>").arg(desc.toHtmlEscaped());
+    if (!objectName.isEmpty()) {
+        tooltip += QStringLiteral("<p style='white-space:pre; margin-top:0.5em;'><i>%1</i></p>")
+                      .arg(objectName.toHtmlEscaped());
+    }
+    return tooltip;
+}
 }  // namespace
 
 int ToolBarManager::toolBarIconSize(QWidget* widget) const
@@ -804,6 +847,34 @@ void ToolBarManager::setup(ToolBarItem* toolBarItems)
     }
 
     setMovable(!areToolBarsLocked());
+
+    // Ribbon Simulator Injection
+    QTabWidget* ribbon = getMainWindow()->findChild<QTabWidget*>(QStringLiteral("RibbonTabWidget"));
+    if (ribbon) {
+        ribbon->clear(); // Remove all old tabs
+        // Find all visible toolbars that belong to this workbench and add them as tabs
+        for (const QString& name : this->toolbarNames) {
+            if (name == QStringLiteral("File") || 
+                name == QStringLiteral("Edit") || 
+                name == QStringLiteral("View") || 
+                name == QStringLiteral("Workbench") || 
+                name == QStringLiteral("Macro") || 
+                name == QStringLiteral("Structure") || 
+                name == QStringLiteral("Help")) {
+                continue; // Keep standard toolbars in QMainWindow's toolbar area
+            }
+            ToolBar* tb = findToolBar(toolBars(), name);
+            if (tb && !tb->isHidden()) {
+                // Prevent floating/moving to behave more like a Ribbon Panel
+                tb->setFloatable(false);
+                tb->setMovable(false);
+                int index = ribbon->addTab(tb, tb->windowTitle());
+                QString tabTip = createToolbarToolTip(tb->windowTitle(), tb->objectName());
+                ribbon->setTabToolTip(index, tabTip);
+                tb->setToolTip(tabTip);
+            }
+        }
+    }
 }
 
 void ToolBarManager::setup(ToolBarItem* item, QToolBar* toolbar) const
@@ -902,7 +973,10 @@ void ToolBarManager::restoreState() const
                 continue;
             }
             if (toolbar->parentWidget() != getMainWindow()) {
-                getMainWindow()->addToolBar(toolbar);
+                QTabWidget* ribbon = getMainWindow()->findChild<QTabWidget*>(QStringLiteral("RibbonTabWidget"));
+                if (!ribbon) {
+                    getMainWindow()->addToolBar(toolbar);
+                }
             }
         }
     }

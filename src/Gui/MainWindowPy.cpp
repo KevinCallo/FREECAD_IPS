@@ -136,7 +136,7 @@ Py::Object MainWindowPy::repr()
         throw Py::RuntimeError("Cannot print representation of deleted object");
     }
 
-    return Py::String("MainWindow");
+    return Py::String("MainWindow modificado por mi");
 }
 
 Py::Object MainWindowPy::getWindows(const Py::Tuple& args)

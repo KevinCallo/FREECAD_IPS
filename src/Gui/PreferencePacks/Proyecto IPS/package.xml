@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<package format="1">
+  <name>Proyecto IPS Theme</name>
+  <description>Preference Pack for Proyecto IPS</description>
+  <version>1.0.0</version>
+  <maintainer email="email@FreeCAD.org">IPS</maintainer>
+  <license file="../../LICENSE">LGPL2</license>
+  <url type="repository">https://github.com/FreeCAD/FreeCAD</url>
+  <content>
+    <preferencepack>
+      <name>Proyecto IPS</name>
+      <type>Theme</type>
+      <description>Applies a custom light theme with green accents for Proyecto IPS.</description>
+      <version>1.0.0</version>
+      <tag>built-in</tag>
+      <tag>background</tag>
+      <tag>light</tag>
+      <tag>green</tag>
+    </preferencepack>
+  </content>
+</package>

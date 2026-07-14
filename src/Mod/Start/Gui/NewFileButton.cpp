@@ -41,6 +41,8 @@ NewFileButton::NewFileButton(const NewButton& newButton)
     , descriptionLabel(new QLabel())
 {
     setObjectName(QStringLiteral("newFileButton"));
+    headingLabel->setObjectName(QStringLiteral("headingLabel"));
+    descriptionLabel->setObjectName(QStringLiteral("descriptionLabel"));
     auto hGrp = App::GetApplication().GetParameterGroupByPath(
         "User parameter:BaseApp/Preferences/Mod/Start"
     );

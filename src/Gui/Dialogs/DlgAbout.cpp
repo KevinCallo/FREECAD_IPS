@@ -233,7 +233,7 @@ void AboutDialog::setupLabels()
     QString version = ui->labelBuildVersion->text();
     version.replace(
         QStringLiteral("Unknown"),
-        QStringLiteral("%1.%2.%3%4").arg(major, minor, point, suffix)
+        QStringLiteral("%1.%2.%3%4 (Local Dev Custom Build)").arg(major, minor, point, suffix)
     );
     ui->labelBuildVersion->setText(version);
 

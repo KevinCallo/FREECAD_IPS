@@ -1200,6 +1200,14 @@ QAbstractButton[flat="true"] {
 
 #CreateNewRow > QPushButton {
   border-radius: @InputFieldBorderRadius;
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 @ButtonTopBackgroundColor, stop:1 @ButtonBottomBackgroundColor);
+  border: 1px solid @GeneralBorderColor;
+  padding: 10px;
+}
+
+#CreateNewRow > QPushButton:hover {
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 @GeneralBackgroundHoverColor, stop:1 @PrimaryColorDarken1);
+  border: 1px solid @AccentColor;
 }
 
 Gui--FileChooser QPushButton {
@@ -2658,10 +2666,12 @@ QWidget#thumbnailWidget {
 
 QWidget#thumbnailWidget[state="hovered"] {
   border: 1px solid @AccentColor;
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 @GeneralBackgroundHoverColor,stop:1 @PrimaryColorDarken1);
 }
 
 QWidget#thumbnailWidget[state="pressed"] {
   border: 1px solid @AccentColor;
+  background-color: @AccentBackgroundColor;
 }
 
 /**
@@ -2734,4 +2744,80 @@ QLineEdit[validationState="error"]:focus,
 QComboBox[validationState="error"]:focus {
     border: 1px solid #ff3b30;
     border-image: none;
+}
+
+/*==================================================================================================
+Welcome Page & Workspace Modernization
+==================================================================================================*/
+
+QMdiArea {
+  background-color: @PrimaryColorDarken2;
+}
+
+QScrollArea > QWidget#StartView,
+QScrollArea > QWidget > QWidget#CreateNewRow {
+  background-color: @PrimaryColor;
+}
+
+/* Section titles on the Welcome Screen */
+QWidget#StartView QLabel h1 {
+  font-size: 16px;
+  font-weight: bold;
+  color: @AccentColor;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  background-color: transparent;
+}
+
+/* Modern card listing of recent files and examples */
+StartGui--FileCardView {
+  border: none;
+  background-color: transparent;
+}
+
+/* Modern Welcome Screen Buttons with rounded corners and gradients */
+QPushButton#newFileButton {
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 @ButtonTopBackgroundColor, stop:1 @ButtonBottomBackgroundColor);
+  border: 1px solid @GeneralBorderColor;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+QPushButton#newFileButton:hover {
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 @GeneralBackgroundHoverColor, stop:1 @GeneralBackgroundColor);
+  border: 1.5px solid @AccentColor;
+}
+
+QPushButton#newFileButton:pressed {
+  background-color: @AccentColor;
+  border: 1px solid @AccentColor;
+}
+
+QPushButton#newFileButton QLabel {
+  background-color: transparent;
+  border: none;
+}
+
+QPushButton#newFileButton QLabel#headingLabel {
+  font-weight: bold;
+  color: @TextForegroundColor;
+}
+
+/* Muted description text inside the button */
+QPushButton#newFileButton QLabel#descriptionLabel {
+  color: @TextDisabledColor;
+  font-size: 10px;
+}
+
+/* Styling for RibbonTabWidget to show toolbar contents */
+QTabWidget#RibbonTabWidget {
+  min-height: 95px;
+  max-height: 95px;
+}
+
+QTabWidget#RibbonTabWidget QToolBar {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
 }

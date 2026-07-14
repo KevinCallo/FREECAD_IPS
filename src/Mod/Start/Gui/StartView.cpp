@@ -236,12 +236,18 @@ void StartView::configureNewFileButtons(QLayout* layout) const
          tr("Creates an architectural project"),
          QLatin1String(":/icons/BIMWorkbench.svg")}
     ));
+    auto mesh = gsl::owner<NewFileButton*>(new NewFileButton(
+        {tr("Mesh Design"),
+         tr("Creates a mesh design project for 3D printing"),
+         QLatin1String(":/icons/MeshWorkbench.svg")}
+    ));
 
     // TODO: Ensure all of the required WBs are actually available
     layout->addWidget(partDesign);
     layout->addWidget(assembly);
     layout->addWidget(draft);
     layout->addWidget(arch);
+    layout->addWidget(mesh);
     layout->addWidget(newEmptyFile);
     layout->addWidget(openFile);
 
@@ -251,6 +257,7 @@ void StartView::configureNewFileButtons(QLayout* layout) const
     connect(assembly, &QPushButton::clicked, this, &StartView::newAssemblyFile);
     connect(draft, &QPushButton::clicked, this, &StartView::newDraftFile);
     connect(arch, &QPushButton::clicked, this, &StartView::newArchFile);
+    connect(mesh, &QPushButton::clicked, this, &StartView::newMeshFile);
 }
 
 void StartView::configureFileCardWidget(QListView* fileCardWidget)
@@ -360,6 +367,26 @@ void StartView::newArchFile()
         Gui::Command::Gui,
         "Gui.activeDocument().activeView().viewDefaultOrientation(None, 10000.0)"
     );
+    postStart(PostStartBehavior::doNotSwitchWorkbench);
+}
+
+void StartView::newMeshFile()
+{
+    Gui::Application::Instance->commandManager().runCommandByName("Std_New");
+    Gui::Application::Instance->activateWorkbench("MeshWorkbench");
+    
+    // Create a simple example mesh (Sphere) for demonstration
+    Gui::Command::doCommand(Gui::Command::App, "import Mesh");
+    Gui::Command::doCommand(Gui::Command::App, "mesh = Mesh.createSphere(10.0, 50)");
+    Gui::Command::doCommand(Gui::Command::App, "obj = App.activeDocument().addObject('Mesh::Feature', 'Ejemplo_Malla')");
+    Gui::Command::doCommand(Gui::Command::App, "obj.Mesh = mesh");
+    Gui::Command::doCommand(Gui::Command::App, "App.activeDocument().recompute()");
+    
+    // Fit the active view to show the created mesh sphere after layout
+    QTimer::singleShot(100, []() {
+        Gui::Application::Instance->commandManager().runCommandByName("Std_ViewFitAll");
+    });
+
     postStart(PostStartBehavior::doNotSwitchWorkbench);
 }
 

@@ -480,7 +480,7 @@ void DlgSettingsGeneral::loadThemes()
             currentTheme = QString::fromLatin1(hGrp->GetASCII("Theme", "").c_str());
         }
         else {  // a brand new user
-            hGrp->SetASCII("Theme", themeClassic.toStdString());
+            hGrp->SetASCII("Theme", "Proyecto IPS");
             currentTheme = QString::fromLatin1(hGrp->GetASCII("Theme", "").c_str());
         }
     }

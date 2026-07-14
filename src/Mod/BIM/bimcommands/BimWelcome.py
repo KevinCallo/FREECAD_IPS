@@ -36,12 +36,13 @@ class BIM_Welcome:
     def GetResources(self):
         return {
             "Pixmap": "BIM_Welcome.svg",
-            "MenuText": QT_TRANSLATE_NOOP("BIM_Welcome", "BIM Welcome Screen"),
+            "MenuText": QT_TRANSLATE_NOOP("BIM_Welcome", "BIM Welcome Screen (Compiled Code)"),
             "ToolTip": QT_TRANSLATE_NOOP("BIM_Welcome", "Shows the BIM workbench welcome screen"),
         }
 
     def Activated(self):
         self.form = FreeCADGui.PySideUic.loadUi(":ui/dialogWelcome.ui")
+        self.form.setWindowTitle(self.form.windowTitle() + " (Modded compiled version)")
 
         # handle the tutorial links
         self.form.label_4.linkActivated.connect(self.handleLink)

@@ -435,7 +435,19 @@ MainWindow::MainWindow(QWidget* parent, Qt::WindowFlags f)
     d->mdiArea->setActivationOrder(QMdiArea::ActivationHistoryOrder);
 #endif
     d->mdiArea->setBackground(QBrush(QColor(160, 160, 160)));
-    setCentralWidget(d->mdiArea);
+    QWidget* centralContainer = new QWidget();
+    QVBoxLayout* centralLayout = new QVBoxLayout(centralContainer);
+    centralLayout->setContentsMargins(0, 0, 0, 0);
+    centralLayout->setSpacing(0);
+
+    QTabWidget* ribbonTab = new QTabWidget();
+    ribbonTab->setObjectName(QStringLiteral("RibbonTabWidget"));
+    ribbonTab->setDocumentMode(true); // Gives it a flatter, ribbon-like look
+    
+    centralLayout->addWidget(ribbonTab);
+    centralLayout->addWidget(d->mdiArea);
+    
+    setCentralWidget(centralContainer);
 
     statusBar()->setObjectName(QStringLiteral("statusBar"));
     connect(statusBar(), &QStatusBar::messageChanged, this, &MainWindow::statusMessageChanged);
@@ -620,6 +632,8 @@ MainWindow::MainWindow(QWidget* parent, Qt::WindowFlags f)
 
     // accept drops on the window, get handled in dropEvent, dragEnterEvent
     setAcceptDrops(true);
+
+    setWindowTitle(QStringLiteral("Proyecto IPS Modificacion FreeCAD - ") + windowTitle());
 
     statusBar()->showMessage(tr("Ready"), 2001);
 }
@@ -3021,8 +3035,7 @@ void MainWindow::setWindowTitle(const QString& string)
     bool showVersion = hGen->GetBool("ShowVersionInTitle", true);
 
     if (showVersion) {
-        // set main window title with FreeCAD Version
-        title = QString::fromStdString(App::Application::getNameWithVersion());
+        title = QString::fromLatin1("FREECAD MODIFICADO POR MI");
     }
     else {
         title = appname;

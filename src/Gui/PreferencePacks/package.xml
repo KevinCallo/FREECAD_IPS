@@ -35,5 +35,15 @@
       <tag>background</tag>
       <tag>dark</tag>
     </preferencepack>
+	<preferencepack>
+	  <name>Proyecto IPS</name>
+      <type>Theme</type>
+      <description>Applies a custom light theme with green accents for Proyecto IPS.</description>
+      <version>1.0.0</version>
+      <tag>built-in</tag>
+      <tag>background</tag>
+      <tag>light</tag>
+      <tag>green</tag>
+    </preferencepack>
   </content>
 </package>
