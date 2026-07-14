@@ -1,54 +1,85 @@
-# FreeCAD - Modernización de Interfaz e Integración de Mallas (Proyecto IPS)
+# Aplicación de Metodologías Ágiles (Scrum) y DevOps en el Desarrollo de Módulos BIM para FreeCAD
 
-Este repositorio contiene la versión modificada de **FreeCAD 1.1** desarrollada por el Equipo B para el curso de **Ingeniería y Procesos de Software / DevOps** de la Escuela Profesional de Ingeniería de Sistemas (EPIS) de la **Universidad Nacional de San Agustín de Arequipa (UNSA)**.
+Este repositorio alberga el código fuente del proyecto de desarrollo y modernización de **FreeCAD**, integrado bajo un ciclo de vida ágil y automatizado. El proyecto documenta la implementación conjunta de **Scrum** y **DevOps** para el diseño de interfaces modernas y la validación de flujos paramétricos de mallas 3D para impresión tridimensional.
 
-El objetivo del proyecto es implementar mejoras visuales significativas (interfaz tipo Ribbon), asistencia al usuario mediante tooltips avanzados y un flujo integrado de impresión 3D mediante el modelado de mallas rápidas.
-
----
-
-## 🚀 Características Implementadas
-
-### 1. Simulador de Interfaz Ribbon (RF-01, RF-02)
-* Agrupamiento de las herramientas del banco de trabajo activo en pestañas dinámicas mediante un componente contenedor `QTabWidget` (`RibbonTabWidget`).
-* Altura de interfaz Ribbon fijada en `95px` mediante estilos QSS personalizados para una visualización fluida sin colapsar el visor 3D.
-* Exclusión selectiva de las barras generales (File, Edit, View, etc.) para mantenerlas ancladas en la barra superior clásica, garantizando accesibilidad global y previniendo pestañas vacías.
-
-### 2. Tooltips Interactivos en HTML (RF-03, RF-04)
-* Generador dinámico de descripciones enriquecidas en C++ (`ToolBarManager.cpp`).
-* Al pasar el ratón por encima de los iconos o las pestañas de herramientas, se muestra una tarjeta con formato HTML que despliega el icono de la herramienta, su nombre destacado en negrita y su descripción detallada de uso.
-
-### 3. Acceso de Inicio a Mallas 3D y Auto-Enfoque (RF-05)
-* Integración del botón **"Mesh Design"** en la sección de *Archivo nuevo* de la pantalla de bienvenida.
-* Al ser pulsado, inicia un documento en blanco, activa el banco de trabajo `MeshWorkbench` y ejecuta de forma automatizada scripts de Python para insertar un sólido base (esfera teselada).
-* Implementación de una llamada asíncrona mediante un temporizador Qt (`QTimer::singleShot`) para ajustar de forma automática la cámara del viewport 3D al objeto mediante el comando `Std_ViewFitAll`.
+* **Institución:** Universidad Nacional de San Agustín de Arequipa (UNSA)
+* **Facultad:** Facultad de Ingeniería de Producción y Servicios
+* **Escuela:** Escuela Profesional de Ingeniería de Sistemas (EPIS)
+* **Curso:** Ingeniería y Procesos de Software / DevOps (Grupo B)
+* **Docente:** Ing. Diego Alonso Iquira Becerra
 
 ---
 
-## 🛠️ Stack Tecnológico
-* **Núcleo de Modelado/CAD:** C++17 (FreeCAD Core, Qt5/Qt6) y Python 3.10.
-* **Gestión de Entornos y Compilación:** Pixi y CMake.
-* **Dashboard del Proyecto:** Angular 20 (Standalone components & Signals) desplegado en GitHub Pages.
-* **Integración Continua (CI/CD):** GitHub Actions (`freecad-bim-ci.yml`) y pruebas automatizadas con Pytest.
+## 📄 Resumen del Proyecto
+El proyecto aborda la aplicación de Scrum combinado con prácticas DevOps sobre FreeCAD, un modelador 3D paramétrico de código abierto. El trabajo se estructuró en cuatro Sprints de 15 días cubriendo análisis de arquitectura, implementación de un pipeline CI/CD, desarrollo de módulos C++/Python de FreeCAD, y refactorización. Para la visibilidad del proyecto se desarrolló un Dashboard web en **Angular 20** (Standalone components, Signals) que despliega tableros Kanban interactivos y gráficos burndown. Los resultados exponen un pipeline completamente automatizado mediante GitHub Actions con despliegue en GitHub Pages, acumulando un total de **72 Story Points** planificados.
 
 ---
 
-## 💻 Compilación e Instalación
+## 👥 Equipo de Trabajo e Integrantes
+El equipo está compuesto por cinco estudiantes de la EPIS de la UNSA, rotando roles Scrum a lo largo de los hitos del proyecto:
 
-Para compilar el código fuente con las modificaciones de la interfaz, asegúrate de tener instalado `pixi` y ejecuta el comando de compilación en la raíz del repositorio:
+| Integrante | Rol Sprint 0 | Rol Sprint 1 | Rol Sprint 2 | Rol Sprint 3 |
+| :--- | :--- | :--- | :--- | :--- |
+| **Kevin Joel Callo Ccagiavilca** | Scrum Master | Product Owner | Scrum Master | Scrum Master |
+| **Mathias Davila Flores** | Developer | Developer | Developer | Developer |
+| **Paulo Quenta Ahumada** | Developer | Developer | Developer | Developer |
+| **Dario Rafael Cornejo Hurtado** | Developer | Scrum Master | Developer | Developer |
+| **Andhy Brayan Chipana Mamani** | Product Owner | Developer | Product Owner | Product Owner |
 
-```powershell
-pixi run build
+---
+
+## 📐 Arquitectura General del Sistema
+
+La solución integral se compone de cuatro capas interconectadas:
+
+```
+[ Capa 1: Despliegue en la Nube (CD) ]
+         │
+         ▼
+[ Capa 2: Frontend Angular 20 (Standalone & Signals) ]
+         │
+         ▼
+[ Capa 3: Núcleo Py/C++ (Módulos de FreeCAD) ]  <─── (Ribbon Simulator / Mesh Design)
+         │
+         ▼
+[ Capa 4: GitHub Actions (CI) ]  <─── (Checkout ──> Setup Python ──> Pytest)
 ```
 
-Una vez finalizada la compilación, puedes ejecutar FreeCAD y seleccionar el tema **Proyecto IPS** desde las preferencias generales para habilitar el estilo moderno de la ventana MDI.
+---
+
+## 🛠️ Tecnologías y Herramientas (Stack)
+* **Modelador CAD Base:** FreeCAD 1.1 (C++17, Qt5/Qt6, OpenCASCADE, Coin3D).
+* **Plataforma de Visibilidad:** Angular 20.3 (TypeScript 5.9, Karma/Jasmine).
+* **Entorno de Programación:** Python 3.10 (Pytest para pruebas de lógica BIM).
+* **Automatización DevOps:** GitHub Actions (Integración Continua) y GitHub Pages (Despliegue Continuo).
+* **Gestión Ágil:** GitHub Projects (Tableros Kanban dinámicos).
 
 ---
 
-## 👥 Equipo de Trabajo (Grupo B)
-* **Kevin Joel Callo Ccagiavilca** - *Scrum Master / Developer* (Correos: kcallo@unsa.edu.pe)
-* **Paulo Quenta Ahumada** - *Developer* (Correos: pquentaa@unsa.edu.pe)
-* **Dario Rafael Cornejo Hurtado** - *Developer* (Correos: dcornejohu@unsa.edu.pe)
-* **Andhy Brayan Chipana Mamani** - *Product Owner* (Correos: achipana@unsa.edu.pe)
-* **Mathias Davila Flores** - *Developer* (Correos: mdavilaf@unsa.edu.pe)
+## ⚙️ Modificaciones de Software en FreeCAD
 
-**Docente:** Ing. Diego Alonso Iquira Becerra
+### 1. Simulador de Interfaz Ribbon (C++)
+Se inyecta dinámicamente un contenedor `QTabWidget` (`RibbonTabWidget`) sobre el área MDI en `MainWindow.cpp`. Durante el arranque, `ToolBarManager.cpp` filtra las barras estándar y carga las específicas del Workbench activo como pestañas de Ribbon, estilizadas a una altura de `95px` en `FreeCAD.qss`.
+
+### 2. Formateador de Tooltips HTML (C++)
+Transforma descripciones de comandos en tarjetas informativas con soporte de imágenes y formato enriquecido en `ToolBarManager.cpp`.
+
+### 3. Integración de Mallas y Enfoque de Cámara (C++/Python)
+Añade un botón de inicio en la pantalla de bienvenida que ejecuta comandos de Python para crear un sólido base (`Mesh.createSphere`) y programa un temporizador Qt para invocar `Std_ViewFitAll`, centrando la cámara del visor 3D instantáneamente.
+
+---
+
+## 🔄 Pipeline CI/CD Automatizado
+El workflow ejecuta pruebas automáticas y compila la plataforma web ante cada confirmación:
+1. **Checkout:** Descarga del código fuente.
+2. **Setup Environment:** Instalación de Python y dependencias de prueba.
+3. **Execution:** Ejecución de pruebas unitarias (`pytest tests/ -v`).
+4. **Deploy:** Construcción y despliegue del dashboard en GitHub Pages.
+
+---
+
+## 📊 Métricas de Sprints (72 Story Points Totales)
+* **Sprint 0 (12 SP):** Planificación, configuración de ramas y diseño arquitectónico (100% completado).
+* **Sprint 1 (20 SP):** Configuración de GitHub Actions, GitHub Pages y prototipo del Dashboard (100% completado).
+* **Sprint 2 (25 SP):** Desacoplamiento de clases puras de Python y suite de pruebas unitarias (100% completado).
+* **Sprint 3 (15 SP):** Interfaz Ribbon e integración de flujos de mallas 3D en C++ (100% completado).
